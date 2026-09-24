@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gpc-codec"
+version = "1.0.0"
+authors = [
+  { name="Ranveer", email="kr715ranveer@gmail.com" },
+]
+description = "Generalized Patha Codes (GPC): Specialized linear-time synchronization inner code for order-sensitive channels"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+keywords = [
+  "error-correction",
+  "dna-storage",
+  "uav-swarm",
+  "synchronization",
+  "deletion-channels",
+  "vedic-mathematics",
+  "ghana-patha"
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+  "Topic :: System :: Networking",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0",
+  "pytest-cov>=4.0",
+]
+
+[project.scripts]
+gpc = "gpc.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
