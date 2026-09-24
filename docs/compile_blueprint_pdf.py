@@ -15,7 +15,6 @@ def compile_blueprint():
     
     html_path = os.path.join(script_dir, "formulas_and_solutions_blueprint.html")
     pdf_path_docs = os.path.join(script_dir, "GPC_Mathematical_Formulas_and_Execution_Blueprint.pdf")
-    pdf_path_root = os.path.join(root_dir, "GPC_Mathematical_Formulas_and_Execution_Blueprint.pdf")
     
     edge_executable = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
     
@@ -39,10 +38,12 @@ def compile_blueprint():
         )
         browser.close()
     
-    # Mirror to root directory for easy top-level access
-    shutil.copy2(pdf_path_docs, pdf_path_root)
+    # Mirror to papers directory for centralized archival access
+    papers_dir = os.path.join(root_dir, "papers")
+    if os.path.exists(papers_dir):
+        shutil.copy2(pdf_path_docs, os.path.join(papers_dir, "GPC_Mathematical_Formulas_and_Execution_Blueprint.pdf"))
     file_size_kb = os.path.getsize(pdf_path_docs) / 1024
-    print(f"SUCCESS: Generated {pdf_path_docs} and mirrored to root ({file_size_kb:.1f} KB)")
+    print(f"SUCCESS: Generated {pdf_path_docs} and mirrored to papers/ ({file_size_kb:.1f} KB)")
 
 if __name__ == "__main__":
     compile_blueprint()

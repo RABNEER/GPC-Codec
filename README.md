@@ -33,26 +33,21 @@ proud-lavoisier/
 ├── 🛸 swarm_telemetry_simulation.py                         # Domain 3: 8-UAV Swarm 3D Telemetry & Collision Avoidance testbed
 ├── 🌐 simulation.html                                       # Interactive browser GUI & live demo station
 │
-├── 📄 docs/                                                 # Research Publications & Technical Blueprints
-│   ├── GPC_Comprehensive_Research_Paper.pdf                # Submission-Ready Archival Journal Paper (4 pages)
-│   ├── GPC_Comprehensive_Research_Paper.md                 # Full Markdown Research Manuscript (Complete)
-│   ├── GPC_Comprehensive_Research_Paper.html               # IEEE Master Two-Column HTML Template
-│   ├── paper_publication.pdf                               # 3-Page IEEE preliminary publication paper
-│   ├── GPC_Mathematical_Formulas_and_Execution_Blueprint.pdf # 4-Page Technical Monograph (with vector SVG math)
-│   ├── DNA_Storage_Experimental_Report.pdf                 # 4-Page Audited DNA Testbed Report (with figures & math)
-│   ├── Swarm_Telemetry_Experimental_Report.pdf             # 4-Page Audited Drone Swarm Report (with figures & math)
-│   ├── paper_ieee.html                                     # IEEE master HTML template
+├── 📚 papers/                                               # Submission Manuscripts & Audited Research Reports
+│   ├── GPC_Comprehensive_Research_Paper.pdf                # Master IRIS 2026 Submission Paper (Strictly 4 Pages)
+│   ├── GPC_Mathematical_Formulas_and_Execution_Blueprint.pdf # 4-Page Mathematical Blueprint & Theorem Proofs
+│   ├── DNA_Storage_Experimental_Report.pdf                 # 4-Page Audited DNA Testbed Report
+│   ├── Swarm_Telemetry_Experimental_Report.pdf             # 4-Page Audited Drone Swarm Report
+│   ├── paper_publication.pdf                               # 3-Page IEEE preliminary paper
+│   └── README.md                                           # Index and summary of all manuscripts
+│
+├── 📄 docs/                                                 # Research Manuscript Sources & Compilers
+│   ├── GPC_Comprehensive_Research_Paper.html               # Master Two-Column MathJax HTML Template
+│   ├── GPC_Comprehensive_Research_Paper.md                 # Full Markdown Research Manuscript
+│   ├── compile_comprehensive_paper_pdf.py                  # Headless Playwright PDF compiler
 │   ├── formulas_and_solutions_blueprint.html               # Technical blueprint HTML template
 │   ├── dna_storage_experimental_report.html                # DNA testbed report HTML template
-│   ├── dna_storage_experimental_report.md                  # Markdown source report
 │   ├── swarm_telemetry_experimental_report.html            # Swarm testbed report HTML template
-│   ├── swarm_telemetry_experimental_report.md              # Markdown source report
-│   ├── compile_comprehensive_paper_pdf.py                  # Headless browser compiler for Journal Paper
-│   ├── compile_pdf.py                                      # Headless browser compiler for IEEE paper
-│   ├── compile_blueprint_pdf.py                            # Headless browser compiler for Blueprint
-│   ├── compile_dna_report_pdf.py                           # Headless browser compiler for DNA report
-│   ├── compile_swarm_report_pdf.py                         # Headless browser compiler for Swarm report
-│   ├── paper_draft.md                                      # Markdown source draft
 │   └── latex_table.tex                                     # LaTeX tabular code
 │
 ├── 📈 figures/                                              # Vector Diagrams & Asset Generators

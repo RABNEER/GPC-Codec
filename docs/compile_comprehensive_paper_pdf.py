@@ -16,7 +16,6 @@ def compile_paper():
     
     html_path = os.path.join(script_dir, "GPC_Comprehensive_Research_Paper.html")
     pdf_path_docs = os.path.join(script_dir, "GPC_Comprehensive_Research_Paper.pdf")
-    pdf_path_root = os.path.join(root_dir, "GPC_Comprehensive_Research_Paper.pdf")
     
     edge_executable = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
     
@@ -44,8 +43,7 @@ def compile_paper():
         )
         browser.close()
     
-    # Mirror to root directory and papers directory for easy access
-    shutil.copy2(pdf_path_docs, pdf_path_root)
+    # Mirror to papers directory for centralized archival access
     papers_dir = os.path.join(root_dir, "papers")
     if os.path.exists(papers_dir):
         shutil.copy2(pdf_path_docs, os.path.join(papers_dir, "GPC_Comprehensive_Research_Paper.pdf"))
@@ -54,7 +52,7 @@ def compile_paper():
     # Audit page count with pypdf
     reader = PdfReader(pdf_path_docs)
     num_pages = len(reader.pages)
-    print(f"SUCCESS: Generated {pdf_path_docs} and mirrored to root ({file_size_kb:.1f} KB)")
+    print(f"SUCCESS: Generated {pdf_path_docs} and mirrored to papers/ ({file_size_kb:.1f} KB)")
     print(f"Total Pages: {num_pages}")
     
     for idx, page in enumerate(reader.pages):

@@ -15,7 +15,6 @@ def build_pdf():
     
     html_path = os.path.join(script_dir, "paper_ieee.html")
     pdf_path_docs = os.path.join(script_dir, "paper_publication.pdf")
-    pdf_path_root = os.path.join(root_dir, "paper_publication.pdf")
     
     edge_executable = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
     
@@ -32,9 +31,11 @@ def build_pdf():
         )
         browser.close()
     
-    # Mirror to root directory
-    shutil.copy2(pdf_path_docs, pdf_path_root)
-    print("SUCCESS: Generated paper_publication.pdf and mirrored to root.")
+    # Mirror to papers directory
+    papers_dir = os.path.join(root_dir, "papers")
+    if os.path.exists(papers_dir):
+        shutil.copy2(pdf_path_docs, os.path.join(papers_dir, "paper_publication.pdf"))
+    print("SUCCESS: Generated paper_publication.pdf and mirrored to papers/.")
 
 if __name__ == "__main__":
     build_pdf()

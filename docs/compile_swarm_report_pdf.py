@@ -16,7 +16,6 @@ def compile_swarm_report():
     
     html_path = os.path.join(script_dir, "swarm_telemetry_experimental_report.html")
     pdf_path_docs = os.path.join(script_dir, "Swarm_Telemetry_Experimental_Report.pdf")
-    pdf_path_root = os.path.join(root_dir, "Swarm_Telemetry_Experimental_Report.pdf")
     
     edge_executable = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
     
@@ -44,14 +43,16 @@ def compile_swarm_report():
         )
         browser.close()
     
-    # Mirror to root directory for easy top-level access
-    shutil.copy2(pdf_path_docs, pdf_path_root)
+    # Mirror to papers directory for centralized archival access
+    papers_dir = os.path.join(root_dir, "papers")
+    if os.path.exists(papers_dir):
+        shutil.copy2(pdf_path_docs, os.path.join(papers_dir, "Swarm_Telemetry_Experimental_Report.pdf"))
     file_size_kb = os.path.getsize(pdf_path_docs) / 1024
     
     # Audit page count with pypdf
     reader = PdfReader(pdf_path_docs)
     num_pages = len(reader.pages)
-    print(f"SUCCESS: Generated {pdf_path_docs} and mirrored to root ({file_size_kb:.1f} KB)")
+    print(f"SUCCESS: Generated {pdf_path_docs} and mirrored to papers/ ({file_size_kb:.1f} KB)")
     print(f"Total Pages: {num_pages}")
     
     for idx, page in enumerate(reader.pages):
