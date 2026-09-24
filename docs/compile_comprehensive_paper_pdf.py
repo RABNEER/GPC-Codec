@@ -44,8 +44,11 @@ def compile_paper():
         )
         browser.close()
     
-    # Mirror to root directory for easy top-level access
+    # Mirror to root directory and papers directory for easy access
     shutil.copy2(pdf_path_docs, pdf_path_root)
+    papers_dir = os.path.join(root_dir, "papers")
+    if os.path.exists(papers_dir):
+        shutil.copy2(pdf_path_docs, os.path.join(papers_dir, "GPC_Comprehensive_Research_Paper.pdf"))
     file_size_kb = os.path.getsize(pdf_path_docs) / 1024
     
     # Audit page count with pypdf
