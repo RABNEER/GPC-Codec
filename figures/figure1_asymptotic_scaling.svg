@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 380" width="100%" height="100%" style="background:#ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Times New Roman', serif;">
+  <rect width="650" height="380" fill="#ffffff"/>
+  
+  <!-- Title & Axis Labels -->
+  <text x="325" y="30" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">Figure 1: Asymptotic Burst-Erasure Tolerance Scaling (B_E vs. Block Length M)</text>
+  <text x="330" y="365" text-anchor="middle" font-size="12" fill="#475569">Block Length M (bits) &rarr;</text>
+  <text x="25" y="190" text-anchor="middle" font-size="12" fill="#475569" transform="rotate(-90 25,190)">Contiguous Burst Guarantee B_E (bits) &rarr;</text>
+  
+  <!-- Plot Border & Grid -->
+  <rect x="70" y="55" width="540" height="270" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <line x1="70" y1="270" x2="610" y2="270" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="70" y1="210" x2="610" y2="210" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="70" y1="150" x2="610" y2="150" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="70" y1="90" x2="610" y2="90" stroke="#e2e8f0" stroke-width="1"/>
+  
+  <line x1="178" y1="55" x2="178" y2="325" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="286" y1="55" x2="286" y2="325" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="394" y1="55" x2="394" y2="325" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="502" y1="55" x2="502" y2="325" stroke="#e2e8f0" stroke-width="1"/>
+  
+  <!-- Axis Ticks & Numbers -->
+  <text x="70" y="342" text-anchor="middle" font-size="10" fill="#64748b">0</text>
+  <text x="178" y="342" text-anchor="middle" font-size="10" fill="#64748b">100</text>
+  <text x="286" y="342" text-anchor="middle" font-size="10" fill="#64748b">200</text>
+  <text x="394" y="342" text-anchor="middle" font-size="10" fill="#64748b">300</text>
+  <text x="502" y="342" text-anchor="middle" font-size="10" fill="#64748b">400</text>
+  <text x="610" y="342" text-anchor="middle" font-size="10" fill="#64748b">500</text>
+  
+  <text x="62" y="328" text-anchor="end" font-size="10" fill="#64748b">0</text>
+  <text x="62" y="273" text-anchor="end" font-size="10" fill="#64748b">75</text>
+  <text x="62" y="213" text-anchor="end" font-size="10" fill="#64748b">150</text>
+  <text x="62" y="153" text-anchor="end" font-size="10" fill="#64748b">225</text>
+  <text x="62" y="93" text-anchor="end" font-size="10" fill="#64748b">300</text>
+  
+  <!-- Curves -->
+  <!-- 1. Literal Ghana (Flat at 10) -->
+  <line x1="70" y1="317" x2="610" y2="317" stroke="#ef4444" stroke-width="3"/>
+  <circle cx="109" cy="317" r="5" fill="#ef4444"/>
+  <circle cx="137" cy="317" r="5" fill="#ef4444"/>
+  <text x="450" y="310" fill="#dc2626" font-size="11" font-weight="bold">Literal Ghana: B_E = 10 (Vanishing Ratio &rarr; 0%)</text>
+  
+  <!-- 2. Evenly Interleaved (Slope approx 0.40, but collapsed at K=6) -->
+  <line x1="70" y1="325" x2="610" y2="165" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="6,4"/>
+  <text x="430" y="150" fill="#d97706" font-size="11" font-weight="bold">Evenly Interleaved (Deletions Collapsed: B_del=0)</text>
+  
+  <!-- 3. Proposed GPC (Slope = 8/13 = 0.615) -->
+  <line x1="70" y1="325" x2="610" y2="78" stroke="#059669" stroke-width="3.5"/>
+  <circle cx="133" cy="287" r="6" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+  <text x="145" y="282" fill="#047857" font-size="10" font-weight="bold">K=4 (M=58, B_E=47)</text>
+  <circle cx="161" cy="271" r="6" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+  <text x="175" y="265" fill="#047857" font-size="10" font-weight="bold">K=6 (M=84, B_E=67)</text>
+  <text x="360" y="95" fill="#047857" font-size="12" font-weight="bold">★ Proposed GPC: B_E &ge; (8/13) M &asymp; 61.54% of M</text>
+  
+  <!-- Callout box -->
+  <rect x="85" y="70" width="240" height="65" rx="6" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1"/>
+  <text x="95" y="88" font-size="10" font-weight="bold" fill="#065f46">Analytical Bound Verified:</text>
+  <text x="95" y="105" font-size="9.5" fill="#047857">&bull; Literal Ghana: lim B_E / M = 0.00%</text>
+  <text x="95" y="122" font-size="9.5" fill="#047857">&bull; GPC (Proposed): lim B_E / M = 61.54%</text>
+</svg>
