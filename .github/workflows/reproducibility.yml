@@ -1,0 +1,21 @@
+name: Reproducibility & Benchmark Audit
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+    - name: Verify Table I Reproducibility (110k+ Combinatorial Proofs)
+      run: |
+        python experiments/verify_table1_reproducibility.py
+    - name: Run Algorithm 1 Edge-Case Stress Suite
+      run: |
+        python experiments/test_algorithm1_edge_cases.py
