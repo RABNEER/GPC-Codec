@@ -1,0 +1,11 @@
+Scale_K,Architecture,Length_M,Rate_R,Burst_BE,Min_dL,Burst_Bdel,Status
+4,GPC (Proposed),58,0.069,47,2,12,DOMINANT
+4,Literal Ghana,36,0.111,10,5,10,CONSTRAINED
+4,Evenly Interleaved,36,0.111,16,2,12,BASELINE
+4,Contiguous Repetition,36,0.111,4,5,4,FRAGILE
+4,Marker Code,41,0.098,18,3,12,BASELINE
+6,GPC (Proposed),84,0.071,67,2,12,DOMINANT
+6,Literal Ghana,62,0.097,10,5,10,STUCK_AT_10
+6,Evenly Interleaved,62,0.097,24,1,0,COLLAPSED
+6,Contiguous Repetition,62,0.097,4,5,4,FRAGILE
+6,Marker Code,72,0.083,28,2,12,BASELINE

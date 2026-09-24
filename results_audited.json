@@ -1,0 +1,629 @@
+{
+  "metadata": {
+    "timestamp_utc": "2026-09-23 18:29:31 UTC",
+    "python_version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "win32"
+  },
+  "schemes": {
+    "GPC (Challenger)_K4": {
+      "name": "GPC (Challenger)",
+      "K": 4,
+      "M": 58,
+      "rate": 0.06896551724137931,
+      "marked_erasures": {
+        "B_E_theoretical": 47,
+        "B_E_codebook": 47,
+        "B_E_decoder": 47,
+        "first_failure_witness": {
+          "type": "erasure_codebook_collision",
+          "L": 48,
+          "start": 4,
+          "msg1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "msg2": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "surviving_length": 10
+        },
+        "spans": {
+          "1": 54,
+          "2": 54,
+          "3": 47,
+          "4": 48
+        }
+      },
+      "unmarked_deletions": {
+        "B_del_guaranteed": 20,
+        "collision_witnesses": {}
+      },
+      "timing": {
+        "erasure_eval_sec": 0.11101317405700684,
+        "deletion_eval_sec": 0.007265329360961914
+      }
+    },
+    "Reviewer Baseline (x || 1^6 || x^12)_K4": {
+      "name": "Reviewer Baseline (x || 1^6 || x^12)",
+      "K": 4,
+      "M": 58,
+      "rate": 0.06896551724137931,
+      "marked_erasures": {
+        "B_E_theoretical": 54,
+        "B_E_codebook": 54,
+        "B_E_decoder": 54,
+        "first_failure_witness": {
+          "type": "erasure_codebook_collision",
+          "L": 55,
+          "start": 0,
+          "msg1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "msg2": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "surviving_length": 3
+        },
+        "spans": {
+          "1": 54,
+          "2": 54,
+          "3": 54,
+          "4": 54
+        }
+      },
+      "unmarked_deletions": {
+        "B_del_guaranteed": 0,
+        "collision_witnesses": {
+          "1": {
+            "msg1": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "msg2": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "b": 1,
+            "start_msg1": 57,
+            "start_msg2": 0,
+            "colliding_output_sample": [
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0
+            ]
+          }
+        }
+      },
+      "timing": {
+        "erasure_eval_sec": 0.11217355728149414,
+        "deletion_eval_sec": 0.0005083084106445312
+      }
+    },
+    "Uniform Interleaved (x * 13 || 1^6)_K4": {
+      "name": "Uniform Interleaved (x * 13 || 1^6)",
+      "K": 4,
+      "M": 58,
+      "rate": 0.06896551724137931,
+      "marked_erasures": {
+        "B_E_theoretical": 48,
+        "B_E_codebook": 48,
+        "B_E_decoder": 48,
+        "first_failure_witness": {
+          "type": "erasure_codebook_collision",
+          "L": 49,
+          "start": 0,
+          "msg1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "msg2": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "surviving_length": 9
+        },
+        "spans": {
+          "1": 48,
+          "2": 48,
+          "3": 48,
+          "4": 48
+        }
+      },
+      "unmarked_deletions": {
+        "B_del_guaranteed": 0,
+        "collision_witnesses": {
+          "1": {
+            "msg1": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "msg2": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "b": 1,
+            "start_msg1": 0,
+            "start_msg2": 51,
+            "colliding_output_sample": [
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0
+            ]
+          }
+        }
+      },
+      "timing": {
+        "erasure_eval_sec": 0.10880279541015625,
+        "deletion_eval_sec": 0.0005159378051757812
+      }
+    },
+    "Literal Ghana Patha (Raw)_K4": {
+      "name": "Literal Ghana Patha (Raw)",
+      "K": 4,
+      "M": 36,
+      "rate": 0.1111111111111111,
+      "marked_erasures": {
+        "B_E_theoretical": 10,
+        "B_E_codebook": 10,
+        "B_E_decoder": 10,
+        "first_failure_witness": {
+          "type": "erasure_codebook_collision",
+          "L": 11,
+          "start": 0,
+          "msg1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "msg2": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "surviving_length": 25
+        },
+        "spans": {
+          "1": 10,
+          "2": 22,
+          "3": 28,
+          "4": 16
+        }
+      },
+      "unmarked_deletions": {
+        "B_del_guaranteed": 10,
+        "collision_witnesses": {
+          "11": {
+            "msg1": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "msg2": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "b": 11,
+            "start_msg1": 0,
+            "start_msg2": 0,
+            "colliding_output_sample": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      },
+      "timing": {
+        "erasure_eval_sec": 0.017418861389160156,
+        "deletion_eval_sec": 0.0021038055419921875
+      }
+    },
+    "GPC (Challenger)_K6": {
+      "name": "GPC (Challenger)",
+      "K": 6,
+      "M": 84,
+      "rate": 0.07142857142857142,
+      "marked_erasures": {
+        "B_E_theoretical": 67,
+        "B_E_codebook": 67,
+        "B_E_decoder": 67,
+        "first_failure_witness": {
+          "type": "erasure_codebook_collision",
+          "L": 68,
+          "start": 4,
+          "msg1": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "msg2": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "surviving_length": 16
+        },
+        "spans": {
+          "1": 80,
+          "2": 80,
+          "3": 67,
+          "4": 68,
+          "5": 69,
+          "6": 70
+        }
+      },
+      "unmarked_deletions": {
+        "B_del_guaranteed": 20,
+        "collision_witnesses": {}
+      },
+      "timing": {
+        "erasure_eval_sec": 1.276139736175537,
+        "deletion_eval_sec": 0.08774375915527344
+      }
+    },
+    "Reviewer Baseline (x || 1^6 || x^12)_K6": {
+      "name": "Reviewer Baseline (x || 1^6 || x^12)",
+      "K": 6,
+      "M": 84,
+      "rate": 0.07142857142857142,
+      "marked_erasures": {
+        "B_E_theoretical": 78,
+        "B_E_codebook": 78,
+        "B_E_decoder": 78,
+        "first_failure_witness": {
+          "type": "erasure_codebook_collision",
+          "L": 79,
+          "start": 0,
+          "msg1": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "msg2": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "surviving_length": 5
+        },
+        "spans": {
+          "1": 78,
+          "2": 78,
+          "3": 78,
+          "4": 78,
+          "5": 78,
+          "6": 78
+        }
+      },
+      "unmarked_deletions": {
+        "B_del_guaranteed": 0,
+        "collision_witnesses": {
+          "1": {
+            "msg1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "msg2": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "b": 1,
+            "start_msg1": 83,
+            "start_msg2": 0,
+            "colliding_output_sample": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0
+            ]
+          }
+        }
+      },
+      "timing": {
+        "erasure_eval_sec": 1.303480625152588,
+        "deletion_eval_sec": 0.0043087005615234375
+      }
+    },
+    "Uniform Interleaved (x * 13 || 1^6)_K6": {
+      "name": "Uniform Interleaved (x * 13 || 1^6)",
+      "K": 6,
+      "M": 84,
+      "rate": 0.07142857142857142,
+      "marked_erasures": {
+        "B_E_theoretical": 72,
+        "B_E_codebook": 72,
+        "B_E_decoder": 72,
+        "first_failure_witness": {
+          "type": "erasure_codebook_collision",
+          "L": 73,
+          "start": 0,
+          "msg1": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "msg2": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "surviving_length": 11
+        },
+        "spans": {
+          "1": 72,
+          "2": 72,
+          "3": 72,
+          "4": 72,
+          "5": 72,
+          "6": 72
+        }
+      },
+      "unmarked_deletions": {
+        "B_del_guaranteed": 0,
+        "collision_witnesses": {
+          "1": {
+            "msg1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "msg2": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "b": 1,
+            "start_msg1": 0,
+            "start_msg2": 77,
+            "colliding_output_sample": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      },
+      "timing": {
+        "erasure_eval_sec": 1.2731022834777832,
+        "deletion_eval_sec": 0.004086971282958984
+      }
+    },
+    "Literal Ghana Patha (Raw)_K6": {
+      "name": "Literal Ghana Patha (Raw)",
+      "K": 6,
+      "M": 62,
+      "rate": 0.0967741935483871,
+      "marked_erasures": {
+        "B_E_theoretical": 10,
+        "B_E_codebook": 10,
+        "B_E_decoder": 10,
+        "first_failure_witness": {
+          "type": "erasure_codebook_collision",
+          "L": 11,
+          "start": 0,
+          "msg1": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "msg2": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "surviving_length": 51
+        },
+        "spans": {
+          "1": 10,
+          "2": 22,
+          "3": 30,
+          "4": 30,
+          "5": 28,
+          "6": 16
+        }
+      },
+      "unmarked_deletions": {
+        "B_del_guaranteed": 10,
+        "collision_witnesses": {
+          "11": {
+            "msg1": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "msg2": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "b": 11,
+            "start_msg1": 0,
+            "start_msg2": 0,
+            "colliding_output_sample": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      },
+      "timing": {
+        "erasure_eval_sec": 0.19063067436218262,
+        "deletion_eval_sec": 0.024425745010375977
+      }
+    }
+  }
+}

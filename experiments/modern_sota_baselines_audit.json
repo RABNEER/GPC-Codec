@@ -1,0 +1,62 @@
+{
+  "Varshamov-Tenengolts (VT)": {
+    "Reference": "Levenshtein (1965) / Varshamov-Tenengolts (1965)",
+    "Code Rate R": 0.885,
+    "Single Deletion (b=1)": "100% RECOVERED",
+    "Burst Deletion (b=5)": "FAILED (B_del = 1 limit)",
+    "Burst Deletion (b=20)": "FAILED (Syndrome Collapse)",
+    "Marked Burst Erasure (B_E)": 1,
+    "Decoding Complexity": "O(N) for b=1, NP-hard for arbitrary bursts",
+    "Measured Latency": "18.4 us (b=1 only)",
+    "Memory / State": "Stateless",
+    "Primary Niche": "Sparse random single indels"
+  },
+  "Schoeny et al. Burst Deletion": {
+    "Reference": "Schoeny, Wachter-Zeh, Gabrys, Yaakobi (IEEE TIT 2017)",
+    "Code Rate R": 0.65,
+    "Single Deletion (b=1)": "100% RECOVERED",
+    "Burst Deletion (b=5)": "100% RECOVERED",
+    "Burst Deletion (b=20)": "FAILED (Exceeds design parameter B)",
+    "Marked Burst Erasure (B_E)": 8,
+    "Decoding Complexity": "O(N log N) non-linear congruence search",
+    "Measured Latency": "342.0 us",
+    "Memory / State": "Phase-tracking syndrome table",
+    "Primary Niche": "Bounded pure deletion bursts (zero erasures)"
+  },
+  "Davey-MacKay Marker Code": {
+    "Reference": "Davey & MacKay (IEEE TIT 2001) / Ratzer (2003)",
+    "Code Rate R": 0.75,
+    "Single Deletion (b=1)": "100% RECOVERED",
+    "Burst Deletion (b=5)": "85.2% (Viterbi drift tracking)",
+    "Burst Deletion (b=20)": "FAILED (Marker straddle false-lock)",
+    "Marked Burst Erasure (B_E)": 12,
+    "Decoding Complexity": "O(N * D^2) Viterbi Trellis alignment",
+    "Measured Latency": "890.0 us",
+    "Memory / State": "Stateful Viterbi Trellis matrix",
+    "Primary Niche": "Continuous i.i.d. drift channels"
+  },
+  "Outer RS + Inner Needleman-Wunsch DP": {
+    "Reference": "Goldman et al. (Nature 2013) / Organick (Nat Biotech 2018)",
+    "Code Rate R": 0.667,
+    "Single Deletion (b=1)": "100% RECOVERED",
+    "Burst Deletion (b=5)": "100% RECOVERED",
+    "Burst Deletion (b=20)": "71.4% (DP misaligns downstream homopolymers)",
+    "Marked Burst Erasure (B_E)": 20,
+    "Decoding Complexity": "O(N^2) Dynamic Programming + O(N log^2 N) RS",
+    "Measured Latency": "1546.8 us (DP Alignment alone: 1.82 ms at full length)",
+    "Memory / State": "O(N^2) DP Score Matrix",
+    "Primary Niche": "Massive offline cold archiving (non-real-time)"
+  },
+  "Generalized Patha Code (GPC)": {
+    "Reference": "This Work (Vedic Ghana Patha Formalization)",
+    "Code Rate R": 0.069,
+    "Single Deletion (b=1)": "100% RECOVERED",
+    "Burst Deletion (b=5)": "100% RECOVERED",
+    "Burst Deletion (b=20)": "100% RECOVERED (B_del = 21 practical, 46 codebook)",
+    "Marked Burst Erasure (B_E)": 47,
+    "Decoding Complexity": "O(M) Deterministic Greedy Correlation",
+    "Measured Latency": "552.0 us (Complete Alignment + Payload Recovery)",
+    "Memory / State": "O(1) Strictly Stateless (No Matrix / No Trellis)",
+    "Primary Niche": "Ultra-reliable, low-latency, hard deadline channels"
+  }
+}

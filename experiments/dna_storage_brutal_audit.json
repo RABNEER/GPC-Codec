@@ -1,0 +1,162 @@
+[
+  {
+    "burst_nt": 0,
+    "rs": {
+      "ber_pct": 0.0,
+      "psnr_db": 99.99,
+      "syndrome_failures": 0,
+      "status": "LOCKED",
+      "failure_reason": "None"
+    },
+    "gpc": {
+      "ber_pct": 0.0,
+      "psnr_db": 99.99,
+      "status": "LOCKED",
+      "failure_reason": "None"
+    }
+  },
+  {
+    "burst_nt": 5,
+    "rs": {
+      "ber_pct": 28.80859375,
+      "psnr_db": 5.404779406616489,
+      "syndrome_failures": 21,
+      "status": "DESYNC",
+      "failure_reason": "Syndrome Misalignment via Coordinate Frame Drift"
+    },
+    "gpc": {
+      "ber_pct": 0.0,
+      "psnr_db": 99.99,
+      "status": "LOCKED",
+      "failure_reason": "None"
+    }
+  },
+  {
+    "burst_nt": 10,
+    "rs": {
+      "ber_pct": 29.58984375,
+      "psnr_db": 5.288573281375069,
+      "syndrome_failures": 21,
+      "status": "DESYNC",
+      "failure_reason": "Syndrome Misalignment via Coordinate Frame Drift"
+    },
+    "gpc": {
+      "ber_pct": 0.0,
+      "psnr_db": 99.99,
+      "status": "LOCKED",
+      "failure_reason": "None"
+    }
+  },
+  {
+    "burst_nt": 15,
+    "rs": {
+      "ber_pct": 31.54296875,
+      "psnr_db": 5.010974343087091,
+      "syndrome_failures": 21,
+      "status": "DESYNC",
+      "failure_reason": "Syndrome Misalignment via Coordinate Frame Drift"
+    },
+    "gpc": {
+      "ber_pct": 0.0,
+      "psnr_db": 99.99,
+      "status": "LOCKED",
+      "failure_reason": "None"
+    }
+  },
+  {
+    "burst_nt": 20,
+    "rs": {
+      "ber_pct": 30.6640625,
+      "psnr_db": 5.133703085665971,
+      "syndrome_failures": 21,
+      "status": "DESYNC",
+      "failure_reason": "Syndrome Misalignment via Coordinate Frame Drift"
+    },
+    "gpc": {
+      "ber_pct": 0.0,
+      "psnr_db": 99.99,
+      "status": "LOCKED",
+      "failure_reason": "None"
+    }
+  },
+  {
+    "burst_nt": 25,
+    "rs": {
+      "ber_pct": 31.54296875,
+      "psnr_db": 5.010974343087091,
+      "syndrome_failures": 21,
+      "status": "DESYNC",
+      "failure_reason": "Syndrome Misalignment via Coordinate Frame Drift"
+    },
+    "gpc": {
+      "ber_pct": 7.71484375,
+      "psnr_db": 11.126728653493705,
+      "status": "GRACEFUL DEGRADE",
+      "failure_reason": "Burst Exceeded Support Set Minimum Span"
+    }
+  },
+  {
+    "burst_nt": 30,
+    "rs": {
+      "ber_pct": 31.25,
+      "psnr_db": 5.051499783199061,
+      "syndrome_failures": 21,
+      "status": "DESYNC",
+      "failure_reason": "Syndrome Misalignment via Coordinate Frame Drift"
+    },
+    "gpc": {
+      "ber_pct": 15.91796875,
+      "psnr_db": 7.981123522358542,
+      "status": "GRACEFUL DEGRADE",
+      "failure_reason": "Burst Exceeded Support Set Minimum Span"
+    }
+  },
+  {
+    "burst_nt": 35,
+    "rs": {
+      "ber_pct": 32.32421875,
+      "psnr_db": 4.904719628640932,
+      "syndrome_failures": 21,
+      "status": "DESYNC",
+      "failure_reason": "Syndrome Misalignment via Coordinate Frame Drift"
+    },
+    "gpc": {
+      "ber_pct": 22.65625,
+      "psnr_db": 6.4481197174891225,
+      "status": "DESYNC",
+      "failure_reason": "Burst Exceeded Support Set Minimum Span"
+    }
+  },
+  {
+    "burst_nt": 40,
+    "rs": {
+      "ber_pct": 30.76171875,
+      "psnr_db": 5.119894028502115,
+      "syndrome_failures": 21,
+      "status": "DESYNC",
+      "failure_reason": "Syndrome Misalignment via Coordinate Frame Drift"
+    },
+    "gpc": {
+      "ber_pct": 24.0234375,
+      "psnr_db": 6.193648495364329,
+      "status": "DESYNC",
+      "failure_reason": "Burst Exceeded Support Set Minimum Span"
+    }
+  },
+  {
+    "burst_nt": 50,
+    "rs": {
+      "ber_pct": 31.73828125,
+      "psnr_db": 4.984165956609376,
+      "syndrome_failures": 20,
+      "status": "DESYNC",
+      "failure_reason": "Syndrome Misalignment via Coordinate Frame Drift"
+    },
+    "gpc": {
+      "ber_pct": 37.01171875,
+      "psnr_db": 4.316607466717396,
+      "status": "DESYNC",
+      "failure_reason": "Burst Exceeded Support Set Minimum Span"
+    }
+  }
+]

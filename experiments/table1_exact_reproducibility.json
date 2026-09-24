@@ -1,0 +1,113 @@
+{
+  "metadata": {
+    "timestamp_utc": "2026-09-24 16:38:58 UTC",
+    "total_schemes_verified": 8,
+    "all_assertions_passed": true
+  },
+  "table1_ledger": {
+    "K4_Literal Ghana": {
+      "K": 4,
+      "name": "Literal Ghana",
+      "M": 36,
+      "rate": 0.111,
+      "B_E": 10,
+      "q_L_ge_3": 4,
+      "q_L_ge_5": 0,
+      "B_del_codebook": 10,
+      "B_del_decoder": 10,
+      "verified_against_paper": true,
+      "runtime_sec": 0.0016520023345947266
+    },
+    "K4_Reviewer Baseline": {
+      "K": 4,
+      "name": "Reviewer Baseline",
+      "M": 58,
+      "rate": 0.069,
+      "B_E": 54,
+      "q_L_ge_3": 40,
+      "q_L_ge_5": 32,
+      "B_del_codebook": 0,
+      "B_del_decoder": 0,
+      "verified_against_paper": true,
+      "runtime_sec": 0.02933192253112793
+    },
+    "K4_Uniform Interleaved": {
+      "K": 4,
+      "name": "Uniform Interleaved",
+      "M": 58,
+      "rate": 0.069,
+      "B_E": 48,
+      "q_L_ge_3": 40,
+      "q_L_ge_5": 32,
+      "B_del_codebook": 0,
+      "B_del_decoder": 0,
+      "verified_against_paper": true,
+      "runtime_sec": 0.028116464614868164
+    },
+    "K4_GPC (Challenger)": {
+      "K": 4,
+      "name": "GPC (Challenger)",
+      "M": 58,
+      "rate": 0.069,
+      "B_E": 47,
+      "q_L_ge_3": 39,
+      "q_L_ge_5": 30,
+      "B_del_codebook": 46,
+      "B_del_decoder": 21,
+      "verified_against_paper": true,
+      "runtime_sec": 1.8071873188018799
+    },
+    "K6_Literal Ghana": {
+      "K": 6,
+      "name": "Literal Ghana",
+      "M": 62,
+      "rate": 0.097,
+      "B_E": 10,
+      "q_L_ge_3": 4,
+      "q_L_ge_5": 0,
+      "B_del_codebook": 10,
+      "B_del_decoder": 10,
+      "verified_against_paper": true,
+      "runtime_sec": 0.0053157806396484375
+    },
+    "K6_Reviewer Baseline": {
+      "K": 6,
+      "name": "Reviewer Baseline",
+      "M": 84,
+      "rate": 0.071,
+      "B_E": 78,
+      "q_L_ge_3": 60,
+      "q_L_ge_5": 48,
+      "B_del_codebook": 0,
+      "B_del_decoder": 0,
+      "verified_against_paper": true,
+      "runtime_sec": 0.12413716316223145
+    },
+    "K6_Uniform Interleaved": {
+      "K": 6,
+      "name": "Uniform Interleaved",
+      "M": 84,
+      "rate": 0.071,
+      "B_E": 72,
+      "q_L_ge_3": 60,
+      "q_L_ge_5": 48,
+      "B_del_codebook": 0,
+      "B_del_decoder": 0,
+      "verified_against_paper": true,
+      "runtime_sec": 0.11895537376403809
+    },
+    "K6_GPC (Challenger)": {
+      "K": 6,
+      "name": "GPC (Challenger)",
+      "M": 84,
+      "rate": 0.071,
+      "B_E": 67,
+      "q_L_ge_3": 55,
+      "q_L_ge_5": 42,
+      "B_del_codebook": 59,
+      "B_del_decoder": 31,
+      "verified_against_paper": true,
+      "runtime_sec": 64.95549607276917
+    }
+  }
+}
