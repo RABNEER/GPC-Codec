@@ -8,7 +8,8 @@ This directory archives all formal academic publications, technical monographs, 
 
 | File | Type | Pages | Description |
 |---|---|:---:|---|
-| **[`GPC_Comprehensive_Research_Paper.pdf`](GPC_Comprehensive_Research_Paper.pdf)** | **Primary Journal Paper** | **4** | **Master IRIS National Science Fair 2026 Submission Manuscript.** Contains full theoretical theorems, SOTA benchmark comparisons, 161k+ audited machine trials, and physical domain testbeds. |
+| **[`GPC_Full_Research_Paper_12_Pages.pdf`](GPC_Full_Research_Paper_12_Pages.pdf)** | **Master 12-Page Research Monograph** | **12** | **Definitive Extended Research Paper.** Unifies complete mathematical theorem proofs, taxonomy matrices, 5 visual panels (Silicon, DNA image recovery, Swarm trajectory), and multi-domain ablation studies. |
+| **[`GPC_Comprehensive_Research_Paper.pdf`](GPC_Comprehensive_Research_Paper.pdf)** | Primary Synopsis Paper | 4 | Master IRIS National Science Fair 2026 4-Page Submission Manuscript. |
 | **[`GPC_Comprehensive_Research_Paper.md`](GPC_Comprehensive_Research_Paper.md)** | Full Markdown Source | - | Complete textual manuscript formatted with GitHub Flavored Markdown and KaTeX math. |
 | **[`GPC_Comprehensive_Research_Paper.html`](GPC_Comprehensive_Research_Paper.html)** | Master IEEE HTML Source | - | High-density IEEE 2-column production template with vector SVG MathJax equations. |
 | **[`GPC_Mathematical_Formulas_and_Execution_Blueprint.pdf`](GPC_Mathematical_Formulas_and_Execution_Blueprint.pdf)** | Technical Monograph | 4 | Complete mathematical derivations, coordinate span calculations, and execution architecture blueprint. |
@@ -22,6 +23,9 @@ This directory archives all formal academic publications, technical monographs, 
 All PDFs can be rebuilt from their respective HTML templates using the headless compiler scripts located in `docs/`:
 
 ```bash
+# Compile Master 12-Page Extended Research Paper:
+python docs/compile_12page_paper_pdf.py
+
 # Compile Master 4-Page Journal Paper:
 python docs/compile_comprehensive_paper_pdf.py
 

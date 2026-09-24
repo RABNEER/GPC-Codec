@@ -16,8 +16,14 @@ env/
 venv/
 ENV/
 
+# Python packaging build artifacts
+dist/
+build/
+*.egg-info/
+
 # IDE / OS metadata
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
+
