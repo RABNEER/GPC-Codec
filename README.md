@@ -1,10 +1,14 @@
 # Generalized Patha Codes (GPC) & Patha-Laya Defense Framework
 
+[![CI Test Suite](https://github.com/RABNEER/GPC-Codec/actions/workflows/ci.yml/badge.svg)](https://github.com/RABNEER/GPC-Codec/actions)
+[![Reproducibility Audit](https://github.com/RABNEER/GPC-Codec/actions/workflows/reproducibility.yml/badge.svg)](https://github.com/RABNEER/GPC-Codec/actions)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![IRIS 2026 Candidate](https://img.shields.io/badge/IRIS-2026%20Candidate-green.svg)](#)
+
 > **National Science Fair Research Dossier**  
 > *Target Competitions:* **IRIS National Science Fair (India)** & **Regeneron ISEF (Team India)**  
 > *Subject Categories:* **Systems Software (SOFT)** | **Computational Biology & Bioinformatics (CBIO)** | **Robotics & Intelligent Machines (ROBO)**
-
----
 
 ## 🏛️ Project Overview
 **Generalized Patha Codes (GPC)** modernizes ancient Indian Vedic oral recitation mnemonics (*Veda Patha*) into an algebraic placement error-correcting code family designed for **order-sensitive channels**. 
