@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this research or code, please cite our research paper."
+title: "Generalized Patha Codes: Order-Preserving Braided Placement Coding for Burst Deletions and Coordinate Drift"
+authors:
+  - family-names: "Ranveer"
+    given-names: "Ranveer"
+    email: "kr715ranveer@gmail.com"
+repository-code: "https://github.com/RABNEER/GPC-Codec"
+keywords:
+  - "error-correcting codes"
+  - "burst deletion"
+  - "dna storage"
+  - "uav swarm"
+  - "ghana patha"
+version: "1.0.0"
+date-released: "2026-09-24"
