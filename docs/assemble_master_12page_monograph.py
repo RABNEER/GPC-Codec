@@ -259,6 +259,32 @@ window.MathJax = {
     break-inside: avoid;
   }
 
+  .algo-box {
+    background: #f8fafc;
+    border: 0.8px solid #cbd5e1;
+    border-top: 1.4px solid #0f172a;
+    border-bottom: 1.4px solid #0f172a;
+    padding: 2.5px 4.5px;
+    margin: 2.2px 0;
+    font-size: 6.2pt;
+    line-height: 1.13;
+    break-inside: avoid;
+  }
+  .algo-title {
+    font-weight: bold;
+    color: #0f172a;
+    border-bottom: 0.5px solid #cbd5e1;
+    padding-bottom: 1.2px;
+    margin-bottom: 1.8px;
+    font-size: 6.6pt;
+  }
+  .algo-line {
+    font-family: 'Consolas', 'Courier New', monospace;
+    white-space: pre-wrap;
+    font-size: 5.8pt;
+    margin-bottom: 0.5px;
+  }
+
   .figure-box {
     text-align: center;
     margin: 2.5px 0;
@@ -301,11 +327,11 @@ window.MathJax = {
   </div>
 
   <div class="audit-banner">
-    <strong>Audited Empirical Scale:</strong> 161,890 total computational verification cases across Silicon Embedded Edge AI, In-Silico Molecular DNA Storage, and Hardware-in-the-Loop 8-UAV Swarm Flight Simulations. Standard reference distribution on PyPI: <code>pip install gpc-codec</code>.
+    <strong>Audited Empirical Scale:</strong> 161,890 total computational verification cases across Silicon Embedded Edge AI, In-Silico Molecular DNA Storage, and Hardware-in-the-Loop 8-UAV Swarm Flight Simulations. Fully open-source on GitHub (<code>github.com/RABNEER/GPC-Codec</code>) and PyPI (<code>pip install gpc-codec</code>).
   </div>
 
   <div class="abstract-box">
-    <span class="abstract-title">Abstract</span>—Data transmission across physical substrates fundamentally relies on channel synchronization. Modern compression and error-correcting codes (e.g., Huffman, Deflate, Brotli, Zstandard, LDPC) presuppose either reliable framing or stationary alphabets. When deployed over order-sensitive, desynchronizing channels—characterized by insertions, deletions, burst jitter, and biochemical synthesis drift—these conventional architectures suffer catastrophic de-synchronization, wherein a single dropped bit corrupts all subsequent decoding states. This paper introduces <strong>Generalized Patha Codes (GPC)</strong>, a novel class of linear-time permutation-based synchronization inner codes inspired by the combinatorial symmetries of ancient cyclical recitation schemes (<em>Ghana-pāṭha</em>). By embedding non-linear permutation lattices with deterministic pilot intervals and adaptive stage cuts, GPC decouples sequence order recovery from symbol entropy. Across 161,890 total computational verification cases, GPC achieves an asymptotic compression efficiency lower bound of $\lim_{n \to \infty} \eta(n) \ge 61.54\%$, verified under Shannon entropy constraints. In physical and computational evaluations, GPC was validated across three distinct application domains: (1) <strong>Silicon Edge AI</strong> on bare-metal ARM Cortex-M4 and Raspberry Pi Zero W nodes streaming ModernBERT (421M) embeddings through 15% bit-flip jamming with zero frame error crashes ($0.0\%$ FER vs. $100.0\%$ for Deflate/Brotli); (2) <strong>In-Silico Synthetic DNA Storage Modeling</strong> under simulated enzymatic decay and Oxford Nanopore translocation physics, reconstructing a 32&times;32 monochromatic image (8,192 bits) with 0-bit drift (SSIM = 1.0000) while strictly eliminating homopolymer runs ($L_{\max} \le 2$); and (3) <strong>Distributed Swarm Robotics Simulation</strong>, maintaining a $100\%$ zero-collision guarantee ($d \ge 1.5\text{ m}$) across 51,890 telemetry frames under 35% packet drops. GPC operates with deterministic $O(N)$ encoding and bounded-window greedy linear decoding time complexity and strictly $O(1)$ auxiliary memory (&lt;4 KB), establishing a resilient foundation for next-generation edge and molecular computing.
+    <span class="abstract-title">Abstract</span>—Data transmission across physical substrates fundamentally relies on channel synchronization. Modern compression and error-correcting codes (e.g., Huffman, Deflate, Brotli, Zstandard, LDPC) presuppose either reliable framing or stationary alphabets. When deployed over order-sensitive, desynchronizing channels—characterized by insertions, deletions, burst jitter, and biochemical synthesis drift—these conventional architectures suffer catastrophic de-synchronization, wherein a single dropped bit corrupts all subsequent decoding states. This paper introduces <strong>Generalized Patha Codes (GPC)</strong>, a novel class of linear-time permutation-based synchronization inner codes inspired by the combinatorial symmetries of ancient cyclical recitation schemes (<em>Krama</em>, <em>Jaṭā</em>, and <em>Ghana-pāṭha</em>). By generalizing multi-scale forward-reverse permutation kernels into a formal parameterized family $\text{GPC}(k, d)$, GPC decouples sequence order recovery from symbol entropy. We derive the exact algebraic code rate $R = \frac{d}{k^2 + 2k - 2}$ and prove that GPC deterministically detects and confines burst deletions of length $b \le k - 1$ while ensuring a minimum Levenshtein distance $D_L \ge 2(k^2 - 1)$ under adjacent transpositions. Rather than functioning as a bulk payload compressor, GPC serves as a deterministic inner synchronization code that trades code rate for linear-time $O(N)$ zero-latency frame recovery. In physical and computational evaluations across 161,890 verification cases, GPC was validated across three physical domains: (1) <strong>Silicon Edge AI</strong> on bare-metal ARM Cortex-M4 and Raspberry Pi Zero W nodes streaming ModernBERT (421M) embeddings through 15% bit-flip jamming with zero frame error crashes ($0.0\%$ FER vs. $100.0\%$ for Deflate/Brotli); (2) <strong>In-Silico Synthetic DNA Storage Modeling</strong> under simulated enzymatic decay and Oxford Nanopore translocation physics, reconstructing a 32&times;32 monochromatic image (8,192 bits) with 0-bit drift (SSIM = 1.0000) while strictly eliminating homopolymer runs ($L_{\max} \le 2$); and (3) <strong>Distributed Swarm Robotics Simulation</strong>, maintaining a $100\%$ zero-collision guarantee ($d \ge 1.5\text{ m}$) across 51,890 telemetry frames under 35% packet drops. GPC operates with deterministic $O(N)$ encoding, bounded-window linear decoding time complexity, and strictly $O(1)$ auxiliary memory (&lt;4 KB), establishing a resilient foundation for next-generation cyber-physical and molecular computing.
     <div class="keywords"><strong>Index Terms</strong>—Permutation-Based Synchronization Codes, Order-Sensitive Channels, Deletion Recovery, In-Silico DNA Data Storage, UAV Swarm Telemetry, Low-Power Embedded Systems, Combinatorial Algorithms.</div>
   </div>
 
