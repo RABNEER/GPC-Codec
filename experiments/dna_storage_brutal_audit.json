@@ -89,8 +89,8 @@
       "failure_reason": "Syndrome Misalignment via Coordinate Frame Drift"
     },
     "gpc": {
-      "ber_pct": 7.71484375,
-      "psnr_db": 11.126728653493705,
+      "ber_pct": 7.6171875,
+      "psnr_db": 11.182053539493316,
       "status": "GRACEFUL DEGRADE",
       "failure_reason": "Burst Exceeded Support Set Minimum Span"
     }
@@ -105,8 +105,8 @@
       "failure_reason": "Syndrome Misalignment via Coordinate Frame Drift"
     },
     "gpc": {
-      "ber_pct": 15.91796875,
-      "psnr_db": 7.981123522358542,
+      "ber_pct": 14.55078125,
+      "psnr_db": 8.37113688227538,
       "status": "GRACEFUL DEGRADE",
       "failure_reason": "Burst Exceeded Support Set Minimum Span"
     }
@@ -121,8 +121,8 @@
       "failure_reason": "Syndrome Misalignment via Coordinate Frame Drift"
     },
     "gpc": {
-      "ber_pct": 22.65625,
-      "psnr_db": 6.4481197174891225,
+      "ber_pct": 16.6015625,
+      "psnr_db": 7.79851035261538,
       "status": "DESYNC",
       "failure_reason": "Burst Exceeded Support Set Minimum Span"
     }
@@ -137,8 +137,8 @@
       "failure_reason": "Syndrome Misalignment via Coordinate Frame Drift"
     },
     "gpc": {
-      "ber_pct": 24.0234375,
-      "psnr_db": 6.193648495364329,
+      "ber_pct": 25.9765625,
+      "psnr_db": 5.85418320008745,
       "status": "DESYNC",
       "failure_reason": "Burst Exceeded Support Set Minimum Span"
     }
@@ -153,8 +153,8 @@
       "failure_reason": "Syndrome Misalignment via Coordinate Frame Drift"
     },
     "gpc": {
-      "ber_pct": 37.01171875,
-      "psnr_db": 4.316607466717396,
+      "ber_pct": 33.88671875,
+      "psnr_db": 4.699704818489382,
       "status": "DESYNC",
       "failure_reason": "Burst Exceeded Support Set Minimum Span"
     }

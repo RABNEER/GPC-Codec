@@ -1,0 +1,574 @@
+{
+  "timestamp": "2026-09-25 20:59:48",
+  "experiment_1_physical_compliance": {
+    "text": {
+      "BC-DNA (Proposed)": {
+        "dna_length": 27504,
+        "code_rate_bits_per_nt": 1.4543,
+        "max_homopolymer": 2,
+        "gc_percentage": 48.81,
+        "homopolymer_distribution": {
+          "1": 21252,
+          "2": 3126
+        },
+        "is_lossless": true,
+        "encode_time_ms": 0.4,
+        "decode_time_ms": 7.11
+      },
+      "Goldman 2013 (Nature)": {
+        "dna_length": 30000,
+        "code_rate_bits_per_nt": 1.3333,
+        "max_homopolymer": 1,
+        "gc_percentage": 47.5,
+        "homopolymer_distribution": {
+          "1": 30000
+        },
+        "is_lossless": true,
+        "encode_time_ms": 6.73,
+        "decode_time_ms": 11.13
+      },
+      "Naive Direct 2-bit": {
+        "dna_length": 20000,
+        "code_rate_bits_per_nt": 2.0,
+        "max_homopolymer": 5,
+        "gc_percentage": 62.38,
+        "homopolymer_distribution": {
+          "1": 12886,
+          "2": 2847,
+          "3": 460,
+          "5": 8
+        },
+        "is_lossless": true,
+        "encode_time_ms": 3.05,
+        "decode_time_ms": 1.47
+      }
+    },
+    "random_binary": {
+      "BC-DNA (Proposed)": {
+        "dna_length": 27504,
+        "code_rate_bits_per_nt": 1.4543,
+        "max_homopolymer": 2,
+        "gc_percentage": 50.43,
+        "homopolymer_distribution": {
+          "1": 21214,
+          "2": 3145
+        },
+        "is_lossless": true,
+        "encode_time_ms": 0.35,
+        "decode_time_ms": 7.83
+      },
+      "Goldman 2013 (Nature)": {
+        "dna_length": 30000,
+        "code_rate_bits_per_nt": 1.3333,
+        "max_homopolymer": 1,
+        "gc_percentage": 47.39,
+        "homopolymer_distribution": {
+          "1": 30000
+        },
+        "is_lossless": true,
+        "encode_time_ms": 7.01,
+        "decode_time_ms": 11.23
+      },
+      "Naive Direct 2-bit": {
+        "dna_length": 20000,
+        "code_rate_bits_per_nt": 2.0,
+        "max_homopolymer": 7,
+        "gc_percentage": 49.95,
+        "homopolymer_distribution": {
+          "1": 11231,
+          "2": 2845,
+          "3": 674,
+          "4": 184,
+          "5": 48,
+          "6": 10,
+          "7": 3
+        },
+        "is_lossless": true,
+        "encode_time_ms": 3.0,
+        "decode_time_ms": 1.44
+      }
+    },
+    "image_emblem": {
+      "BC-DNA (Proposed)": {
+        "dna_length": 10560,
+        "code_rate_bits_per_nt": 1.4545,
+        "max_homopolymer": 2,
+        "gc_percentage": 46.88,
+        "homopolymer_distribution": {
+          "1": 8162,
+          "2": 1199
+        },
+        "is_lossless": true,
+        "encode_time_ms": 0.14,
+        "decode_time_ms": 2.75
+      },
+      "Goldman 2013 (Nature)": {
+        "dna_length": 11520,
+        "code_rate_bits_per_nt": 1.3333,
+        "max_homopolymer": 1,
+        "gc_percentage": 47.14,
+        "homopolymer_distribution": {
+          "1": 11520
+        },
+        "is_lossless": true,
+        "encode_time_ms": 2.48,
+        "decode_time_ms": 4.17
+      },
+      "Naive Direct 2-bit": {
+        "dna_length": 7680,
+        "code_rate_bits_per_nt": 2.0,
+        "max_homopolymer": 14,
+        "gc_percentage": 21.09,
+        "homopolymer_distribution": {
+          "1": 2070,
+          "2": 360,
+          "3": 150,
+          "4": 390,
+          "5": 270,
+          "6": 30,
+          "7": 32,
+          "8": 30,
+          "10": 30,
+          "13": 30,
+          "14": 14
+        },
+        "is_lossless": true,
+        "encode_time_ms": 1.15,
+        "decode_time_ms": 0.54
+      }
+    },
+    "telemetry": {
+      "BC-DNA (Proposed)": {
+        "dna_length": 27504,
+        "code_rate_bits_per_nt": 1.4543,
+        "max_homopolymer": 2,
+        "gc_percentage": 45.02,
+        "homopolymer_distribution": {
+          "1": 19494,
+          "2": 4005
+        },
+        "is_lossless": true,
+        "encode_time_ms": 0.34,
+        "decode_time_ms": 6.94
+      },
+      "Goldman 2013 (Nature)": {
+        "dna_length": 30000,
+        "code_rate_bits_per_nt": 1.3333,
+        "max_homopolymer": 1,
+        "gc_percentage": 49.08,
+        "homopolymer_distribution": {
+          "1": 30000
+        },
+        "is_lossless": true,
+        "encode_time_ms": 6.43,
+        "decode_time_ms": 10.9
+      },
+      "Naive Direct 2-bit": {
+        "dna_length": 20000,
+        "code_rate_bits_per_nt": 2.0,
+        "max_homopolymer": 17,
+        "gc_percentage": 32.53,
+        "homopolymer_distribution": {
+          "1": 4572,
+          "2": 855,
+          "3": 515,
+          "4": 688,
+          "5": 48,
+          "6": 12,
+          "7": 3,
+          "9": 937,
+          "10": 47,
+          "11": 12,
+          "12": 3,
+          "17": 1
+        },
+        "is_lossless": true,
+        "encode_time_ms": 3.03,
+        "decode_time_ms": 1.41
+      }
+    }
+  },
+  "experiment_2_nanopore_noise_sweep": [
+    {
+      "noise_scaling": 0.0,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.0,
+          "std_ber": 0.0,
+          "mean_del_rate": 0.0,
+          "mean_resyncs": 0.0
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.0,
+          "std_ber": 0.0,
+          "mean_del_rate": 0.0,
+          "mean_resyncs": 0.0
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.0,
+          "std_ber": 0.0,
+          "mean_del_rate": 0.0,
+          "mean_resyncs": 0.0
+        }
+      }
+    },
+    {
+      "noise_scaling": 0.25,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.1462,
+          "std_ber": 0.0193,
+          "mean_del_rate": 0.0019,
+          "mean_resyncs": 71.9
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.9138,
+          "std_ber": 0.0486,
+          "mean_del_rate": 0.0012,
+          "mean_resyncs": 0.0
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.9719,
+          "std_ber": 0.0161,
+          "mean_del_rate": 0.0028,
+          "mean_resyncs": 0.0
+        }
+      }
+    },
+    {
+      "noise_scaling": 0.5,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.2517,
+          "std_ber": 0.0153,
+          "mean_del_rate": 0.0037,
+          "mean_resyncs": 114.4
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.9639,
+          "std_ber": 0.0196,
+          "mean_del_rate": 0.0025,
+          "mean_resyncs": 0.0
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.967,
+          "std_ber": 0.0197,
+          "mean_del_rate": 0.0052,
+          "mean_resyncs": 0.0
+        }
+      }
+    },
+    {
+      "noise_scaling": 0.75,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.3509,
+          "std_ber": 0.0134,
+          "mean_del_rate": 0.0056,
+          "mean_resyncs": 154.2
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.9689,
+          "std_ber": 0.0206,
+          "mean_del_rate": 0.0039,
+          "mean_resyncs": 0.0
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.9779,
+          "std_ber": 0.0052,
+          "mean_del_rate": 0.0082,
+          "mean_resyncs": 0.0
+        }
+      }
+    },
+    {
+      "noise_scaling": 1.0,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.4142,
+          "std_ber": 0.018,
+          "mean_del_rate": 0.0075,
+          "mean_resyncs": 173.6
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.9364,
+          "std_ber": 0.0217,
+          "mean_del_rate": 0.005,
+          "mean_resyncs": 0.0
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.9795,
+          "std_ber": 0.0056,
+          "mean_del_rate": 0.0107,
+          "mean_resyncs": 0.0
+        }
+      }
+    },
+    {
+      "noise_scaling": 1.25,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.4732,
+          "std_ber": 0.0201,
+          "mean_del_rate": 0.009,
+          "mean_resyncs": 191.4
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.9535,
+          "std_ber": 0.0302,
+          "mean_del_rate": 0.0062,
+          "mean_resyncs": 0.0
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.9809,
+          "std_ber": 0.003,
+          "mean_del_rate": 0.0135,
+          "mean_resyncs": 0.0
+        }
+      }
+    },
+    {
+      "noise_scaling": 1.5,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.527,
+          "std_ber": 0.0153,
+          "mean_del_rate": 0.0106,
+          "mean_resyncs": 202.4
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.9673,
+          "std_ber": 0.0129,
+          "mean_del_rate": 0.0076,
+          "mean_resyncs": 0.0
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.9783,
+          "std_ber": 0.0052,
+          "mean_del_rate": 0.0151,
+          "mean_resyncs": 0.0
+        }
+      }
+    },
+    {
+      "noise_scaling": 2.0,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.6054,
+          "std_ber": 0.0153,
+          "mean_del_rate": 0.0148,
+          "mean_resyncs": 214.0
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.9785,
+          "std_ber": 0.011,
+          "mean_del_rate": 0.01,
+          "mean_resyncs": 0.0
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.9783,
+          "std_ber": 0.0052,
+          "mean_del_rate": 0.0211,
+          "mean_resyncs": 0.0
+        }
+      }
+    }
+  ],
+  "experiment_3_burst_deletion_stress": [
+    {
+      "burst_nt": 0,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.0,
+          "std_ber": 0.0
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.0,
+          "std_ber": 0.0
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.0,
+          "std_ber": 0.0
+        }
+      }
+    },
+    {
+      "burst_nt": 2,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.0053,
+          "std_ber": 0.002
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.9298,
+          "std_ber": 0.0085
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.8837,
+          "std_ber": 0.0129
+        }
+      }
+    },
+    {
+      "burst_nt": 4,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.0053,
+          "std_ber": 0.0017
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.9383,
+          "std_ber": 0.0042
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.9343,
+          "std_ber": 0.0067
+        }
+      }
+    },
+    {
+      "burst_nt": 6,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.0048,
+          "std_ber": 0.0026
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.9327,
+          "std_ber": 0.0064
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.8789,
+          "std_ber": 0.0089
+        }
+      }
+    },
+    {
+      "burst_nt": 8,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.0041,
+          "std_ber": 0.0023
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.9379,
+          "std_ber": 0.006
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.9768,
+          "std_ber": 0.0096
+        }
+      }
+    },
+    {
+      "burst_nt": 10,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.0044,
+          "std_ber": 0.0025
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.9632,
+          "std_ber": 0.007
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.8951,
+          "std_ber": 0.0101
+        }
+      }
+    },
+    {
+      "burst_nt": 12,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.0072,
+          "std_ber": 0.0019
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.9785,
+          "std_ber": 0.0062
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.8926,
+          "std_ber": 0.0092
+        }
+      }
+    },
+    {
+      "burst_nt": 16,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.8604,
+          "std_ber": 0.0026
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.9881,
+          "std_ber": 0.0035
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.4593,
+          "std_ber": 0.0027
+        }
+      }
+    },
+    {
+      "burst_nt": 20,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.8395,
+          "std_ber": 0.0129
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.9336,
+          "std_ber": 0.0077
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.9344,
+          "std_ber": 0.0117
+        }
+      }
+    },
+    {
+      "burst_nt": 25,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.8556,
+          "std_ber": 0.0058
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.9106,
+          "std_ber": 0.0075
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.9031,
+          "std_ber": 0.0108
+        }
+      }
+    },
+    {
+      "burst_nt": 30,
+      "codecs": {
+        "BC-DNA (Proposed)": {
+          "mean_ber": 0.8566,
+          "std_ber": 0.0053
+        },
+        "Goldman 2013 (Nature)": {
+          "mean_ber": 0.9376,
+          "std_ber": 0.0048
+        },
+        "Naive Direct 2-bit": {
+          "mean_ber": 0.8769,
+          "std_ber": 0.0073
+        }
+      }
+    }
+  ],
+  "theoretical_summary": {
+    "naive_rate": 2.0,
+    "goldman_rate": 1.333,
+    "bc_dna_raw_rate": 1.6,
+    "bc_dna_effective_rate_block16": 1.455,
+    "bc_dna_effective_rate_block32": 1.524,
+    "density_gain_over_goldman_pct": 9.2
+  }
+}
