@@ -43,7 +43,7 @@
     "Burst Deletion (b=20)": "71.4% (DP misaligns downstream homopolymers)",
     "Marked Burst Erasure (B_E)": 20,
     "Decoding Complexity": "O(N^2) Dynamic Programming + O(N log^2 N) RS",
-    "Measured Latency": "1546.8 us (DP Alignment alone: 1.82 ms at full length)",
+    "Measured Latency": "1762.7 us (DP Alignment alone: 1.82 ms at full length)",
     "Memory / State": "O(N^2) DP Score Matrix",
     "Primary Niche": "Massive offline cold archiving (non-real-time)"
   },

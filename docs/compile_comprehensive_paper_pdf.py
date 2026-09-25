@@ -39,7 +39,7 @@ def compile_paper():
             path=pdf_path_docs,
             format="Letter",
             print_background=True,
-            margin={"top": "9mm", "bottom": "9mm", "left": "10mm", "right": "10mm"}
+            margin={"top": "7mm", "bottom": "7mm", "left": "9mm", "right": "9mm"}
         )
         browser.close()
     
