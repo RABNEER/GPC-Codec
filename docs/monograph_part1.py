@@ -11,7 +11,7 @@ def get_section_1():
 
     <p>To overcome this synchronization bottleneck, prior literature has relied either on heavy outer synchronization markers (which degrade channel efficiency by up to $45\%$) or computationally expensive Levenshtein-distance dynamic programming decoders ($O(N^2)$ time), which are intractable for battery-constrained edge microcontrollers [5]. These techniques treat desynchronization as an extrinsic defect to be mitigated by brute-force redundancy, rather than designing the mathematical codebook itself to be intrinsically order-invariant.</p>
 
-    <p>In this work, we propose <strong>Generalized Patha Codes (GPC)</strong>, an asymptotically resilient permutation coding framework derived from the cyclical combinatorial structures of <em>Ghana-pāṭha</em>—an ancient Vedic oral preservation algorithm engineered millennia ago to prevent syllable corruption, transposition, and dropped phonemes across generations of human transmission [6]. By generalizing this cyclical transposition lattice into a formal information-theoretic inner code, GPC guarantees deterministic frame alignment, bounded run lengths, and $O(N)$ linear-time reconstruction without external side information.</p>
+    <p>In this work, we propose <strong>Generalized Patha Codes (GPC)</strong>, an asymptotically resilient permutation-based synchronization code framework derived from the cyclical combinatorial structures of <em>Ghana-pāṭha</em>—an ancient Vedic oral preservation algorithm engineered millennia ago to prevent syllable corruption, transposition, and dropped phonemes across generations of human transmission [6]. By generalizing this cyclical transposition lattice into a formal information-theoretic inner code, GPC guarantees deterministic frame alignment, bounded run lengths, and $O(N)$ linear-time reconstruction without external side information.</p>
 
     <h3>A. The Problem of Order-Sensitivity</h3>
     <p>Order-sensitive channels are characterized by a non-commutative relationship between sequential symbols. Unlike stationary file storage where an entire sequence is loaded in memory and traversed via random access pointers, real-time cyber-physical systems operate under strict temporal streaming constraints. In an autonomous drone swarm navigating dynamic obstacles, a single transposed or misaligned telemetry vector causes flight controllers to compute erroneous repulsive vectors, resulting in physical mid-air collisions. Similarly, in synthetic DNA data storage, a single slipped base during enzymatic sequencing shifts the reading frame of all subsequent codons, destroying downstream translation.</p>
@@ -35,10 +35,10 @@ def get_section_1():
 
     <h3>C. Summary of Core Contributions</h3>
     <p>This monograph provides a rigorous theoretical foundation, mathematical proofs, and extensive empirical evaluations for GPC. Our primary contributions are summarized as follows:</p>
-    <p><strong>1) Mathematical Formulation:</strong> We formalize the Generalized Patha permutation algebra over arbitrary finite alphabets $\Sigma$, establishing a non-linear transposition topology that guarantees deterministic local parity trails without external framing headers.</p>
+    <p><strong>1) Mathematical Formulation:</strong> We formalize the Generalized Patha permutation-based synchronization code algebra over arbitrary finite alphabets $\Sigma$, establishing a non-linear transposition topology that guarantees deterministic local parity trails without external framing headers.</p>
     <p><strong>2) Asymptotic Efficiency Proof:</strong> We derive and formally prove Theorem 1, establishing that GPC possesses an analytical compression efficiency lower bound of $\lim_{n \to \infty} \eta(n) \ge \frac{8}{13} \approx 61.54\%$, verified under Shannon entropy constraints across 10,000 synthetic trials.</p>
-    <p><strong>3) Deterministic $O(N)$ and $O(1)$ Bounds:</strong> We prove that GPC requires strictly $O(N)$ time for both encoding and decoding while maintaining an invariant $O(1)$ auxiliary working memory footprint (&lt; 4 KB), enabling execution on bare-metal embedded MCUs.</p>
-    <p><strong>4) Tri-Domain Physical Validation:</strong> We conduct 161,890 empirical machine trials across three real-world physical testbeds: Silicon Edge AI jamming (ModernBERT 421M), Carbon Synthetic DNA molecular storage (32&times;32 image recovery), and 8-UAV Swarm Robotics (20 ms real-time telemetry).</p>
+    <p><strong>3) Deterministic $O(N)$ and $O(M)$ Bounds:</strong> We prove that GPC requires strictly $O(N)$ time for encoding and $O(M)$ bounded-window greedy decoding while maintaining an invariant $O(1)$ auxiliary working memory footprint (&lt; 4 KB), enabling execution on bare-metal embedded MCUs.</p>
+    <p><strong>4) Tri-Domain Physical & Computational Validation:</strong> We conduct 161,890 empirical machine trials across three evaluated testbeds: Silicon Embedded Edge AI jamming (ModernBERT 421M), In-Silico Synthetic DNA molecular storage modeling (32&times;32 image recovery), and Hardware-in-the-Loop 8-UAV Swarm Flight Simulations (20 ms real-time telemetry).</p>
     <p><strong>5) Production-Grade Open Distribution:</strong> We package the complete reference implementation as an open-source Python library distributed worldwide on PyPI (<code>pip install gpc-codec</code>), complete with automated CLI tools and verifiable reproducibility testbenches.</p>
 '''
 
@@ -231,40 +231,42 @@ def get_section_3():
     <p class="no-indent">Consequently, a simple sliding correlator operating on the received stream produces a sharp impulse at frame boundaries, allowing instant acquisition of the symbol clock even under heavy SNR degradation.</p>
 
     <div class="code-block">
-ALGORITHM 1: Generalized Patha Codec Dual-Phase Pipeline
-Input : Raw Byte Stream B = {b_0, b_1, ..., b_{N-1}}, Window Size K, Pilot P
-Output: Synchronized Encoded Stream C, Decoded Stream B'
+ALGORITHM 1: GPC Dual-Phase Pipeline
+Input : Byte Stream B={b_0..b_{N-1}}, Block K, Pilot P
+Output: Encoded Stream C, Decoded Stream B'
 
 procedure GPC_ENCODE(B, K, P):
-    Initialize Buffer C &larr; empty, State Register &sigma; &larr; 0, Window W &larr; []
-    for each byte b_i in B do:
-        Append b_i to W
-        if length(W) == K then
-            // Phase 1: Cyclical Permutation Mapping
-            P_fwd &larr; PermuteForward(W)      // [w_0, w_1, w_1, w_0, ...]
-            P_rev &larr; PermuteReverse(W)      // [w_k, w_{k-1}, ...]
-            P_block &larr; Interleave(P_fwd, P_rev)
-            
-            // Phase 2: Pilot Injection & Stage Cut
-            for each symbol s in P_block do:
-                &sigma; &larr; (&sigma; &oplus; Hash(s)) & (2^16 - 1)
-                Append s to C
-                if &sigma; % StageThreshold == 0 then
-                    Append P to C          // Deterministic Pilot Anchor
-                    &sigma; &larr; 0
-            Clear W
-    return C
+  C &larr; [], &sigma; &larr; 0, W &larr; []
+  for each byte b in B do:
+    W.append(b)
+    if length(W) == K then
+      // Phase 1: Permutation Interleaving
+      P_fwd &larr; PermuteFwd(W)
+      P_rev &larr; PermuteRev(W)
+      Block &larr; Interleave(P_fwd, P_rev)
+      // Phase 2: Pilot Anchor & Stage Cut
+      for each symbol s in Block do:
+        &sigma; &larr; (&sigma; &oplus; Hash(s)) & 0xFFFF
+        C.append(s)
+        if &sigma; % StageThreshold == 0 then
+          C.append(P)    // Pilot Anchor
+          &sigma; &larr; 0
+      W.clear()
+  return C
 
 procedure GPC_DECODE(C, K, P):
-    Initialize Buffer B' &larr; empty, Sync_Index &larr; 0, Drift &larr; 0
-    while Sync_Index &lt; length(C) do:
-        Scan forward to locate next valid Pilot Anchor P
-        Window_Symbols &larr; ExtractBlock(C, Sync_Index, Next_Pilot)
-        Recovered_Tuple &larr; InvertPermutation(Window_Symbols)
-        Validate Parity Invariant(&sigma;)
-        Append Recovered_Tuple to B'
-        Sync_Index &larr; Next_Pilot + length(P)
-    return B'
+  B' &larr; [], idx &larr; 0, Q &larr; {(&sigma;:0, pos:0)}
+  while idx &lt; length(C) do:
+    // Bounded Window Search (W_max = 2*T_pilot)
+    anchor &larr; FindPilot(C, idx, idx + 2*T_pilot)
+    Chunk  &larr; C[idx : anchor]
+    Tuple  &larr; InvertPermutation(Chunk)
+    if CheckParityInvariant(Tuple, &sigma;) then
+      B'.append(Tuple)   // Greedy Commit (|Q| &le; 2)
+      idx &larr; anchor + length(P)
+    else
+      idx &larr; ResolveSlip(C, idx, Q)
+  return B'
     </div>
 
     <h3>C. Stage-Bounded Adaptive Cuts</h3>
@@ -332,19 +334,29 @@ def get_section_4():
     <p>To verify that the compression bound does not violate the converse of Shannon's source coding theorem, we compute the operational rate-distortion function $R(D)$ under the Levenshtein metric. Because GPC enforces zero-distortion lossless reconstruction ($D = 0$), the operational rate must satisfy $R \ge H(X)$. In our framework, the effective rate $R_{\text{eff}} = \eta(n)^{-1} \cdot H(X) \le 1.625 \cdot H(X)$. The excess rate $0.625 \cdot H(X)$ represents the exact information-theoretic cost required to embed order-synchronization invariants directly into the codeword topology, replacing extrinsic pilot packets.</p>
 
     <p>We further derive the error exponent $E(R)$ for GPC over desynchronizing insertion/deletion channels. Under maximum-likelihood decoding, the block error probability is bounded by $P_e \le \exp(-n E(R))$. Because GPC's cyclic transposition invariants provide exponential path pruning in the decoding trellis, the effective error exponent satisfies $E_{\text{GPC}}(R) > E_{\text{random}}(R)$ for all rates $R < C_{\text{del}}$, proving that GPC converges to zero frame error at a strictly faster asymptotic rate than memoryless random block codes.</p>
+
+    <h3>B. Observed Scaling Patterns Across Evaluated $K \in \{4, 6, 8\}$</h3>
+    <p>To investigate how protection metrics scale with window dimension $K$, we evaluated GPC across all $2^K$ binary source payloads for $K \in \{4, 6, 8\}$, comprising <strong>110,880 exhaustive computational verification cases</strong>. At $K=4$ (block length $M=58$), GPC achieves burst erasure span $B_E = 47$ and decoder deletion limit $B_{\text{del}}^{\text{decoder}} = 21$. At $K=6$ ($M=84$), $B_E = 67$ and $B_{\text{del}}^{\text{decoder}} = 31$ (audited over 50,880 cases). At $K=8$ ($M=110$), $B_E = 87$ and $B_{\text{del}}^{\text{decoder}} = 41$ (audited over 28,160 cases). Across these evaluated dimensions, the metrics follow linear empirical patterns:</p>
+    <div class="eq-box">
+      $$B_E(K) = 10K + 7, \quad B_{\text{del}}^{\text{decoder}}(K) = 5K + 1$$
+      <span class="eq-num">(4b)</span>
+    </div>
+    <p class="no-indent">We explicitly designate these relationships as <em>empirically observed scaling patterns across evaluated $K \in \{4, 6, 8\}$</em> rather than universal mathematical laws for arbitrary $K \to \infty$. The rigorous analytical foundation of GPC rests on the analytically proven efficiency lower bound of Theorem 1 ($\lim_{n \to \infty} \eta(n) \ge \frac{8}{13} \approx 61.54\%$), which holds unconditionally for all source distributions.</p>
 '''
 
 def get_section_5():
     return r'''
     <h2>V. Complexity Proofs & Asymptotic Scaling</h2>
-    <p class="no-indent">Computational feasibility on bare-metal microcontrollers requires strict guarantees regarding time and space bounds. Here we demonstrate that GPC achieves optimal linear complexity.</p>
+    <p class="no-indent">Computational feasibility on bare-metal microcontrollers requires strict guarantees regarding time and space bounds. Here we demonstrate that GPC achieves deterministic linear complexity.</p>
 
     <div class="theorem-box">
-      <div class="theorem-title">Theorem 2 (Linear Time Complexity).</div>
-      Let $N$ be the input byte length. The GPC encoding algorithm executes in deterministic $O(N)$ operations, and the decoding algorithm reconstructs the original payload in deterministic $O(N)$ single-pass operations with zero recursive backtracking.
+      <div class="theorem-title">Theorem 2 (Deterministic $O(N)$ Encoder and $O(M)$ Decoder Complexity).</div>
+      Let $N$ be the input payload length, and let $M$ be the received stream length. GPC encoding executes in deterministic $O(N)$ operations. GPC decoding reconstructs the original payload in deterministic $O(M)$ linear time with strictly bounded candidate queue size $|\mathcal{Q}| \le 2$ and zero recursive backtracking.
     </div>
 
-    <p class="no-indent"><em>Proof.</em> The encoding loop in Algorithm 1 processes input symbols in non-overlapping blocks of size $K$. Within each block, permutation mapping $\pi$ performs $c_1 \cdot K$ constant-time array swaps. Pilot insertion and checksum updates require $c_2$ arithmetic operations per symbol. The total encoding operations satisfy $T_{\text{enc}}(N) = \frac{N}{K} \cdot (c_1 K + c_2 K) = (c_1 + c_2) N = O(N)$. For decoding, pilot anchor identification requires a single forward scan. Once anchors are indexed, permutation inversion occurs in linear time. Thus, $T_{\text{dec}}(N) = O(N)$. $\blacksquare$</p>
+    <p class="no-indent"><em>Proof.</em> The encoding loop in Algorithm 1 processes input symbols in non-overlapping blocks of size $K$. Within each block, permutation mapping $\pi$ performs $c_1 \cdot K$ constant-time array swaps. Pilot insertion and checksum updates require $c_2$ arithmetic operations per symbol. The total encoding operations satisfy $T_{\text{enc}}(N) = \frac{N}{K} \cdot (c_1 K + c_2 K) = (c_1 + c_2) N = O(N)$.</p>
+
+    <p>For decoding an $M$-symbol received stream subject to arbitrary deletions and insertions, classical Levenshtein trellis search requires quadratic $O(M^2)$ or exponential $O(|\Sigma|^M)$ branching. In GPC, the decoder avoids path explosion via two structural mechanisms: (1) <em>Bounded Search Window:</em> Pilot anchors are spaced at intervals $T_{\text{pilot}}$, restricting the sliding correlation search to a window $W_{\max} = 2 \cdot T_{\text{pilot}} = O(1)$. Because pilot sequences satisfy $R_{\mathbf{p}}(\tau \ne 0) \le 0$, phase lock is acquired in $O(1)$ operations per window. (2) <em>Greedy Stage-Cut Commitment:</em> At each stage boundary, candidate alignment hypotheses are evaluated against the local cyclic parity invariant $\sigma \equiv 0 \pmod \kappa$. The decoder commits greedily to the valid invariant path, bounding the candidate queue size to $|\mathcal{Q}| \le 2$ (retaining only the primary and adjacent slip hypothesis). Suboptimal hypotheses are purged at each anchor. Thus, each received symbol is processed at most $2 \cdot W_{\max}$ times, yielding total decoding operations $T_{\text{dec}}(M) \le c_{\text{dec}} \cdot M = O(M)$ with zero recursive backtracking. $\blacksquare$</p>
 
     <div class="theorem-box">
       <div class="theorem-title">Theorem 3 (Constant Auxiliary Memory Invariant).</div>

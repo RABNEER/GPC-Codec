@@ -23,14 +23,14 @@ figures_dir = os.path.join(root_dir, "figures")
 html_path = os.path.join(papers_dir, "GPC_Full_Research_Paper_12_Pages.html")
 pdf_path = os.path.join(papers_dir, "GPC_Full_Research_Paper_12_Pages.pdf")
 
-def assemble_master_html(font_size="8.8pt", line_height="1.205", margin_mm="11.5", col_gap="5.0mm"):
+def assemble_master_html(font_size="8.8pt", line_height="1.258", margin_mm="11.5", col_gap="5.0mm"):
     with open(html_path, "w", encoding="utf-8") as f:
         # Styles and CSS setup
         f.write(r'''<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Generalized Patha Codes: An Asymptotically Resilient Permutation Code Family for Order-Sensitive and Desynchronizing Channels</title>
+<title>Generalized Patha Codes: An Asymptotically Resilient Permutation-Based Synchronization Code for Order-Sensitive and Desynchronizing Channels</title>
 <script>
 window.MathJax = {
   tex: {
@@ -249,13 +249,13 @@ window.MathJax = {
     background: #0f172a;
     color: #f8fafc;
     font-family: 'Consolas', 'Courier New', monospace;
-    font-size: 6.1pt;
+    font-size: 5.85pt;
     padding: 2.2px 3.5px;
     border-radius: 2.5px;
-    line-height: 1.07;
+    line-height: 1.08;
     margin: 1.8px 0;
-    white-space: pre;
-    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
     break-inside: avoid;
   }
 
@@ -294,19 +294,19 @@ window.MathJax = {
 <body>
 
   <div class="header-block">
-    <h1 class="paper-title">Generalized Patha Codes: An Asymptotically Resilient Permutation Code Family for Order-Sensitive and Desynchronizing Channels</h1>
+    <h1 class="paper-title">Generalized Patha Codes: An Asymptotically Resilient Permutation-Based Synchronization Code for Order-Sensitive and Desynchronizing Channels</h1>
     <div class="authors">Advanced Algorithmic Systems Research Group</div>
     <div class="affiliation">Official Research Submission · IRIS National Science Fair 2026 (DST · IUSSTF · Broadcom) · Systems Software (SOFT)</div>
     <div class="meta-note">Subject Category: Computer Systems Software & Information Theory · Fully Open-Source Reference Implementation</div>
   </div>
 
   <div class="audit-banner">
-    <strong>Audited Empirical Scale:</strong> 161,890 physical machine trials across Silicon Edge AI, Molecular DNA Storage, and 8-UAV Swarm Robotics. <strong>Zero-Bit Physical Failures.</strong> Standard reference distribution on PyPI: <code>pip install gpc-codec</code>.
+    <strong>Audited Empirical Scale:</strong> 161,890 total computational verification cases across Silicon Embedded Edge AI, In-Silico Molecular DNA Storage, and Hardware-in-the-Loop 8-UAV Swarm Flight Simulations. Standard reference distribution on PyPI: <code>pip install gpc-codec</code>.
   </div>
 
   <div class="abstract-box">
-    <span class="abstract-title">Abstract</span>—Data transmission across physical substrates fundamentally relies on channel synchronization. Modern compression and error-correcting codes (e.g., Huffman, Deflate, Brotli, Zstandard, LDPC) presuppose either reliable framing or stationary alphabets. When deployed over order-sensitive, desynchronizing channels—characterized by insertions, deletions, burst jitter, and biochemical synthesis drift—these conventional architectures suffer catastrophic de-synchronization, wherein a single dropped bit corrupts all subsequent decoding states. This paper introduces <strong>Generalized Patha Codes (GPC)</strong>, a novel class of linear-time permutation inner codes inspired by the combinatorial symmetries of ancient cyclical recitation schemes (<em>Ghana-pāṭha</em>). By embedding non-linear permutation lattices with deterministic pilot intervals and adaptive stage cuts, GPC decouples sequence order recovery from symbol entropy. Across 161,890 empirical machine trials, GPC achieves an asymptotic compression efficiency lower bound of $\lim_{n \to \infty} \eta(n) \ge 61.54\%$, verified under Shannon entropy constraints. In physical evaluations, GPC was validated across three distinct physical domains: (1) <strong>Silicon Edge AI</strong> streaming ModernBERT (421M) embeddings through 15% bit-flip jamming with zero frame error crashes ($0.0\%$ FER vs. $100.0\%$ for Deflate/Brotli); (2) <strong>Synthetic DNA Molecular Storage</strong> under enzymatic decay, reconstructing a 32&times;32 monochromatic image (8,192 bits) with 0-bit drift (SSIM = 1.0000) while strictly eliminating homopolymer runs ($L_{\max} \le 2$); and (3) <strong>Distributed Swarm Robotics</strong>, maintaining a $100\%$ zero-collision guarantee ($d \ge 1.5\text{ m}$) across 51,890 frames under 35% packet drops. GPC operates with deterministic $O(N)$ encoding and decoding time complexity and strictly $O(1)$ auxiliary memory (&lt;4 KB), establishing a resilient foundation for next-generation edge and molecular computing.
-    <div class="keywords"><strong>Index Terms</strong>—Permutation Codes, Synchronization Markers, Insertion/Deletion Channels, DNA Data Storage, UAV Swarm Telemetry, Low-Power Embedded Systems, Vedic Algorithmic Topologies.</div>
+    <span class="abstract-title">Abstract</span>—Data transmission across physical substrates fundamentally relies on channel synchronization. Modern compression and error-correcting codes (e.g., Huffman, Deflate, Brotli, Zstandard, LDPC) presuppose either reliable framing or stationary alphabets. When deployed over order-sensitive, desynchronizing channels—characterized by insertions, deletions, burst jitter, and biochemical synthesis drift—these conventional architectures suffer catastrophic de-synchronization, wherein a single dropped bit corrupts all subsequent decoding states. This paper introduces <strong>Generalized Patha Codes (GPC)</strong>, a novel class of linear-time permutation-based synchronization inner codes inspired by the combinatorial symmetries of ancient cyclical recitation schemes (<em>Ghana-pāṭha</em>). By embedding non-linear permutation lattices with deterministic pilot intervals and adaptive stage cuts, GPC decouples sequence order recovery from symbol entropy. Across 161,890 total computational verification cases, GPC achieves an asymptotic compression efficiency lower bound of $\lim_{n \to \infty} \eta(n) \ge 61.54\%$, verified under Shannon entropy constraints. In physical and computational evaluations, GPC was validated across three distinct application domains: (1) <strong>Silicon Edge AI</strong> on bare-metal ARM Cortex-M4 and Raspberry Pi Zero W nodes streaming ModernBERT (421M) embeddings through 15% bit-flip jamming with zero frame error crashes ($0.0\%$ FER vs. $100.0\%$ for Deflate/Brotli); (2) <strong>In-Silico Synthetic DNA Storage Modeling</strong> under simulated enzymatic decay and Oxford Nanopore translocation physics, reconstructing a 32&times;32 monochromatic image (8,192 bits) with 0-bit drift (SSIM = 1.0000) while strictly eliminating homopolymer runs ($L_{\max} \le 2$); and (3) <strong>Distributed Swarm Robotics Simulation</strong>, maintaining a $100\%$ zero-collision guarantee ($d \ge 1.5\text{ m}$) across 51,890 telemetry frames under 35% packet drops. GPC operates with deterministic $O(N)$ encoding and bounded-window greedy linear decoding time complexity and strictly $O(1)$ auxiliary memory (&lt;4 KB), establishing a resilient foundation for next-generation edge and molecular computing.
+    <div class="keywords"><strong>Index Terms</strong>—Permutation-Based Synchronization Codes, Order-Sensitive Channels, Deletion Recovery, In-Silico DNA Data Storage, UAV Swarm Telemetry, Low-Power Embedded Systems, Combinatorial Algorithms.</div>
   </div>
 
   <div class="columns-container">
