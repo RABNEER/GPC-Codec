@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gpc-codec"
-version = "1.0.0"
+version = "1.0.1"
 authors = [
   { name="Ranveer", email="kr715ranveer@gmail.com" },
 ]
@@ -37,6 +37,12 @@ classifiers = [
 ]
 dependencies = []
 
+[project.urls]
+Homepage = "https://github.com/RABNEER/GPC-Codec"
+Repository = "https://github.com/RABNEER/GPC-Codec.git"
+Issues = "https://github.com/RABNEER/GPC-Codec/issues"
+Documentation = "https://github.com/RABNEER/GPC-Codec#readme"
+
 [project.optional-dependencies]
 dev = [
   "pytest>=7.0",
@@ -48,3 +54,7 @@ gpc = "gpc.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+

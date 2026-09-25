@@ -66,14 +66,64 @@ class GeneralizedPathaCode:
             raise ValueError(f"Message length must be {self.K}, got {len(message)}")
         return [1 if sym == 0 else message[sym - 1] for sym in self.placement]
 
-    def decode(self, received: List[Optional[int]]) -> Optional[Tuple[int, ...]]:
+    def decode(self, received: Union[List[Optional[int]], Tuple[Optional[int], ...]]) -> Optional[Tuple[int, ...]]:
         N = len(received)
         if N == self.M:
-            if any(bit is None for bit in received):
-                return decode_gpc_erasure(received, self.placement, self.K)
-            return decode_gpc_erasure(received, self.placement, self.K)
+            return decode_gpc_erasure(list(received), self.placement, self.K)
         elif N < self.M:
             b = self.M - N
-            return decode_gpc_burst_deletion(tuple(received), b, self.K, self.placement, self.pilots)
+            clean_rx = tuple(0 if x is None else x for x in received)
+            return decode_gpc_burst_deletion(clean_rx, b, self.K, self.placement, self.pilots)
         else:
             raise ValueError(f"Received length {N} exceeds block length {self.M}")
+
+
+class GPCEncoder:
+    """
+    High-level encoder interface for Generalized Patha Codes (GPC).
+    
+    Attributes:
+        K (int): Message dimension (number of information symbols).
+        M (int): Total block length (M = 13K + 6).
+        rate (float): Code rate R = K / M.
+    """
+    def __init__(self, K: int = 4):
+        self.codec = GeneralizedPathaCode(K=K)
+        self.K = self.codec.K
+        self.M = self.codec.M
+        self.rate = self.codec.rate
+        self.pilots = self.codec.pilots
+        self.placement = self.codec.placement
+
+    def encode(self, message: Union[List[int], Tuple[int, ...]]) -> List[int]:
+        """Encodes a message of length K into a GPC codeword of length M."""
+        return self.codec.encode(message)
+
+    def __call__(self, message: Union[List[int], Tuple[int, ...]]) -> List[int]:
+        return self.encode(message)
+
+
+class GPCDecoder:
+    """
+    High-level decoder interface for Generalized Patha Codes (GPC).
+    Automatically identifies marked burst erasures (None values) vs
+    unmarked burst deletions (length shortening).
+    
+    Attributes:
+        K (int): Message dimension.
+        M (int): Total block length.
+    """
+    def __init__(self, K: int = 4):
+        self.codec = GeneralizedPathaCode(K=K)
+        self.K = self.codec.K
+        self.M = self.codec.M
+        self.pilots = self.codec.pilots
+        self.placement = self.codec.placement
+
+    def decode(self, received: Union[List[Optional[int]], Tuple[Optional[int], ...]]) -> Optional[Tuple[int, ...]]:
+        """Decodes received vector into original message tuple of length K."""
+        return self.codec.decode(received)
+
+    def __call__(self, received: Union[List[Optional[int]], Tuple[Optional[int], ...]]) -> Optional[Tuple[int, ...]]:
+        return self.decode(received)
+
