@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "timestamp_utc": "2026-09-25 16:47:42 UTC",
+    "timestamp_utc": "2026-09-25 17:11:06 UTC",
     "total_schemes_verified": 8,
     "all_assertions_passed": true
   },
@@ -16,7 +16,7 @@
       "B_del_codebook": 10,
       "B_del_decoder": 10,
       "verified_against_paper": true,
-      "runtime_sec": 0.001260995864868164
+      "runtime_sec": 0.0012171268463134766
     },
     "K4_Reviewer Baseline": {
       "K": 4,
@@ -29,7 +29,7 @@
       "B_del_codebook": 0,
       "B_del_decoder": 0,
       "verified_against_paper": true,
-      "runtime_sec": 0.023805856704711914
+      "runtime_sec": 0.0237882137298584
     },
     "K4_Uniform Interleaved": {
       "K": 4,
@@ -42,7 +42,7 @@
       "B_del_codebook": 0,
       "B_del_decoder": 0,
       "verified_against_paper": true,
-      "runtime_sec": 0.02355813980102539
+      "runtime_sec": 0.023580312728881836
     },
     "K4_GPC (Challenger)": {
       "K": 4,
@@ -55,7 +55,7 @@
       "B_del_codebook": 46,
       "B_del_decoder": 21,
       "verified_against_paper": true,
-      "runtime_sec": 1.4663634300231934
+      "runtime_sec": 1.4984874725341797
     },
     "K6_Literal Ghana": {
       "K": 6,
@@ -68,7 +68,7 @@
       "B_del_codebook": 10,
       "B_del_decoder": 10,
       "verified_against_paper": true,
-      "runtime_sec": 0.0043430328369140625
+      "runtime_sec": 0.0044498443603515625
     },
     "K6_Reviewer Baseline": {
       "K": 6,
@@ -81,7 +81,7 @@
       "B_del_codebook": 0,
       "B_del_decoder": 0,
       "verified_against_paper": true,
-      "runtime_sec": 0.10129284858703613
+      "runtime_sec": 0.10285353660583496
     },
     "K6_Uniform Interleaved": {
       "K": 6,
@@ -94,7 +94,7 @@
       "B_del_codebook": 0,
       "B_del_decoder": 0,
       "verified_against_paper": true,
-      "runtime_sec": 0.10076165199279785
+      "runtime_sec": 0.10475397109985352
     },
     "K6_GPC (Challenger)": {
       "K": 6,
@@ -107,7 +107,7 @@
       "B_del_codebook": 59,
       "B_del_decoder": 31,
       "verified_against_paper": true,
-      "runtime_sec": 151.4999644756317
+      "runtime_sec": 39.27823758125305
     }
   }
 }

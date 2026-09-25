@@ -23,7 +23,7 @@ figures_dir = os.path.join(root_dir, "figures")
 html_path = os.path.join(papers_dir, "GPC_Full_Research_Paper_12_Pages.html")
 pdf_path = os.path.join(papers_dir, "GPC_Full_Research_Paper_12_Pages.pdf")
 
-def assemble_master_html(font_size="8.8pt", line_height="1.258", margin_mm="11.5", col_gap="5.0mm"):
+def assemble_master_html(font_size="8.7pt", line_height="1.238", margin_mm="11.5", col_gap="5.0mm"):
     with open(html_path, "w", encoding="utf-8") as f:
         # Styles and CSS setup
         f.write(r'''<!DOCTYPE html>
@@ -151,8 +151,8 @@ window.MathJax = {
     font-size: 8.8pt;
     font-weight: bold;
     text-transform: uppercase;
-    margin-top: 4.5px;
-    margin-bottom: 1.5px;
+    margin-top: 4.0px;
+    margin-bottom: 1.2px;
     letter-spacing: 0.25px;
     border-bottom: 0.6px solid #0f172a;
     padding-bottom: 0.8px;
@@ -163,15 +163,15 @@ window.MathJax = {
     font-size: 8.1pt;
     font-weight: bold;
     font-style: italic;
-    margin-top: 3.5px;
-    margin-bottom: 1px;
+    margin-top: 3.0px;
+    margin-bottom: 0.8px;
     color: #1e3a8a;
     break-after: avoid;
   }
 
   p {
     margin-top: 0;
-    margin-bottom: 2.2px;
+    margin-bottom: 1.8px;
     text-indent: 1.3em;
   }
   p.no-indent {
@@ -182,8 +182,8 @@ window.MathJax = {
     text-align: center;
     font-family: 'Cambria Math', 'Times New Roman', serif;
     font-size: 7.8pt;
-    margin: 1.8px 0;
-    padding: 1.5px 3px;
+    margin: 1.4px 0;
+    padding: 1.2px 3px;
     background: #f8fafc;
     border-left: 2.5px solid #2563eb;
     border-radius: 0 3px 3px 0;
@@ -199,8 +199,8 @@ window.MathJax = {
     background: #f1f5f9;
     border: 0.5px solid #cbd5e1;
     border-left: 3px solid #0f172a;
-    padding: 2.5px 5px;
-    margin: 2.2px 0;
+    padding: 2.2px 5px;
+    margin: 1.8px 0;
     font-size: 7.55pt;
     line-height: 1.13;
     break-inside: avoid;
@@ -214,13 +214,13 @@ window.MathJax = {
   table {
     width: 100%;
     border-collapse: collapse;
-    margin: 2.2px 0;
-    font-size: 6.6pt;
+    margin: 1.8px 0;
+    font-size: 6.5pt;
     break-inside: avoid;
   }
   th, td {
     border: 0.5px solid #cbd5e1;
-    padding: 1.2px 1.8px;
+    padding: 1.0px 1.6px;
     text-align: center;
   }
   th {
@@ -250,10 +250,10 @@ window.MathJax = {
     color: #f8fafc;
     font-family: 'Consolas', 'Courier New', monospace;
     font-size: 5.85pt;
-    padding: 2.2px 3.5px;
+    padding: 2.0px 3.5px;
     border-radius: 2.5px;
     line-height: 1.08;
-    margin: 1.8px 0;
+    margin: 1.5px 0;
     white-space: pre-wrap;
     word-break: break-all;
     break-inside: avoid;
@@ -264,8 +264,8 @@ window.MathJax = {
     border: 0.8px solid #cbd5e1;
     border-top: 1.4px solid #0f172a;
     border-bottom: 1.4px solid #0f172a;
-    padding: 2.5px 4.5px;
-    margin: 2.2px 0;
+    padding: 2.2px 4.5px;
+    margin: 1.8px 0;
     font-size: 6.2pt;
     line-height: 1.13;
     break-inside: avoid;
@@ -287,17 +287,17 @@ window.MathJax = {
 
   .figure-box {
     text-align: center;
-    margin: 2.5px 0;
+    margin: 2.0px 0;
     break-inside: avoid;
   }
   .figure-box img {
     width: 100%;
-    max-height: 118px;
+    max-height: 114px;
     object-fit: contain;
     border: 0.6px solid #cbd5e1;
     border-radius: 2.5px;
     display: block;
-    margin: 0 auto 1.2px auto;
+    margin: 0 auto 1.0px auto;
   }
   .caption {
     font-size: 6.6pt;
@@ -313,7 +313,7 @@ window.MathJax = {
     margin: 1px 0;
   }
   .citation-list li {
-    margin-bottom: 1.5px;
+    margin-bottom: 1.2px;
   }
 </style>
 </head>
@@ -327,11 +327,11 @@ window.MathJax = {
   </div>
 
   <div class="audit-banner">
-    <strong>Audited Empirical Scale:</strong> 161,890 total computational verification cases across Silicon Embedded Edge AI, In-Silico Molecular DNA Storage, and Hardware-in-the-Loop 8-UAV Swarm Flight Simulations. Fully open-source on GitHub (<code>github.com/RABNEER/GPC-Codec</code>) and PyPI (<code>pip install gpc-codec</code>).
+    <strong>Audited Empirical Scale:</strong> 161,890 total computational verification cases across Silicon Embedded Edge AI, In-Silico Molecular DNA Storage, and Hardware-in-the-Loop 8-UAV Swarm Flight Simulations. Fully open-source on GitHub (<code>github.com/RABNEER/GPC-Codec</code>) with turnkey, zero-dependency reproducibility testbenches.
   </div>
 
   <div class="abstract-box">
-    <span class="abstract-title">Abstract</span>—Data transmission across physical substrates fundamentally relies on channel synchronization. Modern compression and error-correcting codes (e.g., Huffman, Deflate, Brotli, Zstandard, LDPC) presuppose either reliable framing or stationary alphabets. When deployed over order-sensitive, desynchronizing channels—characterized by insertions, deletions, burst jitter, and biochemical synthesis drift—these conventional architectures suffer catastrophic de-synchronization, wherein a single dropped bit corrupts all subsequent decoding states. This paper introduces <strong>Generalized Patha Codes (GPC)</strong>, a novel class of linear-time permutation-based synchronization inner codes inspired by the combinatorial symmetries of ancient cyclical recitation schemes (<em>Krama</em>, <em>Jaṭā</em>, and <em>Ghana-pāṭha</em>). By generalizing multi-scale forward-reverse permutation kernels into a formal parameterized family $\text{GPC}(k, d)$, GPC decouples sequence order recovery from symbol entropy. We derive the exact algebraic code rate $R = \frac{d}{k^2 + 2k - 2}$ and prove that GPC deterministically detects and confines burst deletions of length $b \le k - 1$ while ensuring a minimum Levenshtein distance $D_L \ge 2(k^2 - 1)$ under adjacent transpositions. Rather than functioning as a bulk payload compressor, GPC serves as a deterministic inner synchronization code that trades code rate for linear-time $O(N)$ zero-latency frame recovery. In physical and computational evaluations across 161,890 verification cases, GPC was validated across three physical domains: (1) <strong>Silicon Edge AI</strong> on bare-metal ARM Cortex-M4 and Raspberry Pi Zero W nodes streaming ModernBERT (421M) embeddings through 15% bit-flip jamming with zero frame error crashes ($0.0\%$ FER vs. $100.0\%$ for Deflate/Brotli); (2) <strong>In-Silico Synthetic DNA Storage Modeling</strong> under simulated enzymatic decay and Oxford Nanopore translocation physics, reconstructing a 32&times;32 monochromatic image (8,192 bits) with 0-bit drift (SSIM = 1.0000) while strictly eliminating homopolymer runs ($L_{\max} \le 2$); and (3) <strong>Distributed Swarm Robotics Simulation</strong>, maintaining a $100\%$ zero-collision guarantee ($d \ge 1.5\text{ m}$) across 51,890 telemetry frames under 35% packet drops. GPC operates with deterministic $O(N)$ encoding, bounded-window linear decoding time complexity, and strictly $O(1)$ auxiliary memory (&lt;4 KB), establishing a resilient foundation for next-generation cyber-physical and molecular computing.
+    <span class="abstract-title">Abstract</span>—Data transmission across physical substrates fundamentally relies on channel synchronization. Modern compression and error-correcting codes (e.g., Huffman, Deflate, Brotli, Zstandard, LDPC) presuppose either reliable framing or stationary alphabets. When deployed over order-sensitive, desynchronizing channels—characterized by insertions, deletions, burst jitter, and biochemical synthesis drift—these conventional architectures suffer catastrophic de-synchronization, wherein a single dropped bit corrupts all subsequent decoding states. This paper introduces <strong>Generalized Patha Codes (GPC)</strong>, a novel class of linear-time permutation-based synchronization inner codes inspired by the combinatorial symmetries of ancient cyclical recitation schemes (<em>Krama</em>, <em>Jaṭā</em>, and <em>Ghana-pāṭha</em>). By generalizing multi-scale forward-reverse permutation kernels into a formal parameterized family $\text{GPC}(k, d)$, GPC decouples sequence order recovery from symbol entropy. We derive the exact algebraic code rate $R = \frac{d}{k^2 + 2k - 2}$ and prove that GPC deterministically detects and confines burst deletions of length $b \le k - 1$ while ensuring a minimum Levenshtein distance $D_L \ge 2(k^2 - 1)$ under adjacent transpositions. Rather than functioning as a bulk payload compressor, GPC serves as an ultra-reliable inner synchronization code for micro-telemetry, synchronization preambles, and state vectors, trading code rate for linear-time $O(N)$ zero-latency frame recovery. In physical and computational evaluations across 161,890 verification cases, GPC was validated across three physical domains: (1) <strong>Silicon Edge AI Telemetry</strong> on bare-metal ARM Cortex-M4 and Raspberry Pi Zero W nodes receiving host-generated ModernBERT embeddings through 15% bit-flip channel corruption with zero decoder crash abortions ($0.0\%$ crash rate vs. $100.0\%$ for Deflate/Brotli); (2) <strong>In-Silico Synthetic DNA Storage Modeling</strong> under simulated enzymatic decay and Oxford Nanopore translocation physics, reconstructing a 32&times;32 monochromatic image (8,192 bits) with 0-bit drift (SSIM = 1.0000) while strictly eliminating homopolymer runs ($L_{\max} \le 2$); and (3) <strong>Distributed Swarm Robotics Simulation</strong> in PX4/Gazebo Hardware-in-the-Loop environments, maintaining safe vehicle separation ($d \ge 1.5\text{ m}$) across 51,890 MAVLink micro-telemetry frames under 35% packet drops. GPC operates with deterministic $O(N)$ encoding, bounded-window linear decoding time complexity, and strictly $O(1)$ auxiliary memory (&lt;4 KB), establishing a resilient foundation for next-generation cyber-physical and molecular computing.
     <div class="keywords"><strong>Index Terms</strong>—Permutation-Based Synchronization Codes, Order-Sensitive Channels, Deletion Recovery, In-Silico DNA Data Storage, UAV Swarm Telemetry, Low-Power Embedded Systems, Combinatorial Algorithms.</div>
   </div>
 
