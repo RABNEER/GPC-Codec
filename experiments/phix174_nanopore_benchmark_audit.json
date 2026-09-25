@@ -1,0 +1,45 @@
+{
+  "dataset": ">NC_001422.1 Escherichia phage phiX174, complete genome",
+  "genome_length_nt": 5386,
+  "num_strands": 36,
+  "payload_per_strand_nt": 150,
+  "header_length_nt": 29,
+  "trials_per_burst": 500,
+  "burst_sweep": {
+    "0": {
+      "burst_nt": 0,
+      "burst_bits": 0,
+      "GPC_Strand_Loss_Rate": 0.0,
+      "Schoeny_Strand_Loss_Rate": 0.0,
+      "Unprotected_Strand_Loss_Rate": 0.0
+    },
+    "4": {
+      "burst_nt": 4,
+      "burst_bits": 8,
+      "GPC_Strand_Loss_Rate": 0.0,
+      "Schoeny_Strand_Loss_Rate": 0.0,
+      "Unprotected_Strand_Loss_Rate": 1.0
+    },
+    "8": {
+      "burst_nt": 8,
+      "burst_bits": 16,
+      "GPC_Strand_Loss_Rate": 0.0,
+      "Schoeny_Strand_Loss_Rate": 1.0,
+      "Unprotected_Strand_Loss_Rate": 1.0
+    },
+    "10": {
+      "burst_nt": 10,
+      "burst_bits": 20,
+      "GPC_Strand_Loss_Rate": 0.0,
+      "Schoeny_Strand_Loss_Rate": 1.0,
+      "Unprotected_Strand_Loss_Rate": 1.0
+    },
+    "12": {
+      "burst_nt": 12,
+      "burst_bits": 24,
+      "GPC_Strand_Loss_Rate": 0.028,
+      "Schoeny_Strand_Loss_Rate": 1.0,
+      "Unprotected_Strand_Loss_Rate": 1.0
+    }
+  }
+}

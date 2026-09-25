@@ -26,6 +26,14 @@ def compile_12page_paper():
         print(f"Error: HTML template not found at {html_path}")
         sys.exit(1)
         
+    # Regenerate master HTML with golden 12-page parameters
+    if root_dir not in sys.path:
+        sys.path.insert(0, root_dir)
+    if script_dir not in sys.path:
+        sys.path.insert(0, script_dir)
+    from docs.assemble_master_12page_monograph import assemble_master_html
+    assemble_master_html()
+
     print(f"Compiling {html_path} -> {pdf_path}...")
     with sync_playwright() as p:
         browser = p.chromium.launch(executable_path=edge_executable)
@@ -34,13 +42,14 @@ def compile_12page_paper():
         
         # Wait for MathJax to finish compiling equations into vector SVGs
         try:
-            page.wait_for_selector("mjx-container svg", timeout=15000)
-            print("MathJax vector SVG equations detected and rendered.")
+            page.evaluate("() => window.MathJax.startup.promise")
+            svg_count = page.locator("mjx-container svg").count()
+            print(f"MathJax startup promise resolved: {svg_count} vector SVG equations rendered.")
         except Exception as e:
-            print("Note: MathJax selector wait timed out, proceeding...")
+            print("Note: MathJax wait exception:", e)
         
-        # Give an extra moment for images and styles to settle
-        page.wait_for_timeout(3500)
+        # Settle layout
+        page.wait_for_timeout(2000)
         
         page.pdf(
             path=pdf_path,
@@ -52,11 +61,14 @@ def compile_12page_paper():
     
     file_size_kb = os.path.getsize(pdf_path) / 1024
     
-    # Audit page count with pypdf
-    reader = PdfReader(pdf_path)
-    num_pages = len(reader.pages)
+    # Audit page count with fitz
+    import fitz
+    doc = fitz.open(pdf_path)
+    num_pages = len(doc)
     print(f"SUCCESS: Generated {pdf_path} ({file_size_kb:.1f} KB)")
     print(f"Total Pages: {num_pages}")
+    for i, p in enumerate(doc):
+        print(f"  Page {i+1}: {len(p.get_text())} chars")
     
     if num_pages == 12:
         print("EXACT MATCH: The document is strictly 12 pages!")

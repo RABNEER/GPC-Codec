@@ -1,0 +1,54 @@
+{
+  "channel": "Wireless BCI Telemetry",
+  "burst_sweep": {
+    "5": {
+      "burst_bits": 5,
+      "GPC_FER": 0.001,
+      "BCI_Sync_FER": 1.0,
+      "Schoeny_FER": 0.0,
+      "Mean_Latency_us": 114.92
+    },
+    "10": {
+      "burst_bits": 10,
+      "GPC_FER": 0.001,
+      "BCI_Sync_FER": 1.0,
+      "Schoeny_FER": 0.0,
+      "Mean_Latency_us": 66.56
+    },
+    "15": {
+      "burst_bits": 15,
+      "GPC_FER": 0.001,
+      "BCI_Sync_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "Mean_Latency_us": 118.28
+    },
+    "20": {
+      "burst_bits": 20,
+      "GPC_FER": 0.0,
+      "BCI_Sync_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "Mean_Latency_us": 70.49
+    },
+    "25": {
+      "burst_bits": 25,
+      "GPC_FER": 0.009,
+      "BCI_Sync_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "Mean_Latency_us": 40.94
+    },
+    "30": {
+      "burst_bits": 30,
+      "GPC_FER": 0.002,
+      "BCI_Sync_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "Mean_Latency_us": 61.78
+    },
+    "35": {
+      "burst_bits": 35,
+      "GPC_FER": 0.082,
+      "BCI_Sync_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "Mean_Latency_us": 61.53
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "channel": "Oxford Nanopore R10.4 Mixed Noise",
+  "sub_rate": 0.006,
+  "del_rate": 0.006,
+  "ins_rate": 0.004,
+  "burst_sweep": {
+    "0": {
+      "burst_nt": 0,
+      "burst_bits": 0,
+      "GPC_Loss": 0.062,
+      "Schoeny_Loss": 0.32,
+      "VT_Loss": 0.353,
+      "Mean_Latency_us": 342.01
+    },
+    "2": {
+      "burst_nt": 2,
+      "burst_bits": 4,
+      "GPC_Loss": 0.077,
+      "Schoeny_Loss": 0.357,
+      "VT_Loss": 1.0,
+      "Mean_Latency_us": 126.61
+    },
+    "4": {
+      "burst_nt": 4,
+      "burst_bits": 8,
+      "GPC_Loss": 0.093,
+      "Schoeny_Loss": 0.356,
+      "VT_Loss": 1.0,
+      "Mean_Latency_us": 84.35
+    },
+    "6": {
+      "burst_nt": 6,
+      "burst_bits": 12,
+      "GPC_Loss": 0.068,
+      "Schoeny_Loss": 1.0,
+      "VT_Loss": 1.0,
+      "Mean_Latency_us": 52.0
+    },
+    "8": {
+      "burst_nt": 8,
+      "burst_bits": 16,
+      "GPC_Loss": 0.054,
+      "Schoeny_Loss": 1.0,
+      "VT_Loss": 1.0,
+      "Mean_Latency_us": 96.86
+    },
+    "10": {
+      "burst_nt": 10,
+      "burst_bits": 20,
+      "GPC_Loss": 0.052,
+      "Schoeny_Loss": 1.0,
+      "VT_Loss": 1.0,
+      "Mean_Latency_us": 73.43
+    },
+    "12": {
+      "burst_nt": 12,
+      "burst_bits": 24,
+      "GPC_Loss": 0.067,
+      "Schoeny_Loss": 1.0,
+      "VT_Loss": 1.0,
+      "Mean_Latency_us": 50.85
+    },
+    "14": {
+      "burst_nt": 14,
+      "burst_bits": 28,
+      "GPC_Loss": 0.028,
+      "Schoeny_Loss": 1.0,
+      "VT_Loss": 1.0,
+      "Mean_Latency_us": 85.63
+    },
+    "16": {
+      "burst_nt": 16,
+      "burst_bits": 32,
+      "GPC_Loss": 0.033,
+      "Schoeny_Loss": 1.0,
+      "VT_Loss": 1.0,
+      "Mean_Latency_us": 54.82
+    }
+  }
+}

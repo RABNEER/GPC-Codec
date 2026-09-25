@@ -126,7 +126,7 @@ def decode_gpc_burst_deletion(rx_bits, b_len, K, placement, pilots):
         full_aligned = list(rx_bits[:s_hat]) + [None] * b_len + list(rx_bits[s_hat:])
         votes = {sym: [] for sym in range(1, K + 1)}
         for idx, sym in enumerate(placement):
-            if sym > 0 and full_aligned[idx] is not None:
+            if idx < len(full_aligned) and sym > 0 and full_aligned[idx] is not None:
                 votes[sym].append(full_aligned[idx])
                 
         candidate_msg = []

@@ -1,0 +1,65 @@
+{
+  "channel": "DNA Data Storage / Nanopore Strand Addressing",
+  "strand_header_length_nt": 29,
+  "burst_sweep": {
+    "5": {
+      "burst_length_bits": 5,
+      "burst_length_nt": 2,
+      "GPC_Strand_Dropout_Rate": 0.002,
+      "Schoeny_Strand_Dropout_Rate": 0.0,
+      "VT_Strand_Dropout_Rate": 1.0,
+      "Marker_Strand_Dropout_Rate": 1.0,
+      "GPC_Mean_Latency_us": 118.28
+    },
+    "10": {
+      "burst_length_bits": 10,
+      "burst_length_nt": 5,
+      "GPC_Strand_Dropout_Rate": 0.003,
+      "Schoeny_Strand_Dropout_Rate": 0.0,
+      "VT_Strand_Dropout_Rate": 1.0,
+      "Marker_Strand_Dropout_Rate": 1.0,
+      "GPC_Mean_Latency_us": 69.52
+    },
+    "15": {
+      "burst_length_bits": 15,
+      "burst_length_nt": 7,
+      "GPC_Strand_Dropout_Rate": 0.004,
+      "Schoeny_Strand_Dropout_Rate": 1.0,
+      "VT_Strand_Dropout_Rate": 1.0,
+      "Marker_Strand_Dropout_Rate": 1.0,
+      "GPC_Mean_Latency_us": 116.65
+    },
+    "20": {
+      "burst_length_bits": 20,
+      "burst_length_nt": 10,
+      "GPC_Strand_Dropout_Rate": 0.0035,
+      "Schoeny_Strand_Dropout_Rate": 1.0,
+      "VT_Strand_Dropout_Rate": 1.0,
+      "Marker_Strand_Dropout_Rate": 1.0,
+      "GPC_Mean_Latency_us": 70.25
+    },
+    "25": {
+      "burst_length_bits": 25,
+      "burst_length_nt": 12,
+      "GPC_Strand_Dropout_Rate": 0.012,
+      "Schoeny_Strand_Dropout_Rate": 1.0,
+      "VT_Strand_Dropout_Rate": 1.0,
+      "Marker_Strand_Dropout_Rate": 1.0,
+      "GPC_Mean_Latency_us": 40.91
+    },
+    "30": {
+      "burst_length_bits": 30,
+      "burst_length_nt": 15,
+      "GPC_Strand_Dropout_Rate": 0.0035,
+      "Schoeny_Strand_Dropout_Rate": 1.0,
+      "VT_Strand_Dropout_Rate": 1.0,
+      "Marker_Strand_Dropout_Rate": 1.0,
+      "GPC_Mean_Latency_us": 61.25
+    }
+  },
+  "biophysical_audit": {
+    "gc_content_pct": 37.93,
+    "max_homopolymer_run": 3,
+    "is_chemically_viable": true
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "channel": "UAV C2 Fail-Safe Telemetry (RF Jamming)",
+  "rate": 0.06896551724137931,
+  "burst_sweep": {
+    "5": {
+      "burst_length": 5,
+      "GPC_FER": 0.0005,
+      "MAVLink_FER": 1.0,
+      "RS_Sync_FER": 1.0,
+      "Schoeny_FER": 0.0,
+      "GPC_Mean_Latency_us": 116.64,
+      "GPC_Failsafe_Trigger_Risk_Pct": 0.0,
+      "MAVLink_Failsafe_Trigger_Risk_Pct": 100.0
+    },
+    "10": {
+      "burst_length": 10,
+      "GPC_FER": 0.0,
+      "MAVLink_FER": 1.0,
+      "RS_Sync_FER": 1.0,
+      "Schoeny_FER": 0.0,
+      "GPC_Mean_Latency_us": 69.6,
+      "GPC_Failsafe_Trigger_Risk_Pct": 0.0,
+      "MAVLink_Failsafe_Trigger_Risk_Pct": 100.0
+    },
+    "15": {
+      "burst_length": 15,
+      "GPC_FER": 0.0,
+      "MAVLink_FER": 1.0,
+      "RS_Sync_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "GPC_Mean_Latency_us": 117.75,
+      "GPC_Failsafe_Trigger_Risk_Pct": 0.0,
+      "MAVLink_Failsafe_Trigger_Risk_Pct": 100.0
+    },
+    "20": {
+      "burst_length": 20,
+      "GPC_FER": 0.0,
+      "MAVLink_FER": 1.0,
+      "RS_Sync_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "GPC_Mean_Latency_us": 69.85,
+      "GPC_Failsafe_Trigger_Risk_Pct": 0.0,
+      "MAVLink_Failsafe_Trigger_Risk_Pct": 100.0
+    },
+    "25": {
+      "burst_length": 25,
+      "GPC_FER": 0.012,
+      "MAVLink_FER": 1.0,
+      "RS_Sync_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "GPC_Mean_Latency_us": 41.82,
+      "GPC_Failsafe_Trigger_Risk_Pct": 0.0002,
+      "MAVLink_Failsafe_Trigger_Risk_Pct": 100.0
+    },
+    "30": {
+      "burst_length": 30,
+      "GPC_FER": 0.0,
+      "MAVLink_FER": 1.0,
+      "RS_Sync_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "GPC_Mean_Latency_us": 59.69,
+      "GPC_Failsafe_Trigger_Risk_Pct": 0.0,
+      "MAVLink_Failsafe_Trigger_Risk_Pct": 100.0
+    }
+  }
+}

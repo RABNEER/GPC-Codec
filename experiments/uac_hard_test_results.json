@@ -1,0 +1,54 @@
+{
+  "channel": "Underwater Acoustic Telemetry (UAC)",
+  "rate": 0.06896551724137931,
+  "burst_sweep": {
+    "5": {
+      "burst_length": 5,
+      "GPC_FER": 0.0,
+      "Naive_Repetition_FER": 1.0,
+      "Barker_CRC_FER": 1.0,
+      "Schoeny_FER": 0.0,
+      "GPC_Mean_Latency_us": 117.08
+    },
+    "10": {
+      "burst_length": 10,
+      "GPC_FER": 0.0,
+      "Naive_Repetition_FER": 1.0,
+      "Barker_CRC_FER": 1.0,
+      "Schoeny_FER": 0.0,
+      "GPC_Mean_Latency_us": 68.16
+    },
+    "15": {
+      "burst_length": 15,
+      "GPC_FER": 0.0,
+      "Naive_Repetition_FER": 1.0,
+      "Barker_CRC_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "GPC_Mean_Latency_us": 117.19
+    },
+    "20": {
+      "burst_length": 20,
+      "GPC_FER": 0.0,
+      "Naive_Repetition_FER": 1.0,
+      "Barker_CRC_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "GPC_Mean_Latency_us": 70.71
+    },
+    "25": {
+      "burst_length": 25,
+      "GPC_FER": 0.0085,
+      "Naive_Repetition_FER": 1.0,
+      "Barker_CRC_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "GPC_Mean_Latency_us": 41.93
+    },
+    "30": {
+      "burst_length": 30,
+      "GPC_FER": 0.0,
+      "Naive_Repetition_FER": 1.0,
+      "Barker_CRC_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "GPC_Mean_Latency_us": 61.83
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "channel": "UAV RF Chirp Jamming",
+  "burst_sweep": {
+    "5": {
+      "burst_bits": 5,
+      "GPC_FER": 0.001,
+      "MAVLink_FER": 1.0,
+      "Schoeny_FER": 0.0,
+      "Failsafe_Risk_Pct": 0.0
+    },
+    "10": {
+      "burst_bits": 10,
+      "GPC_FER": 0.002,
+      "MAVLink_FER": 1.0,
+      "Schoeny_FER": 0.0,
+      "Failsafe_Risk_Pct": 0.0
+    },
+    "15": {
+      "burst_bits": 15,
+      "GPC_FER": 0.0,
+      "MAVLink_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "Failsafe_Risk_Pct": 0.0
+    },
+    "20": {
+      "burst_bits": 20,
+      "GPC_FER": 0.0,
+      "MAVLink_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "Failsafe_Risk_Pct": 0.0
+    },
+    "25": {
+      "burst_bits": 25,
+      "GPC_FER": 0.014,
+      "MAVLink_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "Failsafe_Risk_Pct": 0.0003
+    },
+    "30": {
+      "burst_bits": 30,
+      "GPC_FER": 0.001,
+      "MAVLink_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "Failsafe_Risk_Pct": 0.0
+    },
+    "35": {
+      "burst_bits": 35,
+      "GPC_FER": 0.08,
+      "MAVLink_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "Failsafe_Risk_Pct": 0.0512
+    }
+  }
+}

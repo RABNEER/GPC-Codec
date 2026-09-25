@@ -1,0 +1,48 @@
+{
+  "channel": "Wireless Intracortical BCI Telemetry",
+  "rate": 0.06896551724137931,
+  "burst_sweep": {
+    "5": {
+      "burst_length_bits": 5,
+      "GPC_FER": 0.0005,
+      "BCI_Standard_Preamble_FER": 1.0,
+      "Schoeny_FER": 0.0,
+      "GPC_Mean_Latency_us": 116.85
+    },
+    "10": {
+      "burst_length_bits": 10,
+      "GPC_FER": 0.0,
+      "BCI_Standard_Preamble_FER": 1.0,
+      "Schoeny_FER": 0.0,
+      "GPC_Mean_Latency_us": 71.39
+    },
+    "15": {
+      "burst_length_bits": 15,
+      "GPC_FER": 0.0,
+      "BCI_Standard_Preamble_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "GPC_Mean_Latency_us": 116.51
+    },
+    "20": {
+      "burst_length_bits": 20,
+      "GPC_FER": 0.0,
+      "BCI_Standard_Preamble_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "GPC_Mean_Latency_us": 71.13
+    },
+    "25": {
+      "burst_length_bits": 25,
+      "GPC_FER": 0.013,
+      "BCI_Standard_Preamble_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "GPC_Mean_Latency_us": 41.53
+    },
+    "30": {
+      "burst_length_bits": 30,
+      "GPC_FER": 0.001,
+      "BCI_Standard_Preamble_FER": 1.0,
+      "Schoeny_FER": 1.0,
+      "GPC_Mean_Latency_us": 61.36
+    }
+  }
+}
