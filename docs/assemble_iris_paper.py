@@ -45,7 +45,7 @@ window.MathJax = {
 <style>
   @page {
     size: letter;
-    margin: 11.0mm 10.0mm 11.0mm 10.0mm;
+    margin: 10.0mm 9.5mm 10.0mm 9.5mm;
     @bottom-center {
       content: counter(page);
       font-size: 8.5pt;
@@ -65,8 +65,8 @@ window.MathJax = {
 
   body {
     font-family: 'Times New Roman', Times, serif;
-    font-size: 9.7pt;
-    line-height: 1.28;
+    font-size: 9.45pt;
+    line-height: 1.25;
     color: #0f172a;
     margin: 0;
     padding: 0;
@@ -76,39 +76,39 @@ window.MathJax = {
 
   .title-container {
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     border-bottom: 1.5px solid #0f172a;
-    padding-bottom: 6px;
+    padding-bottom: 5px;
   }
 
   h1.paper-title {
-    font-size: 16.5pt;
+    font-size: 16.0pt;
     font-weight: bold;
     line-height: 1.15;
-    margin: 0 0 5px 0;
+    margin: 0 0 4px 0;
     color: #0f172a;
   }
 
   .author-block {
-    font-size: 9.3pt;
+    font-size: 9.0pt;
     font-style: italic;
-    margin-bottom: 3px;
+    margin-bottom: 2.5px;
     color: #1e293b;
   }
 
   .affiliation-block {
-    font-size: 8.0pt;
+    font-size: 7.8pt;
     color: #475569;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
   }
 
   .abstract-box {
     background: #f8fafc;
     border-left: 3px solid #2563eb;
-    padding: 6px 9px;
-    margin: 0 auto 10px auto;
-    font-size: 8.2pt;
-    line-height: 1.20;
+    padding: 5px 8px;
+    margin: 0 auto 8px auto;
+    font-size: 8.0pt;
+    line-height: 1.18;
     text-align: justify;
   }
 
@@ -119,40 +119,40 @@ window.MathJax = {
   }
 
   .keywords {
-    margin-top: 3px;
-    font-size: 7.6pt;
+    margin-top: 2.5px;
+    font-size: 7.4pt;
     color: #334155;
   }
 
   .columns-container {
     column-count: 2;
-    column-gap: 5.0mm;
+    column-gap: 4.8mm;
     column-fill: auto;
   }
 
   h2 {
-    font-size: 9.8pt;
+    font-size: 9.3pt;
     font-weight: bold;
     text-transform: uppercase;
-    margin: 9px 0 3px 0;
-    padding-bottom: 1.5px;
+    margin: 7px 0 2.5px 0;
+    padding-bottom: 1.2px;
     border-bottom: 0.75px solid #94a3b8;
     color: #0f172a;
     break-after: avoid;
   }
 
   h3 {
-    font-size: 9.0pt;
+    font-size: 8.6pt;
     font-weight: bold;
     font-style: italic;
-    margin: 6px 0 2px 0;
+    margin: 5px 0 2px 0;
     color: #1e293b;
     break-after: avoid;
   }
 
   p {
-    margin: 0 0 5.4px 0;
-    text-indent: 1.2em;
+    margin: 0 0 4.2px 0;
+    text-indent: 1.1em;
   }
 
   p.no-indent {
@@ -161,16 +161,16 @@ window.MathJax = {
 
   .eq-box {
     text-align: center;
-    margin: 4px 0;
-    padding: 2.5px 0;
+    margin: 3.5px 0;
+    padding: 2px 0;
     background: #f8fafc;
     border-radius: 3px;
     break-inside: avoid;
-    font-size: 8.6pt;
+    font-size: 8.3pt;
   }
 
   .figure-box {
-    margin: 6px 0;
+    margin: 4.5px 0;
     text-align: center;
     break-inside: avoid;
     background: #fff;
@@ -179,6 +179,7 @@ window.MathJax = {
 
   .figure-box img {
     max-width: 100%;
+    max-height: 135px;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -187,25 +188,25 @@ window.MathJax = {
   }
 
   .caption {
-    font-size: 7.4pt;
+    font-size: 7.2pt;
     color: #334155;
-    margin-top: 2.5px;
+    margin-top: 2px;
     text-align: justify;
-    line-height: 1.15;
+    line-height: 1.12;
   }
 
   table.data-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 7.3pt;
-    margin: 5px 0;
+    font-size: 7.0pt;
+    margin: 4px 0;
     break-inside: avoid;
-    line-height: 1.12;
+    line-height: 1.10;
   }
 
   table.data-table th, table.data-table td {
     border: 0.5px solid #94a3b8;
-    padding: 2px 3px;
+    padding: 1.8px 2.5px;
     text-align: center;
   }
 
@@ -216,7 +217,7 @@ window.MathJax = {
   }
 
   .table-title {
-    font-size: 7.5pt;
+    font-size: 7.2pt;
     font-weight: bold;
     text-align: center;
     margin-bottom: 2px;
@@ -227,10 +228,10 @@ window.MathJax = {
     background: #f0fdf4;
     border: 0.75px solid #86efac;
     border-left: 3px solid #16a34a;
-    padding: 4px 7px;
-    margin: 5px 0;
-    font-size: 7.8pt;
-    line-height: 1.18;
+    padding: 3px 6px;
+    margin: 4px 0;
+    font-size: 7.6pt;
+    line-height: 1.15;
     break-inside: avoid;
   }
 
@@ -238,22 +239,22 @@ window.MathJax = {
     background: #fffbeb;
     border: 0.75px solid #fde68a;
     border-left: 3px solid #d97706;
-    padding: 4px 7px;
-    margin: 5px 0;
-    font-size: 7.8pt;
-    line-height: 1.18;
+    padding: 3px 6px;
+    margin: 4px 0;
+    font-size: 7.6pt;
+    line-height: 1.15;
     break-inside: avoid;
   }
 
   ol.ref-list {
     margin: 0;
-    padding-left: 12px;
-    font-size: 7.2pt;
-    line-height: 1.14;
+    padding-left: 11px;
+    font-size: 6.9pt;
+    line-height: 1.12;
   }
 
   ol.ref-list li {
-    margin-bottom: 2.5px;
+    margin-bottom: 2px;
     text-align: justify;
   }
 
@@ -275,7 +276,7 @@ window.MathJax = {
 </div>
 
 <div class="abstract-box">
-  <span class="abstract-title">Abstract</span>—Synthetic DNA data storage offers information densities exceeding $10^{18}\text{ bytes/mm}^3$, but physical retrieval depends on single-molecule protein nanopores (Oxford Nanopore R10.4.1) where enzymatic motor slips cause burst deletions of 5 to 15 nucleotides. When a burst occurs within the strand address header, coordinate indexation is destroyed, causing <strong>Strand Address Dropout</strong> where unindexed 150-nucleotide reads must be discarded prior to file reassembly. Under an identical 29-nt header budget ($M=58$), the Schoeny et al. (IEEE 2017) interleaved construction parameterized for $B_{\text{design}} \le 4\text{ nt}$ ($8\text{ bits}$) collapses when motor stalls exceed its design parameter ($b > 4\text{ nt}$), while single-deletion Varshamov-Tenengolts codes fail under any multi-base slip. This paper presents <strong>Generalized Pāṭha Codes (GPC)</strong>, an inner synchronization framework inspired by the cyclic forward-reverse permutations of classical Indian mnemonic recitation (<em>Ghana-pāṭha</em>). By generalizing cyclic trigram permutations into a parameterized family $\text{GPC}(K)$ ($M = 13K + 6$), GPC decouples coordinate synchronization from symbol entropy. While GPC features an inner code rate of $R = K/(13K+6)$ ($R = 0.069$ for $K=4$), we resolve this rate penalty by deploying GPC <strong>strictly as an inner Address Header</strong> on a 150-nt biological payload, adding only <strong>16.20% strand overhead</strong> (29-nt header, $179\text{ nt} < 200\text{ nt}$ Twist Bioscience synthesis limit) for our 16-strand prototype and <strong>16.67% overhead</strong> (30-nt header, 180 nt) for full 36-strand genome coverage. In in-silico sequencing simulations parameterized from published Oxford Nanopore R10.4 error distributions on the authentic 5,386-base genome of <strong>Bacteriophage &Phi;X174</strong> (NCBI <code>NC_001422.1</code>), GPC achieves 0.0% strand loss across isolated motor stalls up to 10 nt (20 bits), with bounded loss of 2.60% at 12 nt and 7.20% under compound mixed noise across 72,732 machine trials. We implement a synthesizable Verilog RTL decoder achieving $81.6\,\mu\text{s}$ latency at $1.3\text{ mW}$ on FPGA logic. We characterize exact algorithmic failure boundaries ($b > 23\text{ nt}$, $p_{\text{sub}} > 15\%$, periodic message ties), demonstrating an honest, practical engineering solution for biological memory systems.
+  <span class="abstract-title">Abstract</span>—Synthetic DNA data storage offers information densities exceeding $10^{18}\text{ bytes/mm}^3$, but physical retrieval depends on single-molecule protein nanopores (Oxford Nanopore R10.4.1) where translocation stalls, severe homopolymer compression, and enzymatic motor slips motivate evaluating burst deletions of 5 to 15 nucleotides. When a burst occurs within the strand address header, coordinate indexation is destroyed, causing <strong>Strand Address Dropout</strong> where unindexed 150-nucleotide reads must be discarded prior to file reassembly. Under an identical 29-nt header budget ($M=58$), the Schoeny et al. (IEEE 2017) interleaved construction parameterized for $B_{\text{design}} \le 4\text{ nt}$ ($8\text{ bits}$) collapses when burst stalls exceed its design parameter ($b > 4\text{ nt}$), while single-deletion Varshamov-Tenengolts codes fail under any multi-base slip. This paper presents <strong>Generalized Pāṭha Codes (GPC)</strong>, an inner synchronization framework inspired by the cyclic forward-reverse permutations of classical Indian mnemonic recitation (<em>Ghana-pāṭha</em>). By generalizing cyclic trigram permutations into a parameterized family $\text{GPC}(K)$ ($M = 13K + 6$), GPC decouples coordinate synchronization from symbol entropy. While GPC features an inner code rate of $R = K/(13K+6)$ ($R = 0.069$ for $K=4$), we resolve this rate penalty by deploying GPC <strong>strictly as an inner Address Header</strong> on a 150-nt biological payload, adding only <strong>16.20% strand overhead</strong> (29-nt header, $179\text{ nt} < 200\text{ nt}$ Twist Bioscience synthesis limit) for our 16-strand prototype and <strong>16.67% overhead</strong> (30-nt header, 180 nt) for full 36-strand genome coverage. In in-silico sequencing simulations parameterized from published Oxford Nanopore R10.4 error distributions alongside an ONT-motivated burst-deletion stress model on the authentic 5,386-base genome of <strong>Bacteriophage &Phi;X174</strong> (NCBI <code>NC_001422.1</code>), GPC achieves 0.0% strand loss across isolated burst slips up to 10 nt (20 bits), with bounded loss of 2.60% at 12 nt and 7.20% under compound mixed noise across 72,732 machine trials. We implement a synthesizable Verilog RTL decoder achieving $81.6\,\mu\text{s}$ latency at $1.3\text{ mW}$ on FPGA logic. We characterize exact algorithmic failure boundaries ($b > 23\text{ nt}$, $p_{\text{sub}} > 15\%$, periodic message ties), demonstrating an honest, practical engineering solution for biological memory systems.
   <div class="keywords"><strong>Index Terms</strong>—DNA Data Storage, Strand Address Dropout, Oxford Nanopore Sequencing Simulation, Ghana-pāṭha Permutations, Burst Deletion Synchronization, Bacteriophage &Phi;X174, Verilog RTL Decoder.</div>
 </div>
 
@@ -286,11 +287,11 @@ window.MathJax = {
 
 <p>In DNA data storage, digital files are split into millions of short oligonucleotide fragments (typically 150 to 200 nucleotides long). Because chemical synthesis pools and sequencing flow cells are unordered liquid mixtures, every strand must carry a physical coordinate index—an <strong>Address Header</strong>—to allow computational file reconstruction at readout [3].</p>
 
-<p>During sequencing readout via single-molecule nanopores (such as Oxford Nanopore MinION R10.4.1), single-stranded DNA translocates through an engineered protein aperture driven by an enzymatic motor protein. Biophysical motor slips occur frequently, causing contiguous burst deletions of 5 to 15 nucleotides [4]. When such a burst deletion strikes the address header, coordinate synchronization is destroyed. The decoder cannot determine which chunk of the file the strand represents. This produces <strong>Strand Address Dropout</strong>: the entire 150-nucleotide payload must be discarded, even if its biological data was sequenced with zero errors.</p>
+<p>During sequencing readout via single-molecule nanopores (such as Oxford Nanopore MinION R10.4.1), single-stranded DNA translocates through an engineered protein aperture driven by an enzymatic motor protein. While standard sequencing errors are dominated by single-base indels and mismatches (empirical indel rates $\sim 0.6\%$), enzymatic motor stalls, rapid unbraked translocations, and unresolved homopolymers motivate evaluating an ONT-motivated burst-deletion stress model with contiguous drops of 5 to 15 nucleotides [4]. When such a burst deletion strikes the address header, coordinate synchronization is destroyed. The decoder cannot determine which chunk of the file the strand represents. This produces <strong>Strand Address Dropout</strong>: the entire 150-nucleotide payload must be discarded, even if its biological data was sequenced with zero errors.</p>
 
 <div class="callout-box">
   <strong>Student Engineering Goal:</strong> Design an error-correcting address header that:
-  <br>1. Withstands Oxford Nanopore motor slips of up to 10 nucleotides ($20\text{ bits}$) with 0% strand dropout.
+  <br>1. Withstands an ONT-motivated burst-deletion stress model of up to 10 nucleotides ($20\text{ bits}$) with 0% strand dropout.
   <br>2. Restricts total strand overhead to under $20\%$ ($< 200\text{ nt}$ commercial synthesis limit).
   <br>3. Decodes in sub-millisecond latency on low-power hardware.
 </div>
@@ -310,7 +311,7 @@ window.MathJax = {
 <h2>III. The Core Idea: Ancient Sanskrit Mnemonic Mathematics</h2>
 <p class="no-indent">The mathematical architecture of GPC is inspired by classical Indian linguistic mathematics. Long before written documentation, ancient scholars preserved oral Sanskrit texts across generations over an acoustic memory channel vulnerable to syllable dropouts (deletions), repetitions (insertions), and word inversions (transpositions).</p>
 
-<p>To ensure bit-exact oral transmission, scholars developed eleven structured recitation modes (<em>vikṛti-pāṭhas</em>) [7]. The most sophisticated mode, <strong>Ghana-pāṭha</strong>, permutes consecutive words into nested forward and backward trigrams:</p>
+<p>To ensure bit-exact oral transmission, scholars developed eleven structured recitation modes (<em>vikṛti-pāṭhas</em>) [7], conceptually paralleling ancient grammatical rule-engines [8]. The most sophisticated mode, <strong>Ghana-pāṭha</strong>, permutes consecutive words into nested forward and backward trigrams:</p>
 
 <div class="eq-box">
   $$1-2, \; 2-1, \; 1-2-3, \; 3-2-1, \; 1-2-3$$
@@ -341,7 +342,7 @@ window.MathJax = {
 
 <p>The inner code rate $R(K) = \frac{K}{13K + 6}$ increases monotonically with $K$ ($\frac{dR}{dK} = \frac{6}{(13K+6)^2} > 0$), from $R(4) = 4/58 \approx 0.0690$ ($M=58$, 29 nt) and $R(6) = 6/84 \approx 0.07143$ ($M=84$, 42 nt) toward the asymptotic ceiling $1/13 \approx 0.07692$.</p>
 
-<p><strong>Proof of Burst Error Span $B_E(K)$ [8]:</strong>
+<p><strong>Theorem 1 (Burst Error Span $B_E(K)$) [Derived]:</strong>
 Each symbol $u_j$ appears exactly 13 times across the codeword. In `src/gpc/core.py`, the earliest occurrence of symbol 3 is at index 4 (in $\mathcal{F}_2$), and its latest occurrence is at index $10K + 11$ (in the final $\mathcal{F}_3'$ pass). The coordinate span is:</p>
 <div class="eq-box">
   $$B_E(K) = (10K + 11) - 4 = \mathbf{10K + 7}$$
@@ -380,7 +381,7 @@ Each symbol $u_j$ appears exactly 13 times across the codeword. In `src/gpc/core
 <p class="no-indent">As a student investigation without wet-lab access, we evaluated GPC using an audited in-silico simulation pipeline. Rather than testing on synthetic pseudo-random strings, we used authentic biological ground truth: Frederick Sanger's 5,386-base genome of <strong>Bacteriophage &Phi;X174</strong> (NCBI GenBank: <code>NC_001422.1</code>) [9].</p>
 
 <p>The comparative benchmark evaluated a 16-strand pool (2,400 bases of authentic sequence) under flat $K=4$ across 14,000 trials. Scaling to the full 5,386-base genome across all 36 strands was confirmed in <code>experiments/test_full_genome_36strands.py</code>, achieving 100% bit-exact reconstruction under 10-nt nanopore stalls. The channel simulation was parameterized using empirical error distributions from published Oxford Nanopore R10.4.1 flow-cell evaluations [4]:</p>
-<p>• <strong>Translocation Motor Stalls:</strong> Contiguous burst deletions of length $b \in [2, 14]\text{ nucleotides}$ ($4\text{ to }28\text{ bits}$).
+<p>• <strong>ONT-Motivated Burst Deletion Stress Model:</strong> Contiguous burst deletions of length $b \in [2, 14]\text{ nucleotides}$ ($4\text{ to }28\text{ bits}$) evaluating worst-case translocation stalls.
 <br>• <strong>Compound Sequencing Noise:</strong> Background substitution rate $p_{\text{sub}} = 0.6\%$, random deletion rate $p_{\text{del}} = 0.6\%$, and insertion rate $p_{\text{ins}} = 0.4\%$.
 <br>• <strong>Evaluation Scale:</strong> Exactly 72,732 machine trials executed across fixed cryptographic random seeds, with 95% Clopper-Pearson binomial confidence intervals.</p>
 
@@ -456,7 +457,7 @@ Each symbol $u_j$ appears exactly 13 times across the codeword. In `src/gpc/core
   </tbody>
 </table>
 
-<p><strong>Compound Noise Performance:</strong> Real sequencing introduces concurrent substitution and indel background noise. Across 9,000 trials combining Oxford Nanopore R10.4 mixed noise ($0.6\%\text{ sub}, 0.6\%\text{ del}, 0.4\%\text{ ins}$) with motor stalls, Table II shows that GPC confines strand loss to single-digit percentages, whereas competing codes fail completely:</p>
+<p><strong>Compound Noise Performance:</strong> Real sequencing introduces concurrent substitution and indel background noise. Across 9,000 trials combining Oxford Nanopore R10.4 mixed noise ($0.6\%\text{ sub}, 0.6\%\text{ del}, 0.4\%\text{ ins}$) with translocation burst stalls, Table II shows that GPC confines strand loss to single-digit percentages, whereas competing codes fail completely:</p>
 
 <div class="table-title">Table II: Compound Oxford Nanopore R10.4 Noise Sweep (9,000 Trials)</div>
 <table class="data-table">
@@ -610,7 +611,7 @@ Each symbol $u_j$ appears exactly 13 times across the codeword. In `src/gpc/core
 <h2>XI. Exploratory Cross-Domain Verification & Physical Channel Limitations</h2>
 <p class="no-indent">While biological DNA data storage is our primary investigation, we evaluated GPC as an exploratory proof-of-concept in two cyber-physical channels with clear domain boundaries:</p>
 
-<p>1) <em>UAV C2 Telemetry under RF Sweep Chirps:</em> In drone flight control (MAVLink v2 over 915 MHz ISM radio), sweep chirps erase start-of-frame delimiters, triggering failsafes. Across 12,000 trials (`experiments/test_channel_uav_telemetry.py`), GPC preserved 0.0% FER under 20-bit bursts. However, GPC cannot replace physical RF modems or mitigate analog multipath fading; it functions strictly as a failsafe frame synchronizer on narrowband packets.</p>
+<p>1) <em>UAV C2 Telemetry under RF Sweep Chirps:</em> In drone flight control (MAVLink v2 over 915 MHz ISM radio [10]), sweep chirps erase start-of-frame delimiters, triggering failsafes. Across 12,000 trials (`experiments/test_channel_uav_telemetry.py`), GPC preserved 0.0% FER under 20-bit bursts. However, GPC cannot replace physical RF modems or mitigate analog multipath fading; it functions strictly as a failsafe frame synchronizer on narrowband packets.</p>
 
 <p>2) <em>Wireless Brain-Computer Interfaces (BCI):</em> In wireless neural telemetry, tissue absorption causes burst dropouts that misalign downstream motor decoders. Across 12,000 trials (`experiments/test_channel_neural_bci.py`), GPC maintained 0.0% loss under 15-bit dropouts ($<130\,\mu\text{s}$ latency). However, GPC cannot process continuous raw analog field potentials; it is applicable solely as an event marker on low-rate spike packets.</p>
 
@@ -631,7 +632,7 @@ Each symbol $u_j$ appears exactly 13 times across the codeword. In `src/gpc/core
 <p class="no-indent">In compliance with ISEF Form 1C guidelines, we explicitly disclose that all algorithms, mathematical proofs, Python simulations, FastA genomic processing pipelines, and Verilog RTL logic designs were formulated, implemented, and audited independently by the student investigator using open-source tools (Python 3.11, Vivado ML Edition, NCBI Entrez). No proprietary industrial software, institutional wet-lab facilities, or ghostwritten code was utilized.</p>
 
 <h2>XV. Conclusion</h2>
-<p class="no-indent">Generalized Pāṭha Codes demonstrate that ancient mnemonic recitation techniques from classical Sanskrit mathematics can solve a critical 21st-century challenge in molecular data storage. By arranging strand address bits into cyclic forward-reverse permutation passes anchored by deterministic pilots, GPC achieves 0.0% strand loss under 10-nucleotide Oxford Nanopore motor stalls with only 16.20% biological strand overhead. With verified mathematical proofs ($B_E = 10K+7$), an average-case $\mathcal{O}(M)$ decoding algorithm, an open-source testbed across 72,732 machine trials, and synthesizable Verilog RTL, GPC provides a practical, honest foundation for high-density archival DNA memory.</p>
+<p class="no-indent">Generalized Pāṭha Codes demonstrate that ancient mnemonic recitation techniques from classical Sanskrit mathematics can solve a critical 21st-century challenge in molecular data storage. By arranging strand address bits into cyclic forward-reverse permutation passes anchored by deterministic pilots, GPC achieves 0.0% strand loss under 10-nucleotide ONT-motivated translocation burst stalls with only 16.20% biological strand overhead. With verified mathematical proofs ($B_E = 10K+7$), an average-case $\mathcal{O}(M)$ decoding algorithm, an open-source testbed across 72,732 machine trials, and synthesizable Verilog RTL, GPC provides a practical, honest foundation for high-density archival DNA memory.</p>
 
 <h2>References</h2>
 <ol class="ref-list">
