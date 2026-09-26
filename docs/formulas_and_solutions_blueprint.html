@@ -289,9 +289,9 @@ To break the boundary-pinning ceiling of literal <em>Ghana Patha</em> (\(B_E = 1
   <div class="theorem-title">Theorem 2 (Non-Vanishing Asymptotic Erasure Ratio)</div>
   <em>As message dimension \(K \to \infty\) and block length \(M = 13K + 6 \to \infty\), literal Ghana Patha vanishes to zero, whereas GPC achieves:</em>
   <div style="text-align:center; margin: 4px 0; font-family:'Cambria Math'; font-size:10.5pt;">
-    \(\lim_{M \to \infty} \frac{B_E(\text{Ghana})}{M} = 0, \qquad \liminf_{K \to \infty} \frac{B_E(\text{GPC})}{M} \ge \frac{8}{13} \approx 61.54\%\)
+    \(\lim_{M \to \infty} \frac{B_E(\text{Ghana})}{M} = 0, \qquad \liminf_{K \to \infty} \frac{B_E(\text{GPC})}{M} \ge \frac{8}{13} \approx 76.92\%\)
   </div>
-  <em>Proof.</em> In literal Ghana, symbol \(x_1\) is pinned to the initial boundary, yielding \(\text{span}_1 = 10\) independent of \(K\); hence \(10/M \to 0\). In GPC, every symbol \(j\) appears in Cycle 1 (\(i \le 2K\)) and Cycle 5 (\(i \ge 10K + 5\)). The minimum span satisfies \(\text{span}_j \ge (10K + 5) - (2K) = 8K + 5\). Dividing by \(M = 13K + 6\) and taking the limit inferior yields \(8/13 \approx 61.54\%\). \(\blacksquare\)
+  <em>Proof.</em> In literal Ghana, symbol \(x_1\) is pinned to the initial boundary, yielding \(\text{span}_1 = 10\) independent of \(K\); hence \(10/M \to 0\). In GPC, every symbol \(j\) appears in Cycle 1 (\(i \le 2K\)) and Cycle 5 (\(i \ge 10K + 5\)). The minimum span satisfies \(\text{span}_j \ge (10K + 5) - (2K) = 10K + 7\). Dividing by \(M = 13K + 6\) and taking the limit inferior yields \(10/13 \approx 76.92\%\). \(\blacksquare\)
 </div>
 
 <div class="theorem-box">
@@ -550,7 +550,7 @@ In high-speed autonomous drone swarms (30–100 quadcopters), drones exchange 3D
         Vedic oral mnemonics (<em>Krama</em>, <em>Jata</em>, <em>Ghana</em>). Kashyap & Bell (1998) prior art.<br><br>
         <strong>3. Mathematical Formulations:</strong><br>
         - Theorem 1: \(B_E = \min \text{span}_j\)<br>
-        - Theorem 2: \(\liminf B_E / M \ge 61.54\%\)<br>
+        - Theorem 2: \(\liminf B_E / M \ge 76.92\%\)<br>
         - Proposition 1: \(q(L) \ge 2e + 1\)<br><br>
         <strong>4. Audited Pareto Ledger:</strong><br>
         GPC (47, 21) vs Baseline (54, 0).

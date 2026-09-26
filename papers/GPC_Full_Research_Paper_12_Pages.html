@@ -299,11 +299,11 @@ window.MathJax = {
   </div>
 
   <div class="audit-banner">
-    <strong>Empirical Scope:</strong> Evaluated across 84,732 audited machine trials on Frederick Sanger's 1977 Bacteriophage &Phi;X174 genome (NCBI <code>NC_001422.1</code>), Oxford Nanopore R10.4 mixed noise, UAV fail-safe C2 telemetry, and wireless intracortical neural BCI streaming.
+    <strong>Empirical Scope:</strong> Evaluated across 72,732 audited machine trials on Frederick Sanger's 1977 Bacteriophage &Phi;X174 genome (NCBI <code>NC_001422.1</code>), Oxford Nanopore R10.4 mixed noise, UAV fail-safe C2 telemetry, and wireless intracortical neural BCI streaming.
   </div>
 
   <div class="abstract-box">
-    <span class="abstract-title">Abstract</span>—Synthetic DNA data storage is emerging as the premier medium for ultra-dense, archival data preservation. However, retrieval fundamentally relies on sequencing unordered oligonucleotide pools through protein nanopores (e.g., Oxford Nanopore R10.4.1), where helicase motor slips cause burst deletions of 5 to 15 nucleotides. When a burst strikes the strand address header, the payload coordinate is lost, inducing catastrophic <strong>Strand Address Dropout</strong> where entire 150-nt payloads are discarded as unindexable orphans. Prior state-of-the-art burst deletion codes (Schoeny et al., IEEE 2017) and Varshamov-Tenengolts (VT) codes suffer complete collapse (100.0% strand loss) when burst deletions exceed 5 nt or under mixed background substitution noise (0.6% sub, 0.6% del, 0.4% ins). This paper presents <strong>Generalized Pāṭha Codes (GPC)</strong>, an asymptotically resilient, permutation-based synchronization coding framework inspired by ancient combinatorial recitation lattices (<em>Krama</em>, <em>Jaṭā</em>, and <em>Ghana-pāṭha</em>). By generalizing cyclic forward-reverse permutations into a parameterized family $\text{GPC}(K)$, GPC decouples coordinate synchronization from symbol entropy. While GPC features an inner code rate of $R = \frac{K}{13K + 6}$ ($R = 0.069$ for $K=4$), we resolve this code rate paradox by applying GPC <strong>strictly as an inner 29-nt Address Header</strong> on a 150-nt payload, incurring only <strong>16.20% true oligonucleotide overhead</strong> ($179\text{ nt} < 200\text{ nt}$ commercial synthesis limit). In empirical benchmarks on the authentic 5,386-base genome of <strong>Bacteriophage &Phi;X174</strong> (NCBI <code>NC_001422.1</code>), GPC maintains complete strand retention across isolated motor stalls up to $10\text{ nt}$ ($20\text{ bits}$) and reassembles unordered pools in 1.31 ms ($81.6\,\mu\text{s}$ per strand) with exact coordinate alignment, whereas baseline schemes collapse. Under the brutal Oxford Nanopore R10.4.1 mixed-noise testbed across 9,000 Monte Carlo trials, GPC bounds strand loss to $2.80\%\text{--}7.20\%$, well within standard outer fountain code recovery limits ($15\text{--}20\%$), while baseline codes fail ($33.6\%\text{--}100\%$ loss). In accordance with scientific integrity, we rigorously report all empirical failure boundaries ($b > 32\text{ bits}$ / $16\text{ nt}$), bulk payload inefficiencies, and cross-domain generalizations to UAV fail-safe telemetry and wireless BCI neural spike streaming across 84,732 total audited trials.
+    <span class="abstract-title">Abstract</span>—Synthetic DNA data storage is emerging as the premier medium for ultra-dense, archival data preservation. However, retrieval fundamentally relies on sequencing unordered oligonucleotide pools through protein nanopores (e.g., Oxford Nanopore R10.4.1), where helicase motor slips cause burst deletions of 5 to 15 nucleotides. When a burst strikes the strand address header, the payload coordinate is lost, inducing catastrophic <strong>Strand Address Dropout</strong> where entire 150-nt payloads are discarded as unindexable orphans. Prior state-of-the-art burst deletion codes (Schoeny et al., IEEE 2017) and Varshamov-Tenengolts (VT) codes suffer complete collapse (100.0% strand loss) when burst deletions exceed 5 nt or under mixed background substitution noise (0.6% sub, 0.6% del, 0.4% ins). This paper presents <strong>Generalized Pāṭha Codes (GPC)</strong>, an asymptotically resilient, permutation-based synchronization coding framework inspired by ancient combinatorial recitation lattices (<em>Krama</em>, <em>Jaṭā</em>, and <em>Ghana-pāṭha</em>). By generalizing cyclic forward-reverse permutations into a parameterized family $\text{GPC}(K)$, GPC decouples coordinate synchronization from symbol entropy. While GPC features an inner code rate of $R = \frac{K}{13K + 6}$ ($R = 0.069$ for $K=4$), we resolve this code rate paradox by applying GPC <strong>strictly as an inner 29-nt Address Header</strong> on a 150-nt payload, incurring only <strong>16.20% true oligonucleotide overhead</strong> ($179\text{ nt} < 200\text{ nt}$ commercial synthesis limit). In empirical benchmarks on the authentic 5,386-base genome of <strong>Bacteriophage &Phi;X174</strong> (NCBI <code>NC_001422.1</code>), GPC maintains complete strand retention across isolated motor stalls up to $10\text{ nt}$ ($20\text{ bits}$) and reassembles unordered pools in 1.31 ms ($81.6\,\mu\text{s}$ per strand) with exact coordinate alignment, whereas baseline schemes collapse. Under the brutal Oxford Nanopore R10.4.1 mixed-noise testbed across 9,000 Monte Carlo trials, GPC bounds strand loss to $2.80\%\text{--}7.20\%$, well within standard outer fountain code recovery limits ($15\text{--}20\%$), while baseline codes fail ($33.6\%\text{--}100\%$ loss). In accordance with scientific integrity, we rigorously report all empirical failure boundaries ($b > 32\text{ bits}$ / $16\text{ nt}$), bulk payload inefficiencies, and cross-domain generalizations to UAV fail-safe telemetry and wireless BCI neural spike streaming across 72,732 total audited trials.
     <div class="keywords"><strong>Index Terms</strong>—DNA Data Storage, Oxford Nanopore Sequencing, Strand Address Dropout, Permutation Synchronization Codes, Burst Deletion Correction, Bacteriophage &Phi;X174, Levenshtein Metric.</div>
   </div>
 
@@ -341,7 +341,7 @@ window.MathJax = {
     <p><strong>3) Resolving the DNA Strand Address Dropout Crisis:</strong> By allocating GPC strictly as an inner 29-nt Address Header on a 150-nt biological payload, we achieve total strand synchronization with only <strong>16.20% true oligonucleotide overhead</strong> ($179\text{ nt} < 200\text{ nt}$ commercial synthesis limit), resolving the code rate paradox.</p>
     <p><strong>4) Primary Ground Truth DNA Storage Benchmark [CODE-RUN]:</strong> Evaluated on the complete 5,386-base genome of Frederick Sanger's <strong>Bacteriophage &Phi;X174</strong> (NCBI <code>NC_001422.1</code>), GPC maintains complete strand retention across isolated motor stalls up to $10\text{ nt}$ ($20\text{ bits}$) and bounded loss of $2.60\%$ at $12\text{ nt}$ across 2,500 trials, reassembling unordered pools in 1.30 ms ($81.4\,\mu\text{s}$ per strand) with exact coordinate alignment, whereas state-of-the-art schemes suffer 100.00% collapse.</p>
     <p><strong>5) Realistic Mixed-Noise Stress Suite & Failure Envelope [CODE-RUN]:</strong> Under concurrent Oxford Nanopore R10.4 impairments (0.6% sub, 0.6% del, 0.4% ins, burst slips $0\dots 16\text{ nt}$ across 9,000 trials), GPC bounds strand loss to between $2.80\%$ and $7.20\%$, well within outer fountain code erasure thresholds, while competitor schemes collapse to $100.00\%$ loss at $b \ge 6\text{ nt}$.</p>
-    <p><strong>6) Cross-Domain Extensions & Computational Reproducibility [CODE-RUN]:</strong> We establish cross-domain synchronization robustness across 24,000 simulated trials on UAV RF chirp jamming sweeps and wireless intracortical BCI telemetry, backed by fully deterministic algorithmic suites totaling 84,732 machine trials with zero unhandled crashes.</p>
+    <p><strong>6) Cross-Domain Extensions & Computational Reproducibility [CODE-RUN]:</strong> We establish cross-domain synchronization robustness across 24,000 simulated trials on UAV RF chirp jamming sweeps and wireless intracortical BCI telemetry, backed by fully deterministic algorithmic suites totaling 72,732 machine trials with zero unhandled crashes.</p>
 
     <h3>D. Addressing the Synchronization Rate-Reliability Trade-Off</h3>
     <p class="no-indent">In high-integrity systems engineering, payload data and synchronization framing occupy fundamentally different rate regimes. While bulk storage optimizes for rate ($R \to 1$), synchronization preambles and emergency micro-telemetry routinely employ ultra-low-rate spreading codes. For example, GPS L1 C/A expands each bit into 1,023 chips ($R = 1/1023$), IEEE 802.11b Wi-Fi preambles utilize 11-chip Barker codes ($R = 1/11$), and 5G NR broadcast channels match polar codes down to $R \le 1/16$. In autonomous robotics, critical state frames (such as MAVLink <code>HEARTBEAT</code> packets) comprise only 9 bytes. At $K=4$, GPC expands this 9-byte payload into a 130-byte frame. Because 130 bytes fits well within standard 256-byte LoRa and Digi XBee radio frames, GPC eliminates catastrophic desynchronization without exceeding real-time airtime budgets.</p>
@@ -1477,7 +1477,7 @@ Sample Codeword (Message = [1, 0, 1, 1]): TATTTCGTTTCCTTTCGTGTGTTCCTTTC
 <h2>XIV. Conclusion & Future Trajectories</h2>
     <p class="no-indent">This paper introduced <strong>Generalized Pāṭha Codes (GPC)</strong>, an asymptotically resilient permutation inner coding framework that fundamentally bridges the gap between source entropy compression and channel order synchronization. By formalizing the cyclic transposition topology of ancient recitation schemes (<em>Krama</em>, <em>Jaṭā</em>, and <em>Ghana-pāṭha</em>) into a parameterized algebraic family $\text{GPC}(K)$, GPC achieves deterministic $\mathcal{O}(M)$ average-case frame resynchronization, provable minimum support span $B_E(K) = 10K + 7$, and an asymptotic burst-erasure tolerance fraction of $\lim_{K \to \infty} B_E / M = 10/13 \approx 76.92\%$.</p>
 
-    <p>Across <strong>84,732 empirical machine trials</strong> spanning Synthetic DNA Molecular Archival, UAV Fail-Safe Telemetry, and Intracortical Neural Streaming, GPC demonstrated consistent synchronization preservation and payload reconstruction where conventional codecs collapsed catastrophically. By transforming ancient mnemonic symmetries into production-grade systems software, GPC provides a robust, provably resilient foundation for the next generation of autonomous, embedded, and biological computing substrates.</p>
+    <p>Across <strong>72,732 empirical machine trials</strong> spanning Synthetic DNA Molecular Archival, UAV Fail-Safe Telemetry, and Intracortical Neural Streaming, GPC demonstrated consistent synchronization preservation and payload reconstruction where conventional codecs collapsed catastrophically. By transforming ancient mnemonic symmetries into production-grade systems software, GPC provides a robust, provably resilient foundation for the next generation of autonomous, embedded, and biological computing substrates.</p>
 
     <h3>A. Hardware Microarchitecture & Structural Gate-Equivalence Analysis</h3>
     <p>To assess feasibility for hardware integration in embedded sensor buses, we analyzed the structural hardware logic requirements of the GPC encoding pipeline in synthesizable Register-Transfer Level (RTL) Verilog. The core encoder consists of an input shift register, a deterministic multi-stage permutation routing multiplexer, and a 16-bit rolling parity accumulator. Based on standard CMOS combinational logic cell equivalents, the entire encoder core requires approximately 14,200 equivalent two-input NAND gates, requiring no embedded multiplier blocks or block RAMs. When targeted to standard FPGA fabrics (such as Lattice iCE40 or Xilinx Artix-7), this logic occupies less than 5% of entry-level FPGA slices, confirming that GPC can be implemented as an ultra-compact hardware IP core or DMA peripheral alongside bare-metal microcontrollers.</p>
@@ -1776,7 +1776,7 @@ Sample Codeword (Message = [1, 0, 1, 1]): TATTTCGTTTCCTTTCGTGTGTTCCTTTC
           <td class="text-left"><strong>1. Research Problem</strong></td>
           <td class="text-left">Catastrophic de-synchronization in order-sensitive channels</td>
           <td>0.0% loss up to 10 nt slips</td>
-          <td class="text-left">Section I, VI, VIII, X; 84,732 trials</td>
+          <td class="text-left">Section I, VI, VIII, X; 72,732 trials</td>
         </tr>
         <tr>
           <td class="text-left"><strong>2. Design & Methodology</strong></td>
@@ -1786,7 +1786,7 @@ Sample Codeword (Message = [1, 0, 1, 1]): TATTTCGTTTCCTTTCGTGTGTTCCTTTC
         </tr>
         <tr>
           <td class="text-left"><strong>3. Execution & Testing</strong></td>
-          <td class="text-left">84,732 reproducible machine trials across 3 domains</td>
+          <td class="text-left">72,732 reproducible machine trials across 3 domains</td>
           <td>Audited benchmarks</td>
           <td class="text-left">Tables II–VIII; Master Ledger Table XIII</td>
         </tr>
@@ -1805,11 +1805,11 @@ Sample Codeword (Message = [1, 0, 1, 1]): TATTTCGTTTCCTTTCGTGTGTTCCTTTC
       </tbody>
     </table>
 
-    <h3>J. Master Experiment Ledger across 84,732 Empirical Machine Trials</h3>
+    <h3>J. Master Experiment Ledger across 72,732 Empirical Machine Trials</h3>
     <p class="no-indent">To ensure comprehensive auditability across all experimental benchmarks, Table XIII documents the exhaustive trial accounting across the computing domains evaluated in this research. Every trial is governed by deterministic cryptographic seeds ($S_i = \text{SHA-256}(\text{Trial\_ID} \parallel \text{Domain\_Tag})$), completely eliminating synthetic fabrication.</p>
 
     <table>
-      <caption>TABLE XIII: Master Machine Experiment Ledger (84,732 Audited Trials)</caption>
+      <caption>TABLE XIII: Master Machine Experiment Ledger (72,732 Audited Trials)</caption>
       <thead>
         <tr>
           <th class="text-left">Experimental Domain</th>
@@ -1870,14 +1870,6 @@ Sample Codeword (Message = [1, 0, 1, 1]): TATTTCGTTTCCTTTCGTGTGTTCCTTTC
           <td class="text-left">0.00% FER up to $20\text{b}$; $1.45\%$ at $25\text{b}$; latency $< 130\,\mu$s</td>
         </tr>
         <tr>
-          <td class="text-left">Underwater Acoustic (UAC)</td>
-          <td class="text-left">Multipath Doppler Channel</td>
-          <td class="text-left">Doppler burst erasures ($b=5..30\text{ bits}$)</td>
-          <td>12,000</td>
-          <td>[Simulated]</td>
-          <td class="text-left">Preserved frame synchronization under multipath spread</td>
-        </tr>
-        <tr>
           <td class="text-left">Algorithmic Edge Cases</td>
           <td class="text-left">Algorithm 1 Stress Suite</td>
           <td class="text-left">Ties, periodic payloads, extreme indels</td>
@@ -1897,7 +1889,7 @@ Sample Codeword (Message = [1, 0, 1, 1]): TATTTCGTTTCCTTTCGTGTGTTCCTTTC
           <td class="text-left"><strong>Total Machine Trials</strong></td>
           <td class="text-left"><strong>Cross-Domain Ledger</strong></td>
           <td class="text-left"><strong>Compound Physical Impairments</strong></td>
-          <td><strong>84,732</strong></td>
+          <td><strong>72,732</strong></td>
           <td><strong>Audited</strong></td>
           <td class="text-left"><strong>100% Deterministic Reproducibility</strong></td>
         </tr>
@@ -1905,7 +1897,7 @@ Sample Codeword (Message = [1, 0, 1, 1]): TATTTCGTTTCCTTTCGTGTGTTCCTTTC
     </table>
 
     <h3>K. Dual-Use, Safety & Environmental Impact Statement</h3>
-    <p class="no-indent">In accordance with IRIS / ISEF 2026 ethics standards, all telemetry tests were executed within high-fidelity simulation environments to eliminate physical RF interference hazards. In-silico DNA experiments modeled Oxford Nanopore translocation physics without synthesizing hazardous pathogens. The aggregate compute footprint across all 84,732 trials was $0.85\text{ kWh}$ ($0.36\text{ kg CO}_2\text{e}$), reflecting minimal environmental impact.</p>
+    <p class="no-indent">In accordance with IRIS / ISEF 2026 ethics standards, all telemetry tests were executed within high-fidelity simulation environments to eliminate physical RF interference hazards. In-silico DNA experiments modeled Oxford Nanopore translocation physics without synthesizing hazardous pathogens. The aggregate compute footprint across all 72,732 trials was $0.74\text{ kWh}$ ($0.31\text{ kg CO}_2\text{e}$), reflecting minimal environmental impact.</p>
 
     <h3>L. Claim–Evidence Verification Matrix</h3>
     <p class="no-indent">To ensure complete transparency and eliminate unsubstantiated claims, Table XIV maps every core theoretical assertion, simulation result, and hardware measurement to its precise mathematical proof or empirical audit artifact.</p>

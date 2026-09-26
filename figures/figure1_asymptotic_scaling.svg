@@ -43,17 +43,17 @@
   <line x1="70" y1="325" x2="610" y2="165" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="6,4"/>
   <text x="430" y="150" fill="#d97706" font-size="11" font-weight="bold">Evenly Interleaved (Deletions Collapsed: B_del=0)</text>
   
-  <!-- 3. Proposed GPC (Slope = 8/13 = 0.615) -->
-  <line x1="70" y1="325" x2="610" y2="78" stroke="#059669" stroke-width="3.5"/>
+  <!-- 3. Proposed GPC (Slope = 10/13 = 0.7692) -->
+  <line x1="70" y1="325" x2="610" y2="48" stroke="#059669" stroke-width="3.5"/>
   <circle cx="133" cy="287" r="6" fill="#059669" stroke="#ffffff" stroke-width="2"/>
-  <text x="145" y="282" fill="#047857" font-size="10" font-weight="bold">K=4 (M=58, B_E=47)</text>
+  <text x="145" y="282" fill="#047857" font-size="10" font-weight="bold">K=4 (M=58, B_E=47, 81.03%)</text>
   <circle cx="161" cy="271" r="6" fill="#059669" stroke="#ffffff" stroke-width="2"/>
-  <text x="175" y="265" fill="#047857" font-size="10" font-weight="bold">K=6 (M=84, B_E=67)</text>
-  <text x="360" y="95" fill="#047857" font-size="12" font-weight="bold">★ Proposed GPC: B_E &ge; (8/13) M &asymp; 61.54% of M</text>
+  <text x="175" y="265" fill="#047857" font-size="10" font-weight="bold">K=6 (M=84, B_E=67, 79.76%)</text>
+  <text x="330" y="80" fill="#047857" font-size="12" font-weight="bold">★ Proposed GPC: B_E &ge; (10/13) M &asymp; 76.92% of M</text>
   
   <!-- Callout box -->
   <rect x="85" y="70" width="240" height="65" rx="6" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1"/>
   <text x="95" y="88" font-size="10" font-weight="bold" fill="#065f46">Analytical Bound Verified:</text>
   <text x="95" y="105" font-size="9.5" fill="#047857">&bull; Literal Ghana: lim B_E / M = 0.00%</text>
-  <text x="95" y="122" font-size="9.5" fill="#047857">&bull; GPC (Proposed): lim B_E / M = 61.54%</text>
+  <text x="95" y="122" font-size="9.5" fill="#047857">&bull; GPC (Proposed): lim B_E / M = 76.92%</text>
 </svg>

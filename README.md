@@ -166,7 +166,7 @@ The decoding process executes in average-case $\mathcal{O}(M)$ time (worst-case 
 
 ---
 
-## 🔬 Empirical Validation Across 3 Domains (84,732 Machine Trials)
+## 🔬 Empirical Validation Across 3 Domains (72,732 Machine Trials)
 
 | Metric / Channel Condition | Reviewer Baseline ($x \parallel \mathbf{1}^6 \parallel x^{12}$) | Uniform Interleaving | Schoeny et al. (2017) [42] | Generalized Patha Code (GPC) | Evidence Source (Code / Log) |
 | :--- | :---: | :---: | :---: | :---: | :---: |
