@@ -111,7 +111,7 @@ def get_section_7():
     </div>
 
     <h3>A. Fair Equal-Overhead DNA Strand Indexing & Synchronization Benchmark</h3>
-    <p class="no-indent">In rigorous coding theory, competing codes must be evaluated under an identical redundancy budget. We evaluated GPC against state-of-the-art burst deletion codes and classical synchronization baselines at the <strong>exact same overhead budget of $M = 58\text{ symbols}$ ($29\text{ nucleotides}$)</strong> protecting a $K = 4$ bit payload (indexing 16 strand clusters in a two-level hierarchical architecture). Across $1,000$ deterministic Monte Carlo trials per grid point (14,000 total trials) with exact 95% Clopper-Pearson binomial confidence intervals, Table II details the empirical strand loss:</p>
+    <p class="no-indent">In rigorous coding theory, competing codes must be evaluated under an identical redundancy budget. We evaluated GPC against state-of-the-art burst deletion codes and classical synchronization baselines at the <strong>exact same overhead budget of $M = 58\text{ symbols}$ ($29\text{ nucleotides}$)</strong> protecting a $K = 4$ bit payload (indexing 16 strand clusters in a two-level hierarchical architecture). To ensure scientific parity, Schoeny et al. [42] is instantiated under this exact budget at $n = 58, K = 4$, with $B_{\text{design}} = 8\text{ bits}$ ($4\text{ nt}$) interleaved sub-channels; scaling Schoeny et al. to target $b = 10\text{ nt}$ would require redundancy $r \approx B \log(n/B)$ exceeding $> 110\text{ symbols}$ ($> 55\text{ nt}$), violating commercial synthesis limits. Standard Varshamov-Tenengolts (VT) [15] is evaluated strictly as a single-deletion ($b=1$) reference primitive. Across $1,000$ deterministic Monte Carlo trials per grid point (14,000 total trials) with exact 95% Clopper-Pearson binomial confidence intervals, Table II details the empirical strand loss:</p>
 
     <table>
       <caption>Table II: Fair Equal-Overhead DNA Strand Indexing Benchmark ($M=58\text{ symbols} = 29\text{ nt}, K=4, 1,000\text{ Trials/Point}$)</caption>
@@ -119,7 +119,7 @@ def get_section_7():
         <tr>
           <th>Burst $b$</th>
           <th>GPC (58, 4)</th>
-          <th>Schoeny et al. [42]</th>
+          <th>Schoeny et al. [42] ($B=8\text{b}$)</th>
           <th>Davey-MacKay Marker</th>
           <th>Uniform Interleaved</th>
         </tr>

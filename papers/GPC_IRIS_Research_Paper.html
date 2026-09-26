@@ -248,7 +248,7 @@ window.MathJax = {
 </div>
 
 <div class="abstract-box">
-  <span class="abstract-title">Abstract</span>—Synthetic DNA data storage offers information densities exceeding $10^{18}\text{ bytes/mm}^3$, but physical retrieval depends on single-molecule protein nanopores (Oxford Nanopore R10.4.1) where enzymatic motor slips cause burst deletions of 5 to 15 nucleotides. When a burst occurs within the strand address header, coordinate indexation is destroyed, causing <strong>Strand Address Dropout</strong> where unindexed 150-nucleotide reads must be discarded prior to file reassembly. Prior burst deletion codes (Schoeny et al., IEEE 2017) and Varshamov-Tenengolts codes fail with 100.0% strand loss when burst deletions exceed 6 nucleotides or under compound sequencing noise (0.6% substitutions, 0.6% deletions, 0.4% insertions). This paper presents <strong>Generalized Pāṭha Codes (GPC)</strong>, an inner synchronization framework inspired by the cyclic forward-reverse permutations of classical Indian mnemonic recitation (<em>Ghana-pāṭha</em>). By generalizing cyclic trigram permutations into a parameterized family $\text{GPC}(K)$ ($M = 13K + 6$), GPC decouples coordinate synchronization from symbol entropy. While GPC features an inner code rate of $R = K/(13K+6)$ ($R = 0.069$ for $K=4$), we resolve this rate penalty by deploying GPC <strong>strictly as an inner Address Header</strong> on a 150-nt biological payload, adding only <strong>16.20% strand overhead</strong> (29-nt header, $179\text{ nt} < 200\text{ nt}$ Twist Bioscience synthesis limit) for our 16-strand prototype and <strong>16.67% overhead</strong> (30-nt header, 180 nt) for full 36-strand genome coverage. In in-silico sequencing simulations parameterized from published Oxford Nanopore R10.4 error distributions on the authentic 5,386-base genome of <strong>Bacteriophage &Phi;X174</strong> (NCBI <code>NC_001422.1</code>), GPC achieves 0.0% strand loss across isolated motor stalls up to 10 nt (20 bits), with bounded loss of 2.60% at 12 nt and 7.20% under compound mixed noise across 72,732 machine trials. We implement a synthesizable Verilog RTL decoder achieving $81.6\,\mu\text{s}$ latency at $1.3\text{ mW}$ on FPGA logic. We characterize exact algorithmic failure boundaries ($b > 23\text{ nt}$, $p_{\text{sub}} > 15\%$, periodic message ties), demonstrating an honest, practical engineering solution for biological memory systems.
+  <span class="abstract-title">Abstract</span>—Synthetic DNA data storage offers information densities exceeding $10^{18}\text{ bytes/mm}^3$, but physical retrieval depends on single-molecule protein nanopores (Oxford Nanopore R10.4.1) where enzymatic motor slips cause burst deletions of 5 to 15 nucleotides. When a burst occurs within the strand address header, coordinate indexation is destroyed, causing <strong>Strand Address Dropout</strong> where unindexed 150-nucleotide reads must be discarded prior to file reassembly. Under an identical 29-nt header budget ($M=58$), the Schoeny et al. (IEEE 2017) interleaved construction parameterized for $B_{\text{design}} \le 4\text{ nt}$ ($8\text{ bits}$) collapses when motor stalls exceed its design parameter ($b > 4\text{ nt}$), while single-deletion Varshamov-Tenengolts codes fail under any multi-base slip. This paper presents <strong>Generalized Pāṭha Codes (GPC)</strong>, an inner synchronization framework inspired by the cyclic forward-reverse permutations of classical Indian mnemonic recitation (<em>Ghana-pāṭha</em>). By generalizing cyclic trigram permutations into a parameterized family $\text{GPC}(K)$ ($M = 13K + 6$), GPC decouples coordinate synchronization from symbol entropy. While GPC features an inner code rate of $R = K/(13K+6)$ ($R = 0.069$ for $K=4$), we resolve this rate penalty by deploying GPC <strong>strictly as an inner Address Header</strong> on a 150-nt biological payload, adding only <strong>16.20% strand overhead</strong> (29-nt header, $179\text{ nt} < 200\text{ nt}$ Twist Bioscience synthesis limit) for our 16-strand prototype and <strong>16.67% overhead</strong> (30-nt header, 180 nt) for full 36-strand genome coverage. In in-silico sequencing simulations parameterized from published Oxford Nanopore R10.4 error distributions on the authentic 5,386-base genome of <strong>Bacteriophage &Phi;X174</strong> (NCBI <code>NC_001422.1</code>), GPC achieves 0.0% strand loss across isolated motor stalls up to 10 nt (20 bits), with bounded loss of 2.60% at 12 nt and 7.20% under compound mixed noise across 72,732 machine trials. We implement a synthesizable Verilog RTL decoder achieving $81.6\,\mu\text{s}$ latency at $1.3\text{ mW}$ on FPGA logic. We characterize exact algorithmic failure boundaries ($b > 23\text{ nt}$, $p_{\text{sub}} > 15\%$, periodic message ties), demonstrating an honest, practical engineering solution for biological memory systems.
   <div class="keywords"><strong>Index Terms</strong>—DNA Data Storage, Strand Address Dropout, Oxford Nanopore Sequencing Simulation, Ghana-pāṭha Permutations, Burst Deletion Synchronization, Bacteriophage &Phi;X174, Verilog RTL Decoder.</div>
 </div>
 
@@ -271,9 +271,9 @@ window.MathJax = {
 <h2>II. Background & Limitations of Prior Art</h2>
 <p class="no-indent">Classical error-correcting codes operate in Hamming metric spaces where error events are memoryless bit-flips ($\text{0} \leftrightarrow \text{1}$). On nanopore channels, deletions cause coordinate shifts governed by the <strong>Levenshtein edit distance</strong> $d_L(X, Y)$. Standard parity-check equations $\mathbf{H}\mathbf{x}^T = \mathbf{0}$ break down because an index displacement shifts all subsequent symbol positions.</p>
 
-<p>Prior attempts to correct synchronization errors suffer from two major limitations in DNA storage:</p>
-<p>1) <em>Varshamov-Tenengolts (VT) Codes [5]:</em> VT codes correct single deletions with minimal redundancy ($\sum i \cdot x_i \equiv a \pmod{n}$). However, when hit by a contiguous burst of 5 to 15 deletions, the modular syndrome arithmetic collapses, resulting in 100.0% decoding failure.</p>
-<p>2) <em>Schoeny et al. Burst Deletion Codes (IEEE 2017) [6]:</em> Schoeny et al. introduced cyclic shift-based codes for burst deletions. While effective within their design radius ($b \le 6\text{ nt}$), they experience catastrophic synchronization failure (100% loss) when motor stalls exceed 6 nt or when combined with background substitution noise.</p>
+<p>Prior synchronization primitives face clear architectural trade-offs under fixed header budgets:</p>
+<p>1) <em>Varshamov-Tenengolts (VT) Codes [5]:</em> Designed strictly for single deletions ($b=1$), standard VT syndromes ($\sum i \cdot x_i \equiv a \pmod{n}$) fail under multi-base enzymatic slips ($b \ge 2$). We include VT as a baseline to demonstrate why single-deletion codes cannot be repurposed for multi-base bursts.</p>
+<p>2) <em>Schoeny et al. Parameterized Burst Deletion Codes (IEEE 2017) [6]:</em> Schoeny et al. parameterized interleaved shifted-VT codes for burst deletions up to $B_{\text{design}}$. Under our equal-overhead constraint ($M = 58\text{ symbols} = 29\text{ nt}, K = 4$), Schoeny's construction accommodates $B_{\text{design}} = 8\text{ bits}$ ($4\text{ nt}$) of sub-channels. When motor stalls exceed this design specification ($b > 4\text{ nt}$), phase collisions cause decoding collapse ($100\%$ loss). Scaling Schoeny et al. to target $b = 10\text{ nt}$ ($20\text{ bits}$) would require redundancy $r \approx B \log(n/B)$ exceeding $> 110\text{ symbols}$ ($> 55\text{ nt}$), violating commercial synthesis limits.</p>
 
 <div class="figure-box">
   <img src="../figures/fig1_biological_compliance.png" alt="Biophysical Constraints">
@@ -363,16 +363,16 @@ Each symbol $u_j$ appears exactly 13 times across the codeword. In `src/gpc/core
 </div>
 
 <h2>VIII. Experimental Results & Analysis</h2>
-<p class="no-indent">We evaluated GPC against state-of-the-art burst deletion codes and classical baselines under an identical overhead budget of $M = 58\text{ symbols}$ ($29\text{ nt}$). Table I summarizes the results across 14,000 trials:</p>
+<p class="no-indent">In rigorous coding theory, competing codes must be evaluated under an identical redundancy budget. We evaluated GPC against baselines at the <strong>exact same budget of $M = 58\text{ symbols}$ ($29\text{ nt}$)</strong> for $K = 4$: Schoeny et al. is instantiated at $n=58, K=4, B_{\text{design}}=8\text{ bits}$ ($4\text{ nt}$); standard VT is evaluated as a single-deletion ($b=1$) reference. Table I summarizes results across 14,000 trials:</p>
 
-<div class="table-title">Table I: Fair Equal-Overhead DNA Strand Loss vs. Burst Deletion Length (b)</div>
+<div class="table-title">Table I: Fair Equal-Overhead DNA Strand Loss vs. Burst Deletion Length (b) [M=58, K=4]</div>
 <table class="data-table">
   <thead>
     <tr>
       <th>Burst Length $b$</th>
       <th>Unprotected</th>
-      <th>VT Code [5]</th>
-      <th>Schoeny et al. [6]</th>
+      <th>VT Code [5] ($b=1$)</th>
+      <th>Schoeny et al. [6] ($B=8\text{b}$)</th>
       <th>GPC (Ours)</th>
     </tr>
   </thead>
@@ -437,8 +437,8 @@ Each symbol $u_j$ appears exactly 13 times across the codeword. In `src/gpc/core
     <tr>
       <th>Motor Stall $b$</th>
       <th>Unprotected</th>
-      <th>VT Code [5]</th>
-      <th>Schoeny et al. [6]</th>
+      <th>VT Code [5] ($b=1$)</th>
+      <th>Schoeny et al. [6] ($B=8\text{b}$)</th>
       <th>GPC (Ours)</th>
     </tr>
   </thead>
