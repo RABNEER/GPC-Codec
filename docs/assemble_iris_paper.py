@@ -339,7 +339,7 @@ window.MathJax = {
   <span class="caption">Equation 3: Exact block length formula for GPC(K)</span>
 </div>
 
-<p>For $K = 4$ address bits (indexing 16 strand clusters), the codeword length is $M = 13(4) + 6 = 58\text{ binary symbols}$. In DNA encoding ($2\text{ bits/base}$), this translates to an address header of exactly <strong>29 nucleotides</strong>.</p>
+<p>The inner code rate $R(K) = \frac{K}{13K + 6}$ increases monotonically with $K$ ($\frac{dR}{dK} = \frac{6}{(13K+6)^2} > 0$), from $R(4) = 4/58 \approx 0.0690$ ($M=58$, 29 nt) and $R(6) = 6/84 \approx 0.07143$ ($M=84$, 42 nt) toward the asymptotic ceiling $1/13 \approx 0.07692$.</p>
 
 <p><strong>Proof of Burst Error Span $B_E(K)$ [8]:</strong>
 Each symbol $u_j$ appears exactly 13 times across the codeword. In `src/gpc/core.py`, the earliest occurrence of symbol 3 is at index 4 (in $\mathcal{F}_2$), and its latest occurrence is at index $10K + 11$ (in the final $\mathcal{F}_3'$ pass). The coordinate span is:</p>
@@ -353,14 +353,14 @@ Each symbol $u_j$ appears exactly 13 times across the codeword. In `src/gpc/core
 <h2>V. Two-Phase Synchronization Decoding</h2>
 <p class="no-indent">Unlike classical Levenshtein alignment decoders that require quadratic dynamic programming ($\mathcal{O}(M^2)$ time), GPC decodes via a two-phase greedy algorithm:</p>
 
-<p><strong>Phase 1 (Pilot Shift Localization):</strong> The decoder scans for the six pilot bits ($P_0 \dots P_5$). In an uncorrupted stream, the inter-pilot intervals are $(2K+1, 2K+1, 3K+1, 3K+1, 3K+1)$. When a burst deletion of length $b$ occurs, the relative displacement of surviving pilots narrows candidate burst positions $s \in [0, M-b]$ to a small candidate set $\mathcal{S}^*$ ($|\mathcal{S}^*| \le 2$ on average).</p>
+<p><strong>Phase 1 (Pilot Shift Localization):</strong> The decoder scans for the six pilot bits ($P_0 \dots P_5$). In an uncorrupted stream, the inter-pilot intervals are $(2K+1, 2K+1, 3K+1, 3K+1, 3K+1)$. When a burst deletion of length $b$ occurs, the relative displacement of surviving pilots narrows candidate burst positions $s \in [0, M-b]$ to a candidate set $\mathcal{S}^*$ ($|\mathcal{S}^*| \le 4$ on average).</p>
 
 <p><strong>Phase 2 (Consensus Margin Voting):</strong> For each candidate displacement $\hat{s} \in \mathcal{S}^*$, the received symbols are aligned against the known permutation structure. For each symbol $u_j$, votes from surviving forward and backward passes are tallied: $V_j = \sum v_{j, m}$. The symbol decision is $\hat{u}_j = \mathbb{I}(V_j \ge 0)$, with confidence margin $\mu = \sum_j |V_j|$. The candidate with the highest margin is selected.</p>
 
-<p><strong>Algorithmic Complexity:</strong> Phase 1 takes $\mathcal{O}(M)$ time. Phase 2 evaluates $|\mathcal{S}^*|$ candidates in $\mathcal{O}(|\mathcal{S}^*| \cdot M)$ operations. Because $|\mathcal{S}^*| \le 2$ for typical messages, the average-case decoding complexity is <strong>strictly near-linear $\mathcal{O}(M)$</strong>. On a standard CPU, decoding executes in $81.6\,\mu\text{s}$ per strand.</p>
+<p><strong>Algorithmic Complexity:</strong> Phase 1 takes $\mathcal{O}(M)$ time across $M-b+1$ candidate cut positions. Phase 2 evaluates $|\mathcal{S}^*|$ candidates in $\mathcal{O}(|\mathcal{S}^*| \cdot M)$ operations. On typical messages, pilot filtering isolates $|\mathcal{S}^*| \le 4$ candidates, giving average-case linear time $\mathcal{O}(M)$ ($81.6\,\mu\text{s}$ per strand). On degenerate all-ones payloads, pilot ties can reach $|\mathcal{S}^*| = M - b + 1$ (worst-case unpruned $\mathcal{O}(M^2)$), which can be bounded to $\mathcal{O}(M)$ by top-$Q$ pruning ($Q_{\max}=2$).</p>
 
 <h2>VI. Resolving the Code Rate Paradox: The 16.20% Overhead Math</h2>
-<p class="no-indent">A standard critique of GPC is that an inner code rate of $R = K/M = 4/58 \approx 0.069$ implies a $14.5\times$ data expansion. In bulk file storage, inflating 1 MB to 14.5 MB would be completely impractical.</p>
+<p class="no-indent">A standard critique of GPC is that an inner code rate of $R = K/M = 4/58 \approx 0.0690$ ($R = 6/84 \approx 0.07143$ for $K=6$) implies a $14.5\times$ ($14.0\times$) data expansion. In bulk file storage, inflating 1 MB to 14.5 MB would be completely impractical.</p>
 
 <div class="callout-box">
   <strong>The Envelope Analogy:</strong> When mailing a letter, you do not write the entire letter twice; you write the address on the envelope with durable ink. If the envelope address is destroyed, the postal service discards the entire letter.

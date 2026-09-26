@@ -140,7 +140,7 @@ def get_section_2():
         </tr>
         <tr class="highlight-green">
           <td class="text-left"><strong>Generalized Pāṭha $\text{GPC}(K)$ [Ours]</strong></td>
-          <td>$R = \frac{K}{13K + 6}$ ($R = 0.069\text{ for }K=4$)</td>
+          <td>$R = \frac{K}{13K + 6}$ ($0.0690\text{ for }K=4, 0.0714\text{ for }K=6$)</td>
           <td>$O(N)$ Stream</td>
           <td>$O(N)$ Single-Pass</td>
           <td><strong>Burst deletions $b \le 10\text{ nt}$ ($B_E = 10K+7$)</strong></td>
@@ -202,7 +202,7 @@ def get_section_3():
     <p class="no-indent">The inter-pilot distances alternate deterministically: $p_1 - p_0 = 2K + 1$, $p_2 - p_1 = 2K + 1$, $p_3 - p_2 = 3K + 1$, $p_4 - p_3 = 3K + 1$, and $p_5 - p_4 = 3K + 1$. When an unmarked burst deletion shortens the received frame, the relative shift of surviving pilot symbols provides immediate, table-free bounds on the burst location.</p>
 
     <h3>C. Algorithmic Formulation of Two-Phase Synchronization Decoding</h3>
-    <p class="no-indent">Decoding executes via Algorithm 1 in average-case near-linear time ($\mathcal{O}(M)$) under pilot-pruned candidate hypothesis sets ($|\mathcal{S}^*| \le 2$ on typical messages), with an explicitly characterized worst-case bound ($\mathcal{O}(M^2)$ on degenerate periodic ties), avoiding quadratic dynamic programming Levenshtein alignment matrices:</p>
+    <p class="no-indent">Decoding executes via Algorithm 1 in average-case linear time ($\mathcal{O}(M)$) under pilot-pruned candidate hypothesis sets ($|\mathcal{S}^*| \le 4$ on typical messages), with an explicitly characterized worst-case bound ($\mathcal{O}(M^2)$ when degenerate all-ones payloads produce up to $M - b + 1$ ties; streaming frame mode enforces strict $\mathcal{O}(1)$ queue bounds via top-$Q$ pruning $|\mathcal{Q}| \le 2$, see Algorithm 2):</p>
 
     <div class="code-block">
 ALGORITHM 1: Two-Phase Greedy Alignment with Consensus Margin Voting
@@ -246,13 +246,13 @@ def get_section_4():
     <p class="no-indent">We now formally derive the exact burst-erasure recovery threshold and majority voting invariant for Generalized Patha Codes from first algebraic principles.</p>
 
     <div class="theorem-box">
-      <div class="theorem-title">Lemma 1 (Code Rate and Block Dimension) [DERIVED].</div>
+      <div class="theorem-title">Lemma 1 (Code Rate Monotonicity and Block Dimension) [DERIVED].</div>
       For any payload dimension $K \ge 2$, the codeword length $M(K)$ and information code rate $R(K)$ of GPC satisfy:
       $$M(K) = 13K + 6, \quad R(K) = \frac{K}{13K + 6}$$
-      As $K \to \infty$, the asymptotic code rate converges to $\lim_{K \to \infty} R(K) = 1/13 \approx 0.0769$.
+      The code rate $R(K)$ is strictly monotonically increasing with $K$, as $\frac{dR}{dK} = \frac{6}{(13K + 6)^2} > 0$. As $K \to \infty$, $R(K)$ converges to the theoretical bound $\lim_{K \to \infty} R(K) = 1/13 \approx 0.07692$.
     </div>
 
-    <p class="no-indent"><em>Derivation.</em> Each codeword consists of two 2-window passes ($2 \times 2K = 4K$), three 3-window passes ($3 \times 3K = 9K$), and 6 pilot symbols. Summing these disjoint partitions yields $M(K) = 4K + 9K + 6 = 13K + 6$. The code rate is the ratio of information bits to block length: $R = K / (13K + 6)$. For $K=4$, $R = 4/58 \approx 0.0690$; for $K=6$, $R = 6/84 \approx 0.0714$. $\blacksquare$</p>
+    <p class="no-indent"><em>Derivation.</em> Each codeword consists of two 2-window passes ($2 \times 2K = 4K$), three 3-window passes ($3 \times 3K = 9K$), and 6 pilot symbols. Summing these disjoint partitions yields $M(K) = 4K + 9K + 6 = 13K + 6$. The code rate is the ratio of information bits to block length: $R(K) = K / (13K + 6)$. For $K=4$, $R(4) = 4/58 \approx 0.06897$ ($0.0690$); for $K=6$, $R(6) = 6/84 = 1/14 \approx 0.07143$. Because the fixed pilot overhead (6 symbols) is amortized over a larger payload window, $R(K)$ strictly increases with $K$ toward $1/13$, while the redundancy factor $\frac{M}{K} = 13 + \frac{6}{K}$ monotonically decreases from $14.5$ to $13$. $\blacksquare$</p>
 
     <div class="theorem-box">
       <div class="theorem-title">Theorem 1 (Exact Marked Burst-Erasure Tolerance Bound) [DERIVED].</div>
@@ -286,10 +286,10 @@ def get_section_5():
 
     <div class="theorem-box">
       <div class="theorem-title">Theorem 3 (Computational Time Complexity of Algorithm 1) [DERIVED].</div>
-      For a received sequence of length $N = M - b$, Algorithm 1 executes in average-case linear time $\mathcal{O}(M)$ when pilot filtering prunes candidate ties to $|\mathcal{S}^*| = \mathcal{O}(1)$, and worst-case time $\mathcal{O}(M^2)$ under degenerate payloads with maximal alignment ties.
+      For a received sequence of length $N = M - b$, Algorithm 1 executes in average-case linear time $\mathcal{O}(M)$ when pilot filtering prunes candidate ties to $|\mathcal{S}^*| = \mathcal{O}(1)$ ($|\mathcal{S}^*| \le 4$), and worst-case time $\mathcal{O}(M^2)$ under degenerate payloads where pilot scoring ties across up to $|\mathcal{S}^*| = M - b + 1$ candidate cut positions.
     </div>
 
-    <p class="no-indent"><em>Derivation.</em> In Phase 1, the decoder iterates over $M - b + 1$ candidate burst cut positions. For each position, it evaluates $|\mathcal{P}| = 6$ pilot coordinates, requiring $6(M - b + 1) \le 6M$ comparisons. In Phase 2, the decoder iterates over the candidate set $\mathcal{S}^*$. For each candidate $\hat{s} \in \mathcal{S}^*$, it gathers surviving votes across the $M - b$ received symbols and computes decision margins for $K$ symbols, requiring $(M - b) + K$ operations. Total decoding complexity is $T(M) = 6(M - b + 1) + |\mathcal{S}^*|(M - b + K) = \mathcal{O}(M + |\mathcal{S}^*| M)$. For random payloads, pilot filtering isolates $|\mathcal{S}^*| \le 4$ candidates on average, yielding average-case time $\mathcal{O}(M)$. In degenerate cases (e.g., all-ones payload where every bit matches pilot value $1$), all $M - b + 1$ cut positions produce identical pilot scores ($|\mathcal{S}^*| = M - b + 1$), yielding worst-case complexity $\mathcal{O}(M^2)$. $\blacksquare$</p>
+    <p class="no-indent"><em>Derivation.</em> In Phase 1, the decoder iterates over $M - b + 1$ candidate burst cut positions. For each position, it evaluates $|\mathcal{P}| = 6$ pilot coordinates, requiring $6(M - b + 1) \le 6M$ comparisons. In Phase 2, the decoder iterates over the candidate set $\mathcal{S}^*$. For each candidate $\hat{s} \in \mathcal{S}^*$, it gathers surviving votes across the $M - b$ received symbols and computes decision margins for $K$ symbols, requiring $(M - b) + K$ operations. Total decoding complexity is $T(M) = 6(M - b + 1) + |\mathcal{S}^*|(M - b + K) = \mathcal{O}(M + |\mathcal{S}^*| M)$. For random payloads, pilot filtering isolates $|\mathcal{S}^*| \le 4$ candidates on average, yielding average-case time $\mathcal{O}(M)$. In degenerate cases (e.g., an all-ones payload where every bit matches pilot value $1$), all $M - b + 1$ cut positions produce identical pilot scores ($|\mathcal{S}^*| = M - b + 1$, reaching up to 57 candidate ties for $K=4$ under $b=1$), yielding worst-case complexity $\mathcal{O}(M^2)$. Where strict worst-case $\mathcal{O}(M)$ time is required, a beam-search pruning rule can bound $|\mathcal{S}^*| \le Q_{\max} = 2$; for streaming continuous frame decoding, Algorithm 2 applies this top-$Q$ queue pruning directly. $\blacksquare$</p>
 
     <div class="theorem-box">
       <div class="theorem-title">Theorem 4 (Bounded Auxiliary Working Memory) [DERIVED].</div>

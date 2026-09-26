@@ -497,7 +497,7 @@ def get_section_8():
       Let a channel burst corruption impart $b$ consecutive deletions, insertions, or arbitrary/worst-case substitutions within a GPC stream. The maximum number of decoded payload symbols corrupted by the error is strictly bounded by $K_{\text{block}} + 2 \cdot T_{\text{pilot}}$, with zero error propagation into subsequent frames under arbitrary adversarial noise.
     </div>
 
-    <p class="no-indent"><em>Proof.</em> By Algorithm 1, stage cuts reset the internal permutation register $\sigma$ at every deterministic anchor $\mathcal{P}$. Because permutation parity checks are strictly local to each stage and pilot anchors provide absolute coordinate resynchronization regardless of error pattern severity, decoding state divergence is strictly quarantined within the local stage boundary $[t_{\text{cut}}, t_{\text{cut+1}}]$. Hence, even under worst-case adversarial substitutions, corruption cannot propagate into subsequent frames. $\blacksquare$</p>
+    <p class="no-indent"><em>Proof.</em> By Algorithm 2 (Streaming Levenshtein-Lattice Decoding), stage cuts reset the internal permutation register $\sigma$ at every deterministic anchor $\mathcal{P}$. Because permutation parity checks are strictly local to each stage and pilot anchors provide absolute coordinate resynchronization regardless of error pattern severity, decoding state divergence is strictly quarantined within the local stage boundary $[t_{\text{cut}}, t_{\text{cut+1}}]$. Hence, even under worst-case adversarial substitutions, corruption cannot propagate into subsequent frames. $\blacksquare$</p>
 
     <h3>C. Real-Time Latency Budgets & Failsafe Risk Formulation</h3>
     <p>In safety-critical avionics, the cumulative probability of triggering an emergency flight failsafe $P_{\text{failsafe}}$ over a window of $W = 3$ consecutive frames is given by $P_{\text{failsafe}} = (\text{FER})^3$. A frame error rate of $\text{FER} = 100\%$ guarantees an emergency termination ($P_{\text{failsafe}} = 1.0$), whereas bounding $\text{FER} \le 1.0\%$ reduces the failsafe risk to $P_{\text{failsafe}} \le 10^{-6}$ (zero operational disruptions).</p>'''
@@ -985,11 +985,11 @@ def get_appendix():
     <h3>A. Inductive Proof of FST Permutation Invariant</h3>
     <p>We formalize the state transition invariant of the Generalized Pāṭha Code finite-state transducer across arbitrary sequence lengths $N = m \cdot K + r$. Let $\mathcal{S}_k$ denote the symmetric permutation group on $\{1, \dots, K\}$. By Lemma 1, every forward transition $t_{i \to i+1}$ preserves the bi-directional parity checksum $\sum_{j=1}^K j \cdot \pi(j) \equiv 0 \pmod K$. Under mathematical induction on block index $m$, assume the invariant holds for all $j \lt m$. At stage boundary $m$, the stage cut operator $\mathcal{C}$ triggers if and only if the cumulative state divergence exceeds threshold $\tau_K$. Since pilot symbol insertion at $t \equiv 0 \pmod{T_{\text{pilot}}}$ resets $\sigma(0) = \text{id}$, the divergence is provably zeroed, bounding cumulative drift to $\Delta \le K - 1$. $\blacksquare$</p>
 
-    <h3>B. Algorithmic Formulation of Levenshtein-Lattice Decoding</h3>
-    <p class="no-indent">Algorithm 1 specifies the complete linear-time bounded-queue branch pruning routine executed during frame resynchronization:</p>
+    <h3>B. Algorithmic Formulation of Streaming Levenshtein-Lattice Decoding</h3>
+    <p class="no-indent">Algorithm 2 specifies the complete linear-time bounded-queue branch pruning routine executed during streaming continuous frame resynchronization:</p>
 
     <div class="algo-box">
-      <div class="algo-title"><strong>Algorithm 1:</strong> GPC Levenshtein-Lattice Resynchronization Decoder</div>
+      <div class="algo-title"><strong>Algorithm 2:</strong> GPC Levenshtein-Lattice Resynchronization Decoder (Streaming Frame Mode)</div>
       <div class="algo-line"><strong>Input:</strong> Received symbol vector $\mathbf{Y} = (y_1, y_2, \dots, y_M)$, Window $K$, Pilot pattern $\mathcal{P}$, Threshold $\tau_K$</div>
       <div class="algo-line"><strong>Output:</strong> Reconstructed sequence $\mathbf{\hat{X}} = (\hat{x}_1, \dots, \hat{x}_N)$ or Resync Alert</div>
       <div class="algo-line">1:  Initialize candidate queue $\mathcal{Q} \leftarrow \{(\sigma_0 = \text{id}, \text{cost} = 0, \text{payload} = \emptyset)\}$, $\text{anchor\_idx} \leftarrow 0$</div>
@@ -1319,7 +1319,7 @@ def get_appendix():
           <td class="text-left">Ties, periodic payloads, extreme indels</td>
           <td>16,128</td>
           <td>[Simulated]</td>
-          <td class="text-left">Identified $|\mathcal{S}^*| \le 53$ worst-case queue bounds</td>
+          <td class="text-left">Identified $|\mathcal{S}^*| \le 57$ worst-case alignment ties ($M-b+1$)</td>
         </tr>
         <tr>
           <td class="text-left">Theoretical Verification</td>
@@ -1378,8 +1378,8 @@ def get_appendix():
         <tr>
           <td class="text-left">Linear Time $\mathcal{O}(M)$ Average, $\mathcal{O}(M^2)$ Worst-Case</td>
           <td><strong>[Proved]</strong></td>
-          <td class="text-left">Cross-correlation bound & queue analysis in Theorem 4; <code>test_algorithm1_edge_cases.py</code></td>
-          <td class="text-left">Average $|\mathcal{S}^*| \le 2$; periodic degenerate payloads yield $|\mathcal{S}^*| \le 53$</td>
+          <td class="text-left">Pilot pruning in Theorem 3; bounded queue in Algorithm 2; <code>test_algorithm1_edge_cases.py</code></td>
+          <td class="text-left">Average $|\mathcal{S}^*| \le 4$; all-ones degenerate payload yields $|\mathcal{S}^*| \le 57$ ties</td>
         </tr>
         <tr>
           <td class="text-left">Fair Equal-Overhead DNA Superiority</td>
