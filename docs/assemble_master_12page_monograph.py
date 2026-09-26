@@ -23,7 +23,7 @@ figures_dir = os.path.join(root_dir, "figures")
 html_path = os.path.join(papers_dir, "GPC_Full_Research_Paper_12_Pages.html")
 pdf_path = os.path.join(papers_dir, "GPC_Full_Research_Paper_12_Pages.pdf")
 
-def assemble_master_html(font_size="9.4pt", line_height="1.24", margin_mm="11.0", col_gap="5.0mm"):
+def assemble_master_html(font_size="9.4pt", line_height="1.24", margin_mm="11.8", col_gap="5.0mm", p_margin="2.88px"):
     with open(html_path, "w", encoding="utf-8") as f:
         # Styles and CSS setup
         f.write(r'''<!DOCTYPE html>
@@ -73,6 +73,8 @@ window.MathJax = {
     padding: 0;
     text-align: justify;
     background: #fff;
+    orphans: 1;
+    widows: 1;
   }
 
   .columns-container {
@@ -171,7 +173,7 @@ window.MathJax = {
 
   p {
     margin-top: 0;
-    margin-bottom: 1.8px;
+    margin-bottom: ''' + p_margin + r''';
     text-indent: 1.3em;
   }
   p.no-indent {
@@ -321,9 +323,9 @@ window.MathJax = {
 
   <div class="header-block">
     <h1 class="paper-title">Generalized Pāṭha Codes: Resilient Strand Indexing and Frame Synchronization under Oxford Nanopore Translocation Stalls in DNA Data Storage</h1>
-    <div class="authors">Advanced Algorithmic Systems Research Group</div>
-    <div class="affiliation">Official Research Submission · IRIS National Science Fair 2026 (DST · IUSSTF · Broadcom) · Systems Software (SOFT)</div>
-    <div class="meta-note">Subject Category: Computer Systems Software & Information Theory</div>
+    <div class="authors">Student Investigator · Advanced Algorithmic Systems Research Group</div>
+    <div class="affiliation">Official Research Submission · IRIS National Science Fair 2026 (DST · IUSSTF · Broadcom) · Systems Software (SOFT) & Computational Biology (CBIO)</div>
+    <div class="meta-note">Subject Category: Systems Software & Computational Biology · Project Code: GPC-2026</div>
   </div>
 
   <div class="audit-banner">

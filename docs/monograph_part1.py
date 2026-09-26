@@ -151,7 +151,7 @@ def get_section_2():
     </table>
 
     <h3>E. Analysis of the Synchronization Pareto Frontier</h3>
-    <p>As demonstrated in Table I, existing coding frameworks occupy polarized extremes of the operational landscape:
+    <p>As demonstrated in Table I, existing coding frameworks occupy polarized extremes of the operational design space:
     <br>• <em>High-Rate Algebraic Codes (VT, Helberg):</em> While asymptotically optimal ($R \to 1$) for isolated single edits ($t=1$), their algebraic structure degrades exponentially under multi-symbol burst deletions or compound substitution-deletion noise.
     <br>• <em>Probabilistic Trellis Codes (Davey-MacKay):</em> By tracking channel drift $\tau \in [-M_\tau, +M_\tau]$ across an HMM trellis, watermark codes survive distributed noise, but incur quadratic state complexity $O(N \cdot M_\tau^2)$ and suffer catastrophic failure whenever channel drift exceeds the trellis boundary.
     <br>• <em>Rejection-Sampling Fountains (DNA Fountain):</em> Luby Transform codes handle strand dropouts via belief-propagation peeling, but treat internal indels as non-correctable errors, forcing the basecaller to discard entire strands.

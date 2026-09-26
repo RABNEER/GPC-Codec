@@ -55,7 +55,7 @@ def compile_12page_paper():
             path=pdf_path,
             format="Letter",
             print_background=True,
-            margin={"top": "11mm", "bottom": "11mm", "left": "10mm", "right": "10mm"}
+            margin={"top": "11.8mm", "bottom": "11.8mm", "left": "10mm", "right": "10mm"}
         )
         browser.close()
     
