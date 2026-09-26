@@ -532,8 +532,8 @@ Each symbol $u_j$ appears exactly 13 times across the codeword. In `src/gpc/core
   </tbody>
 </table>
 
-<h2>X. Digital Hardware Architecture: Verilog RTL for FPGA Deployment</h2>
-<p class="no-indent">To ensure GPC decoders can execute on-device inside portable sequencers (like Oxford Nanopore MinION or MinIT) without cloud latency, we implemented a hardware decoder in <strong>synthesizable Verilog RTL</strong>.</p>
+<h2>X. Digital Hardware Architecture: Synthesizable Verilog RTL for FPGA Coprocessing</h2>
+<p class="no-indent">To evaluate execution speed on edge sequencer coprocessors (like Oxford Nanopore MinIT), we implemented a digital decoder in <strong>synthesizable Verilog RTL</strong>. We clarify that this core represents pre-silicon FPGA logic; it lacks the analog transimpedance amplifiers needed to process raw physical currents directly.</p>
 
 <p>The architecture consists of:
 <br>1) A 58-stage shift register for incoming basecalled symbols.
@@ -580,12 +580,12 @@ Each symbol $u_j$ appears exactly 13 times across the codeword. In `src/gpc/core
   </tbody>
 </table>
 
-<h2>XI. Algorithmic Generalization: Proof-of-Concept in RF & Neural Channels</h2>
-<p class="no-indent">While DNA data storage is our primary focus, GPC is a general algebraic solution for order-sensitive channels. To demonstrate cross-domain universality, we evaluated GPC on two additional safety-critical physical systems:</p>
+<h2>XI. Exploratory Cross-Domain Verification & Physical Channel Limitations</h2>
+<p class="no-indent">While biological DNA data storage is our primary investigation, we evaluated GPC as an exploratory proof-of-concept in two cyber-physical channels with clear domain boundaries:</p>
 
-<p>1) <em>UAV C2 Telemetry under Electronic Warfare Jamming:</em> In robotic flight architectures (e.g., PX4 Autopilot executing MAVLink v2 over 915 MHz ISM radio), sweep-frequency barrage jamming injects burst erasures ($b = 5\text{ to }30\text{ bits}$). Losing the start-of-frame delimiter causes packet framing misalignment, triggering catastrophic drone failsafes. Across 12,000 trials (`experiments/test_channel_uav_telemetry.py`), GPC reduced Frame Error Rate from 100.0% to 0.0% under 20-bit burst erasures, preventing loss-of-control events [10].</p>
+<p>1) <em>UAV C2 Telemetry under RF Sweep Chirps:</em> In drone flight control (MAVLink v2 over 915 MHz ISM radio), sweep chirps erase start-of-frame delimiters, triggering failsafes. Across 12,000 trials (`experiments/test_channel_uav_telemetry.py`), GPC preserved 0.0% FER under 20-bit bursts. However, GPC cannot replace physical RF modems or mitigate analog multipath fading; it functions strictly as a failsafe frame synchronizer on narrowband packets.</p>
 
-<p>2) <em>Wireless Brain-Computer Interfaces (BCI):</em> In wireless neural telemetry (transmitting 128-channel motor cortex spike trains via low-power inductive RF links), trans-cranial tissue absorption causes intermittent burst dropouts. Dropping a single bit misaligns downstream Kalman filter timestamps, inducing erratic motor twitching. Across 12,000 trials (`experiments/test_channel_neural_bci.py`), GPC preserved 0.0% spike frame loss under 15-bit dropouts, maintaining closed-loop latency well within the required $10.0\text{ ms}$ real-time neuroprosthetic budget.</p>
+<p>2) <em>Wireless Brain-Computer Interfaces (BCI):</em> In wireless neural telemetry, tissue absorption causes burst dropouts that misalign downstream motor decoders. Across 12,000 trials (`experiments/test_channel_neural_bci.py`), GPC maintained 0.0% loss under 15-bit dropouts ($<130\,\mu\text{s}$ latency). However, GPC cannot process continuous raw analog field potentials; it is applicable solely as an event marker on low-rate spike packets.</p>
 
 <h2>XII. Open-Source Codebase & Cryptographic Reproducibility</h2>
 <p class="no-indent">In accordance with the highest scientific standards of IRIS and ISEF, all source code, simulation pipelines, genomic datasets, and hardware models are open-source and publicly archived:</p>

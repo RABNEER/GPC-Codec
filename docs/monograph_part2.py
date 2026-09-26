@@ -111,7 +111,7 @@ def get_section_7():
     </div>
 
     <h3>A. Fair Equal-Overhead DNA Strand Indexing & Synchronization Benchmark</h3>
-    <p class="no-indent">In rigorous coding theory, competing codes must be evaluated under an identical redundancy budget. We evaluated GPC against state-of-the-art burst deletion codes and classical synchronization baselines at the <strong>exact same overhead budget of $M = 58\text{ symbols}$ ($29\text{ nucleotides}$)</strong> protecting a $K = 4$ payload (16-bit strand index address). Across $1,000$ deterministic Monte Carlo trials per grid point (14,000 total trials) with exact 95% Clopper-Pearson binomial confidence intervals, Table II details the empirical strand loss:</p>
+    <p class="no-indent">In rigorous coding theory, competing codes must be evaluated under an identical redundancy budget. We evaluated GPC against state-of-the-art burst deletion codes and classical synchronization baselines at the <strong>exact same overhead budget of $M = 58\text{ symbols}$ ($29\text{ nucleotides}$)</strong> protecting a $K = 4$ bit payload (indexing 16 strand clusters in a two-level hierarchical architecture). Across $1,000$ deterministic Monte Carlo trials per grid point (14,000 total trials) with exact 95% Clopper-Pearson binomial confidence intervals, Table II details the empirical strand loss:</p>
 
     <table>
       <caption>Table II: Fair Equal-Overhead DNA Strand Indexing Benchmark ($M=58\text{ symbols} = 29\text{ nt}, K=4, 1,000\text{ Trials/Point}$)</caption>
@@ -481,8 +481,8 @@ def get_section_7():
 '''
 
 def get_section_8():
-    return r'''<h2>VIII. Cross-Domain Application 1: High-Assurance UAV C2 Telemetry under Electronic Warfare Jamming</h2>
-    <p class="no-indent">To demonstrate the cross-domain generality of Generalized Pāṭha Codes beyond biopolymers, we evaluated GPC on a safety-critical cyber-physical link: robotic command-and-control (C2) telemetry in uncrewed aerial vehicles (UAVs) under intentional electronic warfare (EW) sweep and barrage jamming.</p>
+    return r'''<h2>VIII. Exploratory Cross-Domain Verification 1: UAV C2 Frame Telemetry & RF Channel Limitations</h2>
+    <p class="no-indent">While the primary design target of GPC is biological DNA strand address synchronization, we conducted an exploratory cross-domain evaluation on robotic command-and-control (C2) telemetry in uncrewed aerial vehicles (UAVs) under localized RF sweep chirps. The objective is not to claim that GPC solves drone electronic warfare, but to evaluate whether permutation symmetry can prevent UART parser desynchronization on short heartbeat bursts with well-defined physical limitations.</p>
 
     <h3>A. Operational Imperative in Autonomous Drone C2 Links</h3>
     <p>In autonomous robotic flight architectures (such as PX4 Autopilot and ArduPilot executing over standard MAVLink v2 framing), drones exchange state vectors, waypoint instructions, and heartbeat frames across 915 MHz or 2.4 GHz ISM radio links. Unlike bulk file downloads where retransmissions (ARQ) can absorb dropped packets, flight control loops operate at rigid 50 Hz cycles ($20\text{ ms}$ hard real-time deadline). In congested or contested electromagnetic environments, sweep-frequency barrage jamming creates localized bursts of signal cancellation, causing continuous contiguous erasures spanning $b = 5\text{ to }30\text{ bits}$.</p>
@@ -589,12 +589,15 @@ def get_section_9():
     <p>In contrast, GPC maintains <strong>an exact $0.00\%$ FER across bursts of $5, 10, 15, 20,$ and $30\text{ bits}$</strong>, with a tiny, honest breaking edge of $0.95\%$ FER at $b = 25\text{ bits}$ (caused by rare simultaneous erasure of adjacent pilot anchors). Even under this worst-case point, the probability of three consecutive dropped frames is bounded to $P_{\text{failsafe}} = (0.0095)^3 \approx 8.57 \times 10^{-7}$, completely eliminating unintended failsafe triggers.</p>
 
     <h3>B. Deterministic Real-Time Decoding Latency</h3>
-    <p>Across all 12,000 trials, the average GPC decoding latency was strictly bounded between $40.2\,\mu\text{s}$ and $115.8\,\mu\text{s}$ on standard x86-64 hardware. This is over 170 times faster than the 20 ms flight controller deadline, confirming that GPC can be integrated directly into bare-metal drone autopilots without scheduling disruption.</p>'''
+    <p>Across all 12,000 trials, the average GPC decoding latency was strictly bounded between $40.2\,\mu\text{s}$ and $115.8\,\mu\text{s}$ on standard x86-64 hardware. This is over 170 times faster than the 20 ms flight controller deadline, confirming that GPC can be integrated directly into bare-metal drone autopilots without scheduling disruption.</p>
+
+    <h3>C. Operational Boundaries: Why GPC Cannot Fully Solve Electronic Warfare</h3>
+    <p class="no-indent">We explicitly clarify that GPC is not a physical-layer electronic warfare defense: (1) <em>Analog Deficits:</em> GPC processes demodulated digital bits and cannot counter analog multipath fading, Doppler shifts at high airspeeds, or RF front-end LNA saturation; (2) <em>Bandwidth Penalty:</em> The $14.5\times$ inner code expansion makes GPC unviable for wideband links (video/LiDAR); (3) <em>Barrage Saturation:</em> Under sustained broadband barrage noise ($p_{\text{sub}} > 15\%$), consensus margins collapse. Practical electronic counter-countermeasures (ECCM) mandate physical frequency-hopping spread spectrum (FHSS) and directional antennas; GPC functions strictly as an inner frame synchronizer on narrowband failsafe packets.</p>'''
 
 def get_section_10():
     return r'''
-    <h2>X. Cross-Domain Application 2: Wireless Intracortical BCI Neural Telemetry under Tissue Attenuation</h2>
-    <p class="no-indent">Brain-computer interfaces (BCIs) and neuroprosthetics represent cyber-physical communication channels where temporal synchronization loss produces severe neurological control failures. In an intracortical motor neural interface, desynchronization between parallel recording channels scrambles spike-timing-dependent plasticity (STDP) decoders, corrupting robotic limb trajectory reconstruction [14].</p>
+    <h2>X. Exploratory Cross-Domain Verification 2: Intracortical BCI Telemetry & Biophysical Boundaries</h2>
+    <p class="no-indent">Brain-computer interfaces (BCIs) represent a second cyber-physical testbed to examine permutation synchronization. However, GPC is not a comprehensive neurotechnology decoder. We evaluated whether GPC can prevent temporal spike-timing misalignment on discrete event timestamps during intermittent trans-cranial packet dropouts.</p>
 
     <h3>A. Intracortical Neural Recording & The Synchronization Imperative</h3>
     <p>In high-density intracortical BCIs (such as 96-channel Utah arrays or 384-channel Neuropixels probes implanted in the primary motor cortex M1), extracellular action potentials are recorded at a $30\text{ kHz}$ sampling frequency. Neural spikes are detected via analog voltage threshold crossing ($V_{\text{th}} = -4.5 \sigma_v$) and packetized into discrete 64-bit event telemetry frames containing microsecond timestamps (24 bits), electrode channel identifiers (8 bits), and spike waveform shape features (32 bits).</p>
@@ -602,7 +605,10 @@ def get_section_10():
     <p>In fully implantable, wireless neural telemetry systems (transmitting via low-power inductive near-field or ultra-wideband RF links through skull bone and scalp tissue), trans-cranial tissue absorption, dielectric dispersion, and subject head movements induce severe intermittent burst dropouts ($b = 5\text{ to }30\text{ bits}$). In conventional framing protocols (e.g., rigid sync words paired with CRC-8), a single dropped bit causes subsequent timestamps to be misaligned by fractional byte offsets. Downstream Kalman or Wiener motor decoders attribute spikes to incorrect temporal bins, destroying phase-locking value (PLV) calculations and inducing erratic, uncontrolled motor twitching.</p>
 
     <h3>B. Closed-Loop Latency Budget & On-Device Processing Constraints</h3>
-    <p>For continuous neuroprosthetic control, closed-loop sensorimotor feedback latency must remain strictly below $10.0\text{ ms}$. If an inner synchronization code requires iterative belief propagation or computationally expensive Viterbi trellis traversals, it violates this hard real-time latency budget. By deploying GPC with deterministic Levenshtein-lattice alignment, neural event frames are resynchronized on-device with sub-millisecond latency.</p>'''
+    <p>For continuous neuroprosthetic control, sensorimotor feedback latency must remain strictly below $10.0\text{ ms}$. By deploying GPC with deterministic Levenshtein-lattice alignment, neural event frames are resynchronized on-device with sub-millisecond latency.</p>
+
+    <h3>C. Biophysical Boundaries: Why GPC Cannot Fully Solve Neural Telemetry</h3>
+    <p class="no-indent">GPC cannot operate as a standalone BCI processing system for fundamental reasons: (1) <em>Analog Signal Domain:</em> GPC requires pre-thresholded discrete digital packets and cannot digitize raw continuous local field potentials (LFPs); (2) <em>Electrode Physics:</em> It provides zero protection against microelectrode impedance drift, glial scarring, or multi-unit spike collision; (3) <em>Bandwidth Constraints:</em> A $14.5\times$ code expansion on continuous raw 96-channel streams ($30\text{ kHz} \approx 46\text{ Mbps}$) would violate implant thermal limits ($<15\text{ mW}$). GPC is suitable solely as an ultra-compact frame marker on low-rate event-triggered packets to prevent spike timestamp shear during intermittent RF dropouts.</p>'''
 
 def get_section_11():
     return r'''<h2>XI. Cross-Domain BCI Results, Pāṭha Ablation & Proposed Hardware Specifications</h2>
@@ -765,8 +771,8 @@ def get_section_11():
     <h3>C. Component Impact Findings</h3>
     <p>As demonstrated in Table VIII, classical repetition fails under moderate bursts ($b \ge 10$) because errors remain concentrated in localized blocks. Naive interleaving without pilots experiences catastrophic 100% loss on non-multiples of block size due to cyclic coordinate phase slips. Even with pilots, naive interleaving suffers 1.5%–2.8% false locks due to monotonic cyclic ambiguities. Only the full GPC architecture—combining bidirectional cyclic transpositions (Jaṭā and Ghana pāṭha) with aperiodic pilot delimiters—breaks monotonic symmetry, guarantees support span $B_E = 47$, and provides a transposition edit distance $D_L \ge 16$ with deterministic recovery.</p>
 
-    <h3>D. Proposed Embedded Hardware Architecture (Awaiting Silicon Synthesis)</h3>
-    <p>To provide an architectural reference for hardware implementers, Table IX outlines the proposed hardware resource budgets based on Register-Transfer Level (RTL) Verilog models and compiler-level assembly analysis, pending physical silicon tape-out.</p>
+    <h3>D. Proposed Embedded Hardware Architecture & Implementation Boundaries</h3>
+    <p class="no-indent">To evaluate hardware feasibility, Table IX outlines resource budgets based on synthesizable Register-Transfer Level (RTL) Verilog models and compiler assembly profiling. However, we clarify that this represents a pre-silicon digital coprocessor: it has not undergone physical SkyWater 130nm ASIC fabrication, and it lacks the analog transimpedance amplifiers and high-speed ADCs required to interface with physical biological nanopores directly.</p>
 
     <table>
       <caption>TABLE IX: Proposed Embedded Hardware Architecture (Synthesizable RTL Specifications & Cycle Estimates)</caption>
@@ -886,17 +892,24 @@ def get_section_13():
           <td>16.20% true overhead; zero dropouts up to 10-nt slips.</td>
         </tr>
         <tr>
-          <td>UAV Swarm State Telemetry</td>
-          <td>RF Chirp Jamming Bursts</td>
-          <td><strong>GPC Differential Telemetry</strong></td>
-          <td class="highlight-green">Optimal</td>
-          <td>Zero collision guarantee; deterministic $O(N)$ execution.</td>
+          <td>UAV Fail-Safe Heartbeat</td>
+          <td>Narrowband RF Chirp Bursts</td>
+          <td><strong>GPC Inner Framing + FHSS</strong></td>
+          <td class="highlight-green">Applicable (Failsafe only)</td>
+          <td>Preserves UART frame lock on short bursts; cannot replace physical RF modem.</td>
+        </tr>
+        <tr>
+          <td>Neural BCI Event Timestamps</td>
+          <td>Trans-cranial tissue dropouts</td>
+          <td><strong>GPC Event Marker</strong></td>
+          <td class="highlight-green">Applicable (Low-rate only)</td>
+          <td>Prevents timestamp shearing; unviable for raw high-bandwidth multi-channel streaming.</td>
         </tr>
         <tr>
           <td>100 Gbps Optical Fiber</td>
           <td>Chromatic Dispersion</td>
           <td>Hard-Decision Staircase / BCH</td>
-          <td>Requires ASIC</td>
+          <td class="highlight-red">Unsuitable</td>
           <td>Software decode ($73.4\,\mu\text{s}$) exceeds line-rate budgets.</td>
         </tr>
       </tbody>
