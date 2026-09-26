@@ -5,7 +5,7 @@ Monograph Sections Part 2: DNA-Primary Full Budget (Strictly 12 Pages)
 def get_section_6():
     return r'''
     <h2>VI. Domain 1: In-Silico & Ground-Truth Molecular DNA Data Storage</h2>
-    <p class="no-indent">Synthetic deoxyribonucleic acid (DNA) represents the ultimate archival storage medium, offering theoretical physical information densities exceeding $10^{18}\text{ bytes/mm}^3$ and operational longevity spanning millennia without power maintenance [1], [2]. To establish the operational necessity of Generalized Pāṭha Codes, we analyze the biophysical mechanics of single-molecule sequencing and physical oligonucleotide pool synthesis.</p>
+    <p class="no-indent">Synthetic deoxyribonucleic acid (DNA) is a candidate medium for high-density archival storage, offering theoretical physical information densities exceeding $10^{18}\text{ bytes/mm}^3$ and operational longevity spanning millennia without power maintenance [1], [2]. To establish the operational necessity of Generalized Pāṭha Codes, we analyze the biophysical mechanics of single-molecule sequencing and physical oligonucleotide pool synthesis.</p>
 
     <div class="figure-box">
       <img src="../figures/fig1_biological_compliance.png" alt="Biophysical Constraints and GC Regulation" style="max-height: 102px;">
@@ -97,7 +97,7 @@ Sample Codeword (Message = [1, 0, 1, 1]): TATTTCGTTTCCTTTCGTGTGTTCCTTTC
       <span class="eq-num">(6)</span>
     </div>
 
-    <p class="no-indent">Because 179 nt is well within the 200-nt commercial synthesis limit of Twist Bioscience, allocating <strong>16.20% overhead to the address header</strong> to guarantee zero strand dropouts under 10-nt nanopore stalls represents an exceptional, publication-grade engineering trade-off. Standard bulk payloads remain unencoded or protected by high-rate Reed-Solomon/fountain outer codes, achieving optimal total storage density.</p>
+    <p class="no-indent">Because 179 nt is within the 200-nt commercial synthesis limit of Twist Bioscience, allocating <strong>16.20% overhead to the address header</strong> to preserve strand indexation under 10-nt nanopore stalls provides a viable engineering trade-off. Bulk payloads remain protected by high-rate Reed-Solomon or fountain outer codes, optimizing overall storage density.</p>
 '''
 
 def get_section_7():
@@ -477,7 +477,7 @@ def get_section_7():
     <h3>E. Spatial Image Recovery Audit & Economic Synthesis Cost Assessment</h3>
     <p>To evaluate spatial data integrity across 2D media, we encoded a 32&times;32 monochromatic binary test image (8,192 bits) into a simulated synthetic DNA oligonucleotide pool. Under simulated Oxford Nanopore translocation physics with intermittent enzymatic stalls, unprotected addressing resulted in catastrophic pixel row drift ($\text{SSIM} = 0.0412$). In contrast, GPC recovered all 64 row frames with exact coordinate alignment, achieving a Structural Similarity Index $\text{SSIM} = 0.9842 \pm 0.006$ (Peak Signal-to-Noise Ratio $\text{PSNR} = 36.8\text{ dB}$), preserving complete coordinate row alignment with minor stochastic basecall noise.</p>
 
-    <p>From an economic synthesis perspective, Twist Bioscience commercial synthesis pricing is currently $\approx \$0.07\text{ per base}$ for custom oligonucleotide pools. For an indexed strand carrying $150\text{ nt}$ of biological payload, adding the 29-nt GPC address header increases the chemical synthesis cost from $\$10.50$ to $\$12.53$ per million molecules ($+\$2.03$). However, because unprotected strands suffer $32\%\text{--}100\%$ dropouts under Oxford Nanopore sequencing, surviving payload recovery requires a $3\times$ to $5\times$ sequencing coverage depth over-provisioning (costing an additional $\$18.00\text{--}\$30.00$ per gigabase). By eliminating strand dropouts, GPC reduces total lifecycle read-write storage cost by over $58\%$, delivering clear commercial economic viability.</p>
+    <p>From an economic synthesis perspective, Twist Bioscience commercial synthesis pricing is currently $\approx \$0.07\text{ per base}$ for custom oligonucleotide pools. For an indexed strand carrying $150\text{ nt}$ of biological payload, adding the 29-nt GPC address header increases the chemical synthesis cost from $\$10.50$ to $\$12.53$ per million molecules ($+\$2.03$). However, because unprotected strands suffer $32\%\text{--}100\%$ dropouts under Oxford Nanopore sequencing, surviving payload recovery requires a $3\times$ to $5\times$ sequencing coverage depth over-provisioning (costing an additional $\$18.00\text{--}\$30.00$ per gigabase). By mitigating strand dropouts, GPC reduces modeled lifecycle read-write storage cost by approximately $58\%$ in simulation; physical economic validation under scaled chemical synthesis remains future work.</p>
 '''
 
 def get_section_8():
@@ -602,7 +602,7 @@ def get_section_10():
     <p>In fully implantable, wireless neural telemetry systems (transmitting via low-power inductive near-field or ultra-wideband RF links through skull bone and scalp tissue), trans-cranial tissue absorption, dielectric dispersion, and subject head movements induce severe intermittent burst dropouts ($b = 5\text{ to }30\text{ bits}$). In conventional framing protocols (e.g., rigid sync words paired with CRC-8), a single dropped bit causes subsequent timestamps to be misaligned by fractional byte offsets. Downstream Kalman or Wiener motor decoders attribute spikes to incorrect temporal bins, destroying phase-locking value (PLV) calculations and inducing erratic, uncontrolled motor twitching.</p>
 
     <h3>B. Closed-Loop Latency Budget & On-Device Processing Constraints</h3>
-    <p>For seamless neuroprosthetic embodiment, closed-loop sensorimotor feedback latency must remain strictly below $10.0\text{ ms}$. If an inner synchronization code requires iterative belief propagation or computationally expensive Viterbi trellis traversals, it violates this hard real-time latency budget. By deploying GPC with deterministic Levenshtein-lattice alignment, neural event frames are resynchronized on-device with sub-millisecond latency.</p>'''
+    <p>For continuous neuroprosthetic control, closed-loop sensorimotor feedback latency must remain strictly below $10.0\text{ ms}$. If an inner synchronization code requires iterative belief propagation or computationally expensive Viterbi trellis traversals, it violates this hard real-time latency budget. By deploying GPC with deterministic Levenshtein-lattice alignment, neural event frames are resynchronized on-device with sub-millisecond latency.</p>'''
 
 def get_section_11():
     return r'''<h2>XI. Cross-Domain BCI Results, Pāṭha Ablation & Proposed Hardware Specifications</h2>
