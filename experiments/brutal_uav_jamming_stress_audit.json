@@ -10,7 +10,7 @@
     },
     "10": {
       "burst_bits": 10,
-      "GPC_FER": 0.002,
+      "GPC_FER": 0.0,
       "MAVLink_FER": 1.0,
       "Schoeny_FER": 0.0,
       "Failsafe_Risk_Pct": 0.0
@@ -45,10 +45,10 @@
     },
     "35": {
       "burst_bits": 35,
-      "GPC_FER": 0.08,
+      "GPC_FER": 0.079,
       "MAVLink_FER": 1.0,
       "Schoeny_FER": 1.0,
-      "Failsafe_Risk_Pct": 0.0512
+      "Failsafe_Risk_Pct": 0.0493
     }
   }
 }

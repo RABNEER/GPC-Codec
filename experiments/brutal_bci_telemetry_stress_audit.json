@@ -6,49 +6,49 @@
       "GPC_FER": 0.001,
       "BCI_Sync_FER": 1.0,
       "Schoeny_FER": 0.0,
-      "Mean_Latency_us": 114.92
+      "Mean_Latency_us": 112.33
     },
     "10": {
       "burst_bits": 10,
       "GPC_FER": 0.001,
       "BCI_Sync_FER": 1.0,
       "Schoeny_FER": 0.0,
-      "Mean_Latency_us": 66.56
+      "Mean_Latency_us": 69.85
     },
     "15": {
       "burst_bits": 15,
-      "GPC_FER": 0.001,
+      "GPC_FER": 0.0,
       "BCI_Sync_FER": 1.0,
       "Schoeny_FER": 1.0,
-      "Mean_Latency_us": 118.28
+      "Mean_Latency_us": 113.14
     },
     "20": {
       "burst_bits": 20,
       "GPC_FER": 0.0,
       "BCI_Sync_FER": 1.0,
       "Schoeny_FER": 1.0,
-      "Mean_Latency_us": 70.49
+      "Mean_Latency_us": 69.25
     },
     "25": {
       "burst_bits": 25,
-      "GPC_FER": 0.009,
+      "GPC_FER": 0.013,
       "BCI_Sync_FER": 1.0,
       "Schoeny_FER": 1.0,
-      "Mean_Latency_us": 40.94
+      "Mean_Latency_us": 39.93
     },
     "30": {
       "burst_bits": 30,
-      "GPC_FER": 0.002,
+      "GPC_FER": 0.001,
       "BCI_Sync_FER": 1.0,
       "Schoeny_FER": 1.0,
-      "Mean_Latency_us": 61.78
+      "Mean_Latency_us": 58.53
     },
     "35": {
       "burst_bits": 35,
-      "GPC_FER": 0.082,
+      "GPC_FER": 0.09,
       "BCI_Sync_FER": 1.0,
       "Schoeny_FER": 1.0,
-      "Mean_Latency_us": 61.53
+      "Mean_Latency_us": 57.53
     }
   }
 }

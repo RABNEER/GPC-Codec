@@ -7,74 +7,74 @@
     "0": {
       "burst_nt": 0,
       "burst_bits": 0,
-      "GPC_Loss": 0.062,
-      "Schoeny_Loss": 0.32,
-      "VT_Loss": 0.353,
-      "Mean_Latency_us": 342.01
+      "GPC_Loss": 0.056,
+      "Schoeny_Loss": 0.343,
+      "VT_Loss": 0.337,
+      "Mean_Latency_us": 338.56
     },
     "2": {
       "burst_nt": 2,
       "burst_bits": 4,
-      "GPC_Loss": 0.077,
-      "Schoeny_Loss": 0.357,
+      "GPC_Loss": 0.072,
+      "Schoeny_Loss": 0.336,
       "VT_Loss": 1.0,
-      "Mean_Latency_us": 126.61
+      "Mean_Latency_us": 124.34
     },
     "4": {
       "burst_nt": 4,
       "burst_bits": 8,
-      "GPC_Loss": 0.093,
-      "Schoeny_Loss": 0.356,
+      "GPC_Loss": 0.058,
+      "Schoeny_Loss": 0.394,
       "VT_Loss": 1.0,
-      "Mean_Latency_us": 84.35
+      "Mean_Latency_us": 84.45
     },
     "6": {
       "burst_nt": 6,
       "burst_bits": 12,
-      "GPC_Loss": 0.068,
+      "GPC_Loss": 0.069,
       "Schoeny_Loss": 1.0,
       "VT_Loss": 1.0,
-      "Mean_Latency_us": 52.0
+      "Mean_Latency_us": 54.53
     },
     "8": {
       "burst_nt": 8,
       "burst_bits": 16,
-      "GPC_Loss": 0.054,
+      "GPC_Loss": 0.053,
       "Schoeny_Loss": 1.0,
       "VT_Loss": 1.0,
-      "Mean_Latency_us": 96.86
+      "Mean_Latency_us": 99.15
     },
     "10": {
       "burst_nt": 10,
       "burst_bits": 20,
-      "GPC_Loss": 0.052,
+      "GPC_Loss": 0.046,
       "Schoeny_Loss": 1.0,
       "VT_Loss": 1.0,
-      "Mean_Latency_us": 73.43
+      "Mean_Latency_us": 71.01
     },
     "12": {
       "burst_nt": 12,
       "burst_bits": 24,
-      "GPC_Loss": 0.067,
+      "GPC_Loss": 0.049,
       "Schoeny_Loss": 1.0,
       "VT_Loss": 1.0,
-      "Mean_Latency_us": 50.85
+      "Mean_Latency_us": 51.1
     },
     "14": {
       "burst_nt": 14,
       "burst_bits": 28,
-      "GPC_Loss": 0.028,
+      "GPC_Loss": 0.043,
       "Schoeny_Loss": 1.0,
       "VT_Loss": 1.0,
-      "Mean_Latency_us": 85.63
+      "Mean_Latency_us": 84.35
     },
     "16": {
       "burst_nt": 16,
       "burst_bits": 32,
-      "GPC_Loss": 0.033,
+      "GPC_Loss": 0.028,
       "Schoeny_Loss": 1.0,
       "VT_Loss": 1.0,
-      "Mean_Latency_us": 54.82
+      "Mean_Latency_us": 54.57
     }
   }
 }

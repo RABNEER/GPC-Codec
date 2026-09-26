@@ -4,11 +4,11 @@
   "burst_sweep": {
     "5": {
       "burst_length": 5,
-      "GPC_FER": 0.0005,
+      "GPC_FER": 0.0,
       "MAVLink_FER": 1.0,
       "RS_Sync_FER": 1.0,
       "Schoeny_FER": 0.0,
-      "GPC_Mean_Latency_us": 116.64,
+      "GPC_Mean_Latency_us": 115.78,
       "GPC_Failsafe_Trigger_Risk_Pct": 0.0,
       "MAVLink_Failsafe_Trigger_Risk_Pct": 100.0
     },
@@ -18,7 +18,7 @@
       "MAVLink_FER": 1.0,
       "RS_Sync_FER": 1.0,
       "Schoeny_FER": 0.0,
-      "GPC_Mean_Latency_us": 69.6,
+      "GPC_Mean_Latency_us": 70.48,
       "GPC_Failsafe_Trigger_Risk_Pct": 0.0,
       "MAVLink_Failsafe_Trigger_Risk_Pct": 100.0
     },
@@ -28,7 +28,7 @@
       "MAVLink_FER": 1.0,
       "RS_Sync_FER": 1.0,
       "Schoeny_FER": 1.0,
-      "GPC_Mean_Latency_us": 117.75,
+      "GPC_Mean_Latency_us": 115.13,
       "GPC_Failsafe_Trigger_Risk_Pct": 0.0,
       "MAVLink_Failsafe_Trigger_Risk_Pct": 100.0
     },
@@ -38,18 +38,18 @@
       "MAVLink_FER": 1.0,
       "RS_Sync_FER": 1.0,
       "Schoeny_FER": 1.0,
-      "GPC_Mean_Latency_us": 69.85,
+      "GPC_Mean_Latency_us": 70.0,
       "GPC_Failsafe_Trigger_Risk_Pct": 0.0,
       "MAVLink_Failsafe_Trigger_Risk_Pct": 100.0
     },
     "25": {
       "burst_length": 25,
-      "GPC_FER": 0.012,
+      "GPC_FER": 0.0095,
       "MAVLink_FER": 1.0,
       "RS_Sync_FER": 1.0,
       "Schoeny_FER": 1.0,
-      "GPC_Mean_Latency_us": 41.82,
-      "GPC_Failsafe_Trigger_Risk_Pct": 0.0002,
+      "GPC_Mean_Latency_us": 40.19,
+      "GPC_Failsafe_Trigger_Risk_Pct": 0.0001,
       "MAVLink_Failsafe_Trigger_Risk_Pct": 100.0
     },
     "30": {
@@ -58,7 +58,7 @@
       "MAVLink_FER": 1.0,
       "RS_Sync_FER": 1.0,
       "Schoeny_FER": 1.0,
-      "GPC_Mean_Latency_us": 59.69,
+      "GPC_Mean_Latency_us": 62.74,
       "GPC_Failsafe_Trigger_Risk_Pct": 0.0,
       "MAVLink_Failsafe_Trigger_Risk_Pct": 100.0
     }

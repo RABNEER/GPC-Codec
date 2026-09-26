@@ -8,7 +8,7 @@
       "Naive_Repetition_FER": 1.0,
       "Barker_CRC_FER": 1.0,
       "Schoeny_FER": 0.0,
-      "GPC_Mean_Latency_us": 117.08
+      "GPC_Mean_Latency_us": 124.8
     },
     "10": {
       "burst_length": 10,
@@ -16,7 +16,7 @@
       "Naive_Repetition_FER": 1.0,
       "Barker_CRC_FER": 1.0,
       "Schoeny_FER": 0.0,
-      "GPC_Mean_Latency_us": 68.16
+      "GPC_Mean_Latency_us": 73.8
     },
     "15": {
       "burst_length": 15,
@@ -24,7 +24,7 @@
       "Naive_Repetition_FER": 1.0,
       "Barker_CRC_FER": 1.0,
       "Schoeny_FER": 1.0,
-      "GPC_Mean_Latency_us": 117.19
+      "GPC_Mean_Latency_us": 123.16
     },
     "20": {
       "burst_length": 20,
@@ -32,15 +32,15 @@
       "Naive_Repetition_FER": 1.0,
       "Barker_CRC_FER": 1.0,
       "Schoeny_FER": 1.0,
-      "GPC_Mean_Latency_us": 70.71
+      "GPC_Mean_Latency_us": 74.59
     },
     "25": {
       "burst_length": 25,
-      "GPC_FER": 0.0085,
+      "GPC_FER": 0.0115,
       "Naive_Repetition_FER": 1.0,
       "Barker_CRC_FER": 1.0,
       "Schoeny_FER": 1.0,
-      "GPC_Mean_Latency_us": 41.93
+      "GPC_Mean_Latency_us": 43.25
     },
     "30": {
       "burst_length": 30,
@@ -48,7 +48,7 @@
       "Naive_Repetition_FER": 1.0,
       "Barker_CRC_FER": 1.0,
       "Schoeny_FER": 1.0,
-      "GPC_Mean_Latency_us": 61.83
+      "GPC_Mean_Latency_us": 68.2
     }
   }
 }

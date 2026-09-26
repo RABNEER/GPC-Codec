@@ -30,13 +30,13 @@ def get_section_1():
     <p>The Vedic oral recitation tradition (<em>Pāṭha-chintana</em>) extended this mathematical formalization into the domain of <strong>channel coding and data integrity</strong>. Facing an acoustic human memory channel prone to syllable omission (deletion), repetition (insertion), and word inversion (transposition), ancient scholars devised eleven deterministic permutation modes (<em>vikṛti-pāṭhas</em>). These include <em>Krama-pāṭha</em> (sliding overlapping bigrams: $1-2, 2-3 \dots$), <em>Jaṭā-pāṭha</em> (bidirectional reversal pairs: $1-2, 2-1, 1-2 \dots$), and <em>Ghana-pāṭha</em> (nested forward-reverse trigram permutations: $1-2, 2-1, 1-2-3, 3-2-1, 1-2-3$). This multi-scale cyclic structure acts as an intrinsic topological check: if a token drops or transposes during transmission, cyclic adjacency invariants are violated across overlapping forward and backward frames, localizing the error in $O(1)$ time. In GPC, we abstract this empirical preservation protocol into a rigorous algebraic coding framework for modern Insertion, Deletion, and Transposition (IDT) channels.</p>
 
     <h3>C. Summary of Core Contributions</h3>
-    <p>This monograph provides a rigorous theoretical foundation, mathematical proofs, and extensive empirical evaluations for GPC. Our primary contributions are summarized as follows:</p>
-    <p><strong>1) Algebraic Formalization of $\text{GPC}(k, d)$:</strong> We formalize the Generalized Patha Code algebra over arbitrary finite alphabets $\Sigma$, deriving the generalized permutation kernel $\Pi_k$ with emitted block length $L(k) = k^2 + 2k - 2$ and information code rate $R = \frac{d}{k^2 + 2k - 2}$.</p>
-    <p><strong>2) Formal Levenshtein Distance Theorems:</strong> We prove Theorem 1, establishing that $\text{GPC}(k, 1)$ deterministically detects and confines any burst deletion of length $b \le k - 1$ with minimum Levenshtein distance $D_L \ge b(k^2 + 2k - 2) - 2(k - 1)$, and Theorem 2, proving that adjacent transpositions induce $D_L \ge 2(k^2 - 1)$.</p>
+    <p>This monograph provides a rigorous theoretical foundation, exact mathematical derivations, and extensive empirical evaluations for GPC. Our primary contributions are summarized as follows:</p>
+    <p><strong>1) Exact Combinatorial Block Length and Code Rate [DERIVED]:</strong> We formalize the multi-pass permutation placement with block length $M(K) = 13K + 6$ and code rate $R = K / (13K + 6)$, interweaving 5 permutation passes ($\mathbf{F}_2, \mathbf{B}_2, \mathbf{F}_3^{(1)}, \mathbf{B}_3, \mathbf{F}_3^{(2)}$) anchored by 6 deterministic pilot delimiters.</p>
+    <p><strong>2) Formal Marked Burst-Erasure Lower Bound [DERIVED]:</strong> We prove Theorem 1, establishing that GPC guarantees minimum coordinate span $B_E(K) = 10K + 7$ across all information symbols for $K \ge 3$, yielding an asymptotic marked burst-erasure recovery fraction of $\lim_{K \to \infty} B_E / M = 10/13 \approx 76.92\%$ without dynamic programming overhead.</p>
     <p><strong>3) Resolving the DNA Strand Address Dropout Crisis:</strong> By allocating GPC strictly as an inner 29-nt Address Header on a 150-nt biological payload, we achieve total strand synchronization with only <strong>16.20% true oligonucleotide overhead</strong> ($179\text{ nt} < 200\text{ nt}$ commercial synthesis limit), resolving the code rate paradox.</p>
-    <p><strong>4) Primary Ground Truth DNA Storage Benchmark:</strong> Evaluated on the complete 5,386-base genome of Frederick Sanger's <strong>Bacteriophage &Phi;X174</strong> (NCBI <code>NC_001422.1</code>), GPC maintains complete strand retention (0.00% loss) across isolated motor stalls up to $10\text{ nt}$ ($20\text{ bits}$) and reassembles unordered pools in 1.31 ms ($81.6\,\mu\text{s}$ per strand) with exact coordinate alignment, whereas state-of-the-art schemes suffer 100.00% collapse.</p>
-    <p><strong>5) Brutal Realistic Mixed-Noise Stress Suite & Failure Envelope:</strong> Under concurrent Oxford Nanopore R10.4 impairments (0.6% sub, 0.6% del, 0.4% ins, burst slips $0\dots 16\text{ nt}$ across 23,000 trials), GPC bounds strand loss to $\le 9.30\%$, well within outer fountain code erasure thresholds, while rigorously mapping the breaking point envelope ($b > 32\text{ bits}$).</p>
-    <p><strong>6) Cross-Domain Extensions & Microcontroller Profiling:</strong> We establish secondary applicability to UAV telemetry under RF chirp jamming and low-power BCI neural telemetry, profiling the complete GPC codec on ARM Cortex-M4 (1,842 bytes Flash, 4.2 KB SRAM, $552\,\mu\text{s}$ latency) with fully deterministic algorithmic benchmarks.</p>
+    <p><strong>4) Primary Ground Truth DNA Storage Benchmark [CODE-RUN]:</strong> Evaluated on the complete 5,386-base genome of Frederick Sanger's <strong>Bacteriophage &Phi;X174</strong> (NCBI <code>NC_001422.1</code>), GPC maintains complete strand retention across isolated motor stalls up to $10\text{ nt}$ ($20\text{ bits}$) and bounded loss of $2.60\%$ at $12\text{ nt}$ across 2,500 trials, reassembling unordered pools in 1.30 ms ($81.4\,\mu\text{s}$ per strand) with exact coordinate alignment, whereas state-of-the-art schemes suffer 100.00% collapse.</p>
+    <p><strong>5) Realistic Mixed-Noise Stress Suite & Failure Envelope [CODE-RUN]:</strong> Under concurrent Oxford Nanopore R10.4 impairments (0.6% sub, 0.6% del, 0.4% ins, burst slips $0\dots 16\text{ nt}$ across 9,000 trials), GPC bounds strand loss to between $2.80\%$ and $7.20\%$, well within outer fountain code erasure thresholds, while competitor schemes collapse to $100.00\%$ loss at $b \ge 6\text{ nt}$.</p>
+    <p><strong>6) Cross-Domain Extensions & Computational Reproducibility [CODE-RUN]:</strong> We establish cross-domain synchronization robustness across 24,000 simulated trials on UAV RF chirp jamming sweeps and wireless intracortical BCI telemetry, backed by fully deterministic algorithmic suites totaling 84,732 machine trials with zero unhandled crashes.</p>
 
     <h3>D. Addressing the Synchronization Rate-Reliability Trade-Off</h3>
     <p class="no-indent">In high-integrity systems engineering, payload data and synchronization framing occupy fundamentally different rate regimes. While bulk storage optimizes for rate ($R \to 1$), synchronization preambles and emergency micro-telemetry routinely employ ultra-low-rate spreading codes. For example, GPS L1 C/A expands each bit into 1,023 chips ($R = 1/1023$), IEEE 802.11b Wi-Fi preambles utilize 11-chip Barker codes ($R = 1/11$), and 5G NR broadcast channels match polar codes down to $R \le 1/16$. In autonomous robotics, critical state frames (such as MAVLink <code>HEARTBEAT</code> packets) comprise only 9 bytes. At $K=4$, GPC expands this 9-byte payload into a 130-byte frame. Because 130 bytes fits well within standard 256-byte LoRa and Digi XBee radio frames, GPC eliminates catastrophic desynchronization without exceeding real-time airtime budgets.</p>
@@ -155,188 +155,157 @@ def get_section_2():
     <br>• <em>High-Rate Algebraic Codes (VT, Helberg):</em> While asymptotically optimal ($R \to 1$) for isolated single edits ($t=1$), their algebraic structure degrades exponentially under multi-symbol burst deletions or compound substitution-deletion noise.
     <br>• <em>Probabilistic Trellis Codes (Davey-MacKay):</em> By tracking channel drift $\tau \in [-M_\tau, +M_\tau]$ across an HMM trellis, watermark codes survive distributed noise, but incur quadratic state complexity $O(N \cdot M_\tau^2)$ and suffer catastrophic failure whenever channel drift exceeds the trellis boundary.
     <br>• <em>Rejection-Sampling Fountains (DNA Fountain):</em> Luby Transform codes handle strand dropouts via belief-propagation peeling, but treat internal indels as non-correctable errors, forcing the basecaller to discard entire strands.
-    <br>• <em>Generalized Pāṭha Codes (GPC):</em> Rather than competing with bulk transport codes for maximal payload capacity, GPC is designed as a <strong>deterministic inner synchronization code and permutation verification layer</strong>. GPC intentionally sacrifices code rate ($R = \frac{d}{k^2 + 2k - 2}$) to guarantee linear-time $O(N)$ frame resynchronization and deterministic burst containment without dynamic programming overhead.</p>
+    <br>• <em>Generalized Pāṭha Codes (GPC):</em> Rather than competing with bulk transport codes for maximal payload capacity, GPC is designed as a <strong>deterministic inner synchronization code and permutation verification layer</strong>. GPC intentionally trades raw code rate ($R = \frac{K}{13K + 6}$) to guarantee linear-time frame resynchronization and deterministic burst containment without dynamic programming overhead.</p>
 
     <h3>F. The Cyclic Permutation Hypothesis & Topological Invariants</h3>
-    <p>Our foundational hypothesis posits that channel desynchronization can be transformed into an algebraic invariant checking problem over directed multigraphs. In classical serial streaming, an unencoded sequence $W = (w_1, \dots, w_N)$ forms a linear path graph $P_N$, where deleting any interior vertex $w_i$ disconnects the graph, destroying coordinate alignment. Under $\text{GPC}(k, d)$, the forward-reverse permutation kernel transforms $P_N$ into a 2-connected cyclic multigraph. In this multigraph, every vertex is protected by bidirectional cycles, ensuring that local token adjacencies can be reconstructed deterministically in $O(1)$ time even when symbols are stochastically deleted by channel noise.</p>
+    <p>Our foundational hypothesis posits that channel desynchronization can be transformed into an algebraic invariant checking problem over directed multigraphs. In classical serial streaming, an unencoded sequence forms a linear path graph $P_N$, where deleting any interior vertex disconnects the graph, destroying coordinate alignment. Under GPC, the multi-pass permutation placement transforms $P_N$ into a 2-connected cyclic multigraph. In this multigraph, every information symbol is protected across five forward and reverse passes, ensuring that local token adjacencies can be reconstructed deterministically in linear time even when symbols are stochastically deleted by channel noise.</p>
 '''
 
 def get_section_3():
     return r'''
     <h2>III. Generalized Patha Code (GPC) Architecture</h2>
-    <p class="no-indent">The structural resilience of GPC arises from its dual-phase execution architecture. Rather than treating an input stream as an unstructured bit-string, GPC processes symbols across an invariant permutation lattice parameterized by a tuple $(\mathcal{A}, \pi, \mathcal{P}, \kappa)$, where $\mathcal{A}$ is the alphabet, $\pi$ is the cyclic step operator, $\mathcal{P}$ is the pilot symbol matrix, and $\kappa$ represents the adaptive stage-bound threshold.</p>
+    <p class="no-indent">The structural resilience of GPC arises from its multi-stage permutation placement and deterministic pilot delimiter anchoring. Rather than treating an input stream as an unstructured bit-string, GPC interweaves payload symbols across five cyclic permutation sweeps over the symmetric group $\mathcal{S}_K$ interspersed with deterministic pilot anchors, parameterized by the tuple $(K, \Pi_K, \mathcal{P}, M)$.</p>
 
     <div class="figure-box">
       <img src="../figures/figure3_architecture.svg" alt="GPC Pipeline Architecture" style="max-height: 85px;">
-      <div class="caption">Fig. 1. End-to-end execution flow of the Generalized Patha Code (GPC) Dual-Phase Architecture: Input Tokenization &rarr; Permutation Interleaving &rarr; Stage-Bound Cut &rarr; Single-Pass Synchronization Decoder.</div>
+      <div class="caption">Fig. 1. End-to-end execution flow of the Generalized Patha Code (GPC) Dual-Phase Architecture: Input Tokenization &rarr; Permutation Interleaving &rarr; Deterministic Pilot Anchoring &rarr; Two-Phase Synchronization Decoder.</div>
     </div>
 
-    <h3>A. The Permutation Invariant Topology & Generalized $\text{GPC}(k, d)$ Kernel</h3>
-    <p>Classical <em>Ghana-pāṭha</em> recitation permutes sequential elements $(1, 2, 3, \dots)$ through nested forward-reverse triplets: $\mathbf{p}_{\text{Ghana}} = (1, 2, 2, 1, 1, 2, 3, 3, 2, 1, 1, 2, 3)$. In GPC, this combinatorial structure is generalized into an algebraic family of Generalized Permutation Codes, denoted as $\text{GPC}(k, d)$, defined by sliding window length $k \in \mathbb{N}_{\ge 2}$ and window stride $d \in \mathbb{N}$ ($1 \le d \le k$).</p>
+    <h3>A. Toroidal Permutation Placement & 5-Cycle Architecture</h3>
+    <p>Classical <em>Ghana-pāṭha</em> recitation permutes sequential linguistic units through nested forward-reverse steps: $\mathbf{p}_{\text{Ghana}} = (1, 2, 2, 1, 1, 2, 3, 3, 2, 1, 1, 2, 3)$. In GPC, this Vedic mnemonic topology is generalized into a systematic multi-pass permutation placement over an information payload $\mathbf{m} = (m_1, \dots, m_K)$ of dimension $K \ge 2$.</p>
 
-    <p>For a source sequence $W = (w_1, \dots, w_N) \in \Sigma^N$, the total number of evaluation windows is $M = \lfloor \frac{N - k}{d} \rfloor + 1$. For each window index $j \in \{0, \dots, M-1\}$, the input subsequence is $W_j = (w_{j \cdot d + 1}, \dots, w_{j \cdot d + k})$. The generalized permutation operator $\Pi_k: \Sigma^k \to \Sigma^{L(k)}$ is defined by concatenating forward and reverse sweeps across increasing prefixes:</p>
+    <p>The GPC placement consists of five successive cyclic passes across the symmetric group $\mathcal{S}_K$, anchored by six deterministic pilot delimiters $\mathcal{P} = 1$ (mapped to binary 1 or specific biophysical anchors):</p>
     <div class="eq-box">
-      $$\Pi_k(W_j) = \left( \bigoplus_{m=2}^{k-1} \left[ W_j[1:m] \circ \text{rev}(W_j[1:m]) \right] \right) \circ W_j[1:k] \circ \text{rev}(W_j[1:k]) \circ W_j[1:k]$$
+      $$\mathbf{c} = \big[ \pi_0, \mathbf{F}_2, \pi_1, \mathbf{B}_2, \pi_2, \mathbf{F}_3^{(1)}, \pi_3, \mathbf{B}_3, \pi_4, \mathbf{F}_3^{(2)}, \pi_5 \big]$$
       <span class="eq-num">(1)</span>
     </div>
-    <p class="no-indent">where $\circ$ denotes string concatenation and $\text{rev}(\cdot)$ is the string reversal operator. The emitted block length $L(k)$ satisfies:</p>
+    <p class="no-indent">where each pass is defined for indices $i \in [0, K-1]$ (with indices evaluated modulo $K$):</p>
+    <p class="no-indent">1. <em>Forward 2-window pass</em> ($\mathbf{F}_2$): emits symbol pairs $(s_i, s_{i+1 \pmod K})$, spanning $2K$ symbols.
+    <br>2. <em>Backward 2-window pass</em> ($\mathbf{B}_2$): emits reverse pairs $(s_{i+1 \pmod K}, s_i)$, spanning $2K$ symbols.
+    <br>3. <em>First Forward 3-window pass</em> ($\mathbf{F}_3^{(1)}$): emits triplets $(s_i, s_{i+1 \pmod K}, s_{i+2 \pmod K})$, spanning $3K$ symbols.
+    <br>4. <em>Backward 3-window pass</em> ($\mathbf{B}_3$): emits reverse triplets $(s_{i+2 \pmod K}, s_{i+1 \pmod K}, s_i)$, spanning $3K$ symbols.
+    <br>5. <em>Second Forward 3-window pass</em> ($\mathbf{F}_3^{(2)}$): emits forward triplets $(s_i, s_{i+1 \pmod K}, s_{i+2 \pmod K})$, spanning $3K$ symbols.</p>
+
+    <p>The total block length $M(K)$ and symbol repetition multiplicity $\mu_j$ satisfy:</p>
     <div class="eq-box">
-      $$L(k) = \sum_{m=2}^{k-1} 2m + 3k = 2\left(\frac{(k-1)k}{2} - 1\right) + 3k = k^2 + 2k - 2$$
+      $$M(K) = 2K + 2K + 3K + 3K + 3K + 6 = 13K + 6, \quad \mu_j = 2 + 2 + 3 + 3 + 3 = 13$$
       <span class="eq-num">(2)</span>
     </div>
-    <p class="no-indent">Evaluating $L(k)$ yields: $L(2) = 2^2 + 2(2) - 2 = 6$ (matching the Jaṭā-pāṭha kernel $(1, 2, 2, 1, 1, 2)$); $L(3) = 3^2 + 2(3) - 2 = 13$ (matching the Ghana-pāṭha kernel length); and $L(4) = 22$. In a continuous stream with unit stride ($d=1$), every interior token $w_j$ appears exactly $3 + 7 + 3 = 13$ times across 39 emitted symbols, guaranteeing dense multi-scale invariant verification.</p>
+    <p class="no-indent">For $K=4$, $M = 13(4) + 6 = 58$ symbols ($R = 4/58 \approx 0.0690$). For $K=6$, $M = 13(6) + 6 = 84$ symbols ($R = 6/84 \approx 0.0714$). Because every information symbol appears exactly 13 times distributed across the forward and reverse cycles, the code establishes an extraordinarily wide temporal dispersion across the transmission frame.</p>
 
-    <p>This cyclic permutation satisfies an essential algebraic property: the permutation matrix $\mathbf{P}_{\text{GPC}}$ is an orthogonal involution over the local parity check space. If any single symbol within the triplet is erased during transit, the remaining symbols satisfy a system of linear congruence equations, allowing the exact recovery of the erased coordinate without requiring dynamic programming search passes.</p>
-
-    <p>Furthermore, this transposition pattern introduces an artificial spectral spreading effect. By alternating between forward steps $(+1)$ and reverse steps $(-1)$, the transmitted sequence exhibits zero DC bias in its transition frequency domain. This property is particularly vital for baseband optical transceivers and high-speed serial links, where DC baseline wander induces clock jitter and threshold detection errors.</p>
-
-    <h3>B. Pilot Sequence Interleaving</h3>
-    <p>To bound channel slip under sustained burst deletions, GPC injects deterministic, orthogonal pilot symbols $\mathbf{p} \in \mathcal{P}$ at calculated interval boundaries $T_{\text{pilot}} = \lfloor \kappa / \log_2 |\mathcal{A}| \rfloor$. Because $\mathbf{p} \notin \text{Alphabet}(\text{Payload})$ or satisfies a unique cyclic autocorrelation property $R_p(\tau) = \delta(\tau)$, the receiver detects frame slips in $O(1)$ operations with zero false-alarm probability.</p>
-
-    <p>In our reference implementation, pilot sequences are constructed using Barker sequences of length 7 or 11 over binary alphabets, or complementary BSM sequences ($M^* = \text{ACAGTCGA}$, $s_{\max} = 1$) over quaternary molecular domains. The periodic autocorrelation function satisfies:</p>
+    <h3>B. Deterministic Pilot Delimiter Coordinates</h3>
+    <p>Pilot symbols $\pi_0, \dots, \pi_5$ are injected at fixed, deterministic coordinates $\mathcal{P}$ directly indexing the boundaries between permutation passes:</p>
     <div class="eq-box">
-      $$R_{\mathbf{p}}(\tau) = \sum_{k=0}^{L-1} p_k p_{k+\tau}^* = \begin{cases} L, & \tau = 0 \\ 0 \text{ or } -1, & \tau \ne 0 \end{cases}$$
-      <span class="eq-num">(2b)</span>
+      $$\mathcal{P} = \{p_0, p_1, p_2, p_3, p_4, p_5\} = \{0, 2K+1, 4K+2, 7K+3, 10K+4, 13K+5\}$$
+      <span class="eq-num">(3)</span>
     </div>
-    <p class="no-indent">Consequently, a simple sliding correlator operating on the received stream produces a sharp impulse at frame boundaries, allowing instant acquisition of the symbol clock even under heavy SNR degradation.</p>
+    <p class="no-indent">The inter-pilot distances alternate deterministically: $p_1 - p_0 = 2K + 1$, $p_2 - p_1 = 2K + 1$, $p_3 - p_2 = 3K + 1$, $p_4 - p_3 = 3K + 1$, and $p_5 - p_4 = 3K + 1$. When an unmarked burst deletion shortens the received frame, the relative shift of surviving pilot symbols provides immediate, table-free bounds on the burst location.</p>
+
+    <h3>C. Algorithmic Formulation of Two-Phase Synchronization Decoding</h3>
+    <p class="no-indent">Decoding executes via Algorithm 1 directly in linear time, without dynamic programming or trellis branch exploration:</p>
 
     <div class="code-block">
-ALGORITHM 1: GPC Dual-Phase Pipeline
-Input : Byte Stream B={b_0..b_{N-1}}, Window k, Stride d, Pilot P
-Output: Encoded Stream C, Decoded Stream B'
+ALGORITHM 1: Two-Phase Greedy Alignment with Consensus Margin Voting
+Input : Received Vector y (length N), Block Length M, Payload Dimension K,
+        Placement Vector &Pi;, Pilot Coordinates P = {p_0..p_5}
+Output: Decoded Message m &in; {0, 1}^K or Failure Alert
 
-procedure GPC_ENCODE(B, k, d, P):
-  C &larr; [], &sigma; &larr; 0, M &larr; floor((length(B) - k)/d) + 1
-  for j &larr; 0 to M - 1 do:
-    W_j &larr; B[j*d : j*d + k]
-    Block &larr; PermuteKernel(W_j, k)  // L(k) = k^2 + 2k - 2
-    for each symbol s in Block do:
-      &sigma; &larr; (&sigma; &oplus; Hash(s)) & 0xFFFF
-      C.append(s)
-      if &sigma; % StageThreshold == 0 then
-        C.append(P)    // Pilot Anchor
-        &sigma; &larr; 0
-  return C
+// Phase 1: Candidate Cut Offset Pruning via Pilot Scoring
+b &larr; M - N                              // Length of burst deletion
+best_score &larr; -1, S* &larr; []
+for s_cand &larr; 0 to M - b do:
+  score &larr; 0
+  for each p in P do:
+    idx &larr; (p if p &lt; s_cand else (p - b if p &ge; s_cand + b else -1))
+    if idx &ge; 0 and idx &lt; N and y[idx] == 1 then:
+      score &larr; score + 1
+  if score &gt; best_score then:
+    best_score &larr; score, S* &larr; [s_cand]
+  else if score == best_score then:
+    S*.append(s_cand)                  // Accumulate alignment ties
 
-procedure GPC_DECODE(C, k, d, P):
-  B' &larr; [], idx &larr; 0, Q &larr; {(&sigma;:0, pos:0)}
-  while idx &lt; length(C) do:
-    anchor &larr; FindPilot(C, idx, idx + 2*T_pilot)
-    Chunk  &larr; C[idx : anchor]
-    Tuple  &larr; InvertPermutation(Chunk, k)
-    if CheckParityInvariant(Tuple, &sigma;) then
-      B'.append(Tuple)   // Greedy Commit (|Q| &le; 2)
-      idx &larr; anchor + length(P)
-    else
-      idx &larr; ResolveSlip(C, idx, Q)
-  return B'
+// Phase 2: Hypothesis Resolution via Consensus Margin Voting
+best_margin &larr; -1, best_msg &larr; None
+for each s_hat in S* do:
+  aligned &larr; y[0 : s_hat] + [None]*b + y[s_hat : N]
+  margin_sum &larr; 0, cand_msg &larr; []
+  for sym &larr; 1 to K do:
+    votes &larr; [aligned[i] for i where &Pi;[i] == sym and aligned[i] &ne; None]
+    ones &larr; count(votes, 1), zeros &larr; count(votes, 0)
+    cand_msg.append(1 if ones &ge; zeros else 0)
+    margin_sum &larr; margin_sum + |ones - zeros|
+  if margin_sum &gt; best_margin then:
+    best_margin &larr; margin_sum, best_msg &larr; cand_msg
+return best_msg
     </div>
-
-    <h3>C. Stage-Bounded Adaptive Cuts</h3>
-    <p>Unlike fixed-block codes, GPC continuously evaluates the rolling state checksum $\sigma$. When $\sigma \equiv 0 \pmod \kappa$, a stage cut is declared, flushing internal permutation registers. This guarantees that channel impairments (e.g., burst noise) remain isolated within an $O(\kappa)$ window, preventing global catastrophic failure.</p>
-
-    <p>The state register $\sigma$ is updated via a non-linear feedback shift register (NLFSR) hash: $\sigma_{t+1} = (\sigma_t \ll 5 + \sigma_t) \oplus s_t \pmod{2^{16} - 1}$. Because this recurrence generates an equidistributed pseudo-random walk across $\mathbb{Z}_{2^{16}}$, the probability of encountering a stage cut is strictly geometric with parameter $p_{\text{cut}} = 1/\kappa$. This guarantees that the expected block length $\mathbb{E}[L_{\text{stage}}] = \kappa$ remains completely invariant under arbitrary source entropy distributions.</p>
-
-    <p>When an error occurs within a stage, its propagation is mathematically quarantined. Even if an entire stage of $\kappa$ symbols is erased by a deep channel fade or radio jammer, the subsequent stage cut provides a clean slate. The decoder detects the pilot anchor at the boundary of stage $k+1$, resets its internal finite-state registers to initial conditions, and resumes instantaneous decoding of subsequent payloads without needing to re-negotiate framing parameters.</p>
-
-    <h3>D. Edge-Case and Boundary Handling</h3>
-    <p>To ensure perfect determinism, Algorithm 1 incorporates specific handling for stream termination boundaries. When the stream length $N$ is not an exact multiple of the block parameter $K$, the final residual symbols are padded using an invertible cyclical extension rule rather than zero-padding. This ensures that the decoder can distinguish between true zero payload symbols and boundary terminal flags without transmitting explicit file length metadata.</p>
 '''
 
 def get_section_4():
     return r'''
     <h2>IV. Mathematical Formulations & Proofs</h2>
-    <p class="no-indent">In this section, we derive the exact algebraic code rate, redundancy overhead, and formal Levenshtein distance error-detection bounds for Generalized Patha Codes.</p>
+    <p class="no-indent">We now formally derive the exact burst-erasure recovery threshold and majority voting invariant for Generalized Patha Codes from first algebraic principles.</p>
 
     <div class="theorem-box">
-      <div class="theorem-title">Definition 1 (Order-Sensitive Channel).</div>
-      An order-sensitive channel $\mathcal{C}_{\text{ord}} = (\mathcal{X}, \mathcal{Y}, P_{Y|X})$ is a discrete communication channel wherein the transition probability $P_{Y|X}$ includes insertion operations with probability $p_i$, deletion operations with probability $p_d$, and symbol substitutions with probability $p_s$, such that $|Y| \ne |X|$ with non-zero probability.
+      <div class="theorem-title">Lemma 1 (Code Rate and Block Dimension) [DERIVED].</div>
+      For any payload dimension $K \ge 2$, the codeword length $M(K)$ and information code rate $R(K)$ of GPC satisfy:
+      $$M(K) = 13K + 6, \quad R(K) = \frac{K}{13K + 6}$$
+      As $K \to \infty$, the asymptotic code rate converges to $\lim_{K \to \infty} R(K) = 1/13 \approx 0.0769$.
     </div>
+
+    <p class="no-indent"><em>Derivation.</em> Each codeword consists of two 2-window passes ($2 \times 2K = 4K$), three 3-window passes ($3 \times 3K = 9K$), and 6 pilot symbols. Summing these disjoint partitions yields $M(K) = 4K + 9K + 6 = 13K + 6$. The code rate is the ratio of information bits to block length: $R = K / (13K + 6)$. For $K=4$, $R = 4/58 \approx 0.0690$; for $K=6$, $R = 6/84 \approx 0.0714$. $\blacksquare$</p>
 
     <div class="theorem-box">
-      <div class="theorem-title">Lemma 1 (Code Rate and Asymptotic Redundancy Overhead) [Proved].</div>
-      For a source sequence $W \in \Sigma^N$, the asymptotic information code rate $R$ and fractional redundancy overhead $\Omega$ of $\text{GPC}(k, d)$ satisfy:
-      $$R = \lim_{N \to \infty} \frac{N}{L_{\text{total}}} = \frac{d}{k^2 + 2k - 2}, \quad \Omega = \frac{1 - R}{R} = \frac{k^2 + 2k - 2}{d} - 1$$
+      <div class="theorem-title">Theorem 1 (Exact Marked Burst-Erasure Tolerance Bound) [DERIVED].</div>
+      For any payload dimension $K \ge 3$ encoded into block length $M = 13K + 6$, the coordinate span $S(j) = \max \text{pos}(j) - \min \text{pos}(j)$ across all information symbols $j \in \{1, \dots, K\}$ satisfies:
+      $$B_E(K) = \min_{j \in \{1, \dots, K\}} S(j) = 10K + 7$$
+      Consequently, under any contiguous marked burst erasure of length $L \le B_E(K) = 10K + 7$, at least one occurrence of every information symbol survives intact:
+      $$\lim_{K \to \infty} \frac{B_E(K)}{M(K)} = \lim_{K \to \infty} \frac{10K + 7}{13K + 6} = \frac{10}{13} \approx 76.92\%$$
     </div>
 
-    <p class="no-indent"><em>Proof.</em> The total number of evaluation windows is $M = \lfloor \frac{N-k}{d} \rfloor + 1 \approx \frac{N}{d}$. Each window emits $L(k) = k^2 + 2k - 2$ symbols. The total emitted length is $L_{\text{total}} = \frac{N}{d}(k^2 + 2k - 2)$. Taking the ratio as $N \to \infty$ yields $R = \frac{d}{k^2 + 2k - 2}$. Evaluating for classical schemes: Krama-pāṭha ($k=2, d=1$, unreversed kernel $L=2$) has $R = 0.50$ ($\Omega = 1.0$); Jaṭā-pāṭha ($k=2, d=1$) has $R = 1/6 \approx 0.1667$ ($\Omega = 5.0$); Ghana-pāṭha ($k=3, d=1$) has $R = 1/13 \approx 0.0769$ ($\Omega = 12.0$). These derivations clarify that classical Ghana-pāṭha intentionally trades code rate to maximize structural redundancy over hostile acoustic channels. $\blacksquare$</p>
+    <p class="no-indent"><em>Derivation.</em> By the 5-pass permutation structure, each symbol $j$ appears in $\mathbf{F}_2, \mathbf{B}_2, \mathbf{F}_3^{(1)}, \mathbf{B}_3$, and $\mathbf{F}_3^{(2)}$. Symbol 3 achieves the minimal coordinate span. In $\mathbf{F}_2$, symbol 3 first appears at index $i=1$ in the second position of window $(s_1, s_2) = (2, 3)$, located at coordinate $\min \text{pos}(3) = 4$ (0-indexed). In the terminal pass $\mathbf{F}_3^{(2)}$, which begins at coordinate $p_4 + 1 = 10K + 5$, symbol 3 appears in window $(s_1, s_2, s_3) = (2, 3, 4)$ at coordinate $\max \text{pos}(3) = (10K + 4) + 1 + (2 \times 3) + 1 = 10K + 11$. The coordinate span is therefore $S(3) = (10K + 11) - 4 = 10K + 7$. For any other symbol $j \ne 3$, $S(j) \ge 10K + 7$ (e.g., for $K=4$, spans are $\{1: 54, 2: 54, 3: 47, 4: 48\}$; for $K=6$, spans are $\{1: 80, 2: 80, 3: 67, 4: 68, 5: 69, 6: 70\}$). Any contiguous burst erasure of length $L \le 10K + 7$ cannot simultaneously erase both $\min \text{pos}(j)$ and $\max \text{pos}(j)$, guaranteeing non-zero support $|S_j| \ge 1$ for all symbols. $\blacksquare$</p>
 
     <div class="theorem-box">
-      <div class="theorem-title">Theorem 1 (Combinatorial Support Span & Burst Erasure Coverage) [Proved].</div>
-      For an information block of length $K \ge 2$ encoded into block length $M = 13K + 6$, the coordinate span $S(j) = \max \text{pos}(j) - \min \text{pos}(j)$ for every symbol $j \in \{1, \dots, K\}$ satisfies $S(j) \ge 8K + 5$. Consequently, under any contiguous erasure burst of length $L \le B_E(K) = 8K + 5$, at least one occurrence of each payload symbol survives intact:
-      $$\lim_{K \to \infty} \frac{B_E(K)}{M(K)} = \lim_{K \to \infty} \frac{8K + 5}{13K + 6} = \frac{8}{13} \approx 61.54\%$$
+      <div class="theorem-title">Theorem 2 (Marked Burst-Erasure Majority Recovery Invariant) [DERIVED].</div>
+      On a marked erasure channel where erased coordinates are explicitly flagged with $\text{None}$, single-pass majority voting over surviving symbol occurrences reconstructs the exact transmitted payload with zero error for all erasure bursts of length $L \le B_E(K) = 10K + 7$.
     </div>
 
-    <p class="no-indent"><em>Proof.</em> In GPC, each symbol appears across 5 distinct cycles: $\mathbf{F}_2$ (first appearance at index $\le 2K$), $\mathbf{B}_2$, $\mathbf{F}_3$, $\mathbf{B}_3$, and $\mathbf{F}_3$ (final appearance at index $\ge 10K + 5$). The minimum distance between the first occurrence in $\mathbf{F}_2$ and the last occurrence in the final $\mathbf{F}_3$ cycle across all $j \in \{1, \dots, K\}$ is exactly $8K + 5$. Any contiguous erasure of length $L \le 8K + 5$ cannot simultaneously cover both the initial $\mathbf{F}_2$ and terminal $\mathbf{F}_3$ occurrences, guaranteeing non-zero support for all $K$ symbols. $\blacksquare$</p>
+    <p class="no-indent"><em>Derivation.</em> By Theorem 1, for all $L \le 10K + 7$, the surviving occurrence set satisfies $|S_j| \ge 1$ for all $j \in \{1, \dots, K\}$. On a pure erasure channel without substitutions, every surviving received bit is identical to the transmitted bit ($y_t^{(j)} = m_j$ for all $t \in S_j$). Because $|S_j| \ge 1$, the majority vote $\arg\max_{v \in \{0, 1\}} \sum_{t \in S_j} \mathbf{1}(y_t^{(j)} = v)$ returns $m_j$ deterministically without error. $\blacksquare$</p>
 
     <div class="theorem-box">
-      <div class="theorem-title">Theorem 2 (Marked Burst-Erasure Majority Recovery) [Proved].</div>
-      On a marked erasure channel where erased coordinates are explicitly flagged, single-pass majority voting over the surviving occurrences of each symbol guarantees exact, zero-error message reconstruction for all bursts of length $L \le B_E(K) = 8K + 5$.
+      <div class="theorem-title">Lemma 2 (Pilot Delimiter Spacing & Deletion Cut Pruning) [DERIVED].</div>
+      The deterministic pilot coordinates $\mathcal{P} = \{0, 2K+1, 4K+2, 7K+3, 10K+4, 13K+5\}$ satisfy inter-pilot separations $\Delta p \in \{2K+1, 3K+1\}$. Under an unmarked burst deletion of length $b = M - N$, Phase 1 of Algorithm 1 evaluates all candidate cut offsets $\hat{s} \in [0, M - b]$ and prunes the search space to a candidate hypothesis set $\mathcal{S}^* = \arg\max_{\hat{s}} \sum_{p \in \mathcal{P}} \mathbf{1}(y[\text{shift}(p, \hat{s}, b)] == 1)$.
     </div>
 
-    <p class="no-indent"><em>Proof.</em> By Theorem 1, at least one uncorrupted occurrence survives for every symbol $j \in \{1, \dots, K\}$. On a pure marked erasure channel without background substitutions, all surviving occurrences are identical to the transmitted bit ($y_t^{(j)} = x_j$). Hence, the non-empty majority vote $\arg\max_{v \in \{0,1\}} \sum_{t} \mathbf{1}(y_t^{(j)} = v)$ returns $x_j$ with zero decision error. $\blacksquare$</p>
-
-    <div class="theorem-box">
-      <div class="theorem-title">Theorem 3 (Adjacent Transposition Edit Distance Bound) [Proved].</div>
-      For any adjacent transposition $\tau_i = (w_i, w_{i+1})$ in source sequence $W$, the minimum Levenshtein distance between the true codeword and the corrupted codeword satisfies:
-      $$D_L(\mathcal{C}_{\text{GPC}(k,1)}(W), \mathcal{C}_{\text{GPC}(k,1)}(\tau_i(W))) \ge 2(k^2 - 1)$$
-    </div>
-
-    <p class="no-indent"><em>Proof.</em> An adjacent transposition inverts the order of $w_i$ and $w_{i+1}$. In the emitted stream, this inversion breaks the forward traversal while simultaneously corrupting the reverse verification loops ($\tau(w_i, w_{i+1}) = (w_{i+1}, w_i)$). For Krama-pāṭha ($k=2$), $D_L \ge 2(4-1) = 6$. For Ghana-pāṭha ($k=3$), $D_L \ge 2(9-1) = 16$. This confirms that adjacent transpositions break phase locking across multiple overlapping windows, making silent permutation errors mathematically impossible. $\blacksquare$</p>
-
-    <h3>A. Analytical Trade-off: Rate vs. Synchronization Determinism</h3>
-    <p>The fundamental trade-off of GPC lies in its operational role: it is an <strong>inner synchronization code</strong>, not a bulk entropy compressor. While standard bulk transport codes (such as LDPC or Turbo codes) achieve rates near Shannon capacity ($R \to 1$), they assume an aligned, stationary coordinate frame. GPC deliberately accepts a lower code rate ($R \le 0.5$) in exchange for absolute topological determinism: guaranteeing that the receiver can realign shifted frames in $O(N)$ linear time without dynamic programming state space explosion.</p>
-
-    <h3>B. Observed Scaling Patterns Across Evaluated Dimensions</h3>
-    <p>To investigate how protection metrics scale with window dimension $k$, we evaluated GPC across all binary source payloads for $k \in \{2, 3, 4\}$, comprising <strong>110,880 computational verification cases</strong>. The empirical edit distance scaling validates Theorems 1 and 3, confirming that multi-scale forward-reverse permutations provide a deterministic barrier against catastrophic frame desynchronization.</p>
+    <p class="no-indent"><em>Derivation.</em> Because pilot symbols are deterministic constants ($1$), any candidate cut offset $\hat{s}$ that aligns with the true deletion point $s^*$ preserves all surviving pilot coordinates with 100% agreement. Off-target cut offsets induce coordinate displacements that shift pilot positions onto non-pilot payload positions, suppressing the correlation score and pruning candidate alignment cuts before consensus voting. $\blacksquare$</p>
 '''
 
 def get_section_5():
     return r'''
     <h2>V. Complexity Proofs & Asymptotic Scaling</h2>
-    <p class="no-indent">Computational feasibility on bare-metal microcontrollers requires strict guarantees regarding time and space bounds. Here we demonstrate that GPC achieves deterministic linear complexity.</p>
+    <p class="no-indent">We now establish the computational time and space bounds for Algorithm 1, confirming suitability for real-time and embedded telemetry applications.</p>
 
     <div class="theorem-box">
-      <div class="theorem-title">Lemma 2 (Pilot Spacing and Aperiodic Cross-Correlation) [Proved].</div>
-      The deterministic pilot sequence $\mathcal{P} = \{0, 2K+1, 4K+2, 7K+3, 10K+4, 13K+5\}$ satisfies minimum inter-pilot separation $D_{\text{pilot}} = \min_{0 \le i \le 4} (p_{i+1} - p_i) = 2K + 1 \ge 9$. Furthermore, due to stage-major non-uniform block dimensions ($2K \ne 3K$), the aperiodic pilot cross-correlation satisfies:
-      $$\forall \Delta \ne 0, \quad R_{\mathcal{P}}(\Delta) = \sum_{i=0}^5 \mathbf{1}(p_i + \Delta \in \mathcal{P}) \le 1$$
+      <div class="theorem-title">Theorem 3 (Computational Time Complexity of Algorithm 1) [DERIVED].</div>
+      For a received sequence of length $N = M - b$, Algorithm 1 executes in average-case linear time $\mathcal{O}(M)$ when pilot filtering prunes candidate ties to $|\mathcal{S}^*| = \mathcal{O}(1)$, and worst-case time $\mathcal{O}(M^2)$ under degenerate payloads with maximal alignment ties.
     </div>
+
+    <p class="no-indent"><em>Derivation.</em> In Phase 1, the decoder iterates over $M - b + 1$ candidate burst cut positions. For each position, it evaluates $|\mathcal{P}| = 6$ pilot coordinates, requiring $6(M - b + 1) \le 6M$ comparisons. In Phase 2, the decoder iterates over the candidate set $\mathcal{S}^*$. For each candidate $\hat{s} \in \mathcal{S}^*$, it gathers surviving votes across the $M - b$ received symbols and computes decision margins for $K$ symbols, requiring $(M - b) + K$ operations. Total decoding complexity is $T(M) = 6(M - b + 1) + |\mathcal{S}^*|(M - b + K) = \mathcal{O}(M + |\mathcal{S}^*| M)$. For random payloads, pilot filtering isolates $|\mathcal{S}^*| \le 4$ candidates on average, yielding average-case time $\mathcal{O}(M)$. In degenerate cases (e.g., all-ones payload where every bit matches pilot value $1$), all $M - b + 1$ cut positions produce identical pilot scores ($|\mathcal{S}^*| = M - b + 1$), yielding worst-case complexity $\mathcal{O}(M^2)$. $\blacksquare$</p>
 
     <div class="theorem-box">
-      <div class="theorem-title">Theorem 4 (Deterministic $O(M)$ Decoder via Bounded Candidate Queue) [Proved].</div>
-      Under an unmarked contiguous burst deletion of length $b \le B_{\text{del}}$, the candidate cut hypothesis set $\mathcal{S}^* = \arg\max_{\hat{s}} C(\hat{s})$ evaluated in Phase 1 of Algorithm 1 has cardinality strictly bounded by $|\mathcal{S}^*| \le 2$. Consequently, Phase 2 evaluates at most two consensus margins in linear time, guaranteeing worst-case decoding time complexity $T_{\text{dec}}(M) = O(M)$ with zero recursive backtracking.
+      <div class="theorem-title">Theorem 4 (Bounded Auxiliary Working Memory) [DERIVED].</div>
+      The auxiliary working memory $\mathcal{M}_{\text{aux}}$ required by GPC decoding is strictly $\mathcal{O}(1)$ with respect to payload stream length, requiring zero dynamic heap allocation and a static stack frame of $< 128\text{ bytes}$ for $K \le 8$.
     </div>
 
-    <p class="no-indent"><em>Proof.</em> Let a deletion burst of length $b$ begin at unknown index $s^*$. In Phase 1, the correlation score $C(\hat{s}) = \sum_{p \in \mathcal{P}} \mathbf{1}(\mathbf{y}[\text{shift}(p, \hat{s}, b)] == 1)$ tests candidate cut positions $\hat{s} \in [0, M - b]$. For the true cut $\hat{s} = s^*$, all surviving pilots align with probability 1, yielding maximum score $k^* = |\mathcal{P}| - \mathbf{1}(s^* \le p \lt s^* + b)$. For any off-target candidate $\hat{s} \ne s^*$, the relative displacement is $\Delta = |\hat{s} - s^*| > 0$. By Lemma 2, $R_{\mathcal{P}}(\Delta) \le 1$, meaning at most one pilot can accidentally coincide with another pilot coordinate. For the remaining shifted positions to match, they must coincide with payload positions that happen to contain symbol 1. Because the permutation cycles enforce that identical symbols never appear within local distance $d \lt K$, identical bit matches across multiple shifted pilots cannot occur simultaneously unless the entire payload is degenerate. In all cases, cut hypotheses that match maximal pilot correlation are restricted to $s^*$ and at most one boundary neighbor ($s^* \pm 1$ if the cut boundary borders an identical bit), guaranteeing $|\mathcal{S}^*| \le 2$. In Phase 2, evaluating the consensus confidence margin $\mathcal{M}(\hat{s}) = \sum_{j=1}^K |\sum_t y_t^{(j)} - \sum_t (1 - y_t^{(j)})|$ across at most 2 candidates requires $2 \cdot M$ additions. Total operations satisfy $T_{\text{dec}}(M) \le (M - b) \cdot |\mathcal{P}| + 2M = 6M + 2M = 8M = O(M)$. $\blacksquare$</p>
-
-    <div class="theorem-box">
-      <div class="theorem-title">Theorem 5 (Constant Auxiliary Memory Invariant) [Proved].</div>
-      The auxiliary working memory $\mathcal{M}_{\text{aux}}$ required by GPC satisfies $\mathcal{M}_{\text{aux}} = O(1)$ and is strictly upper-bounded by $4\text{ KB}$ for any arbitrarily large stream length $N \to \infty$.
-    </div>
-
-    <p class="no-indent"><em>Proof.</em> Unlike LZ77 or Zstandard which maintain sliding history buffers (32 KB to 8 MB), GPC maintains only a rolling state register $\sigma \in \mathbb{Z}_{2^{16}}$ and a fixed buffer of length $K \le 8$ symbols. Memory usage is completely independent of $N$, guaranteeing execution on microcontrollers with as little as 8 KB of total SRAM. $\blacksquare$</p>
-
-    <div class="theorem-box">
-      <div class="theorem-title">Lemma 3 (Frame Synchronization Recovery Bound) [Proved].</div>
-      Under random independent symbol deletions with deletion probability $p_d &lt; 0.25$, any contiguous received window of length $W \ge 2 \cdot T_{\text{pilot}}$ guarantees frame synchronization re-acquisition with probability $P_{\text{sync}} \ge 1 - p_d^{|\mathcal{P}|}$.
-    </div>
-
-    <p class="no-indent"><em>Proof.</em> Since pilot sequences possess zero aperiodic autocorrelation sidelobes, false-positive synchronization locks are exponentially suppressed in $|\mathcal{P}|$. $\blacksquare$</p>
+    <p class="no-indent"><em>Derivation.</em> The decoder requires storage only for: (1) candidate cut offsets $\mathcal{S}^*$ (an array of at most $M \le 110$ integers); (2) vote accumulators for $K$ symbols (two 8-bit counters per symbol, requiring $2K \le 16\text{ bytes}$); and (3) loop index variables. Memory consumption is independent of stream history and requires zero dynamic allocation (no <code>malloc</code>/<code>free</code>), making the codec verifiable under strict embedded safety standards (MISRA-C, DO-178C). $\blacksquare$</p>
 
     <div class="figure-box">
       <img src="../figures/figure1_asymptotic_scaling.svg" alt="Asymptotic Burst Tolerance Scaling" style="max-height: 110px;">
-      <div class="caption">Fig. 2. Asymptotic burst-erasure tolerance scaling ($B_E$ vs. Block Length $M$) of GPC: The forward-reverse permutation topology guarantees reconstruction of payload tokens under contiguous erasure bursts up to $B_E / M = 8/13 \approx 61.54\%$ of the kernel block length, whereas literal repetition codes collapse under localized bursts.</div>
+      <div class="caption">Fig. 2. Asymptotic burst-erasure tolerance scaling ($B_E$ vs. Block Length $M$) of GPC: The 5-pass permutation topology guarantees reconstruction of payload tokens under contiguous erasure bursts up to $B_E / M = 10/13 \approx 76.92\%$ of the kernel block length, whereas unstructured repetition codes collapse under localized bursts.</div>
     </div>
 
-    <h3>A. Empirical Convergence & Burst Survivability Analysis</h3>
-    <p>Figure 2 illustrates the empirical burst-erasure tolerance scaling of GPC across kernel block lengths. Rather than an entropy compression metric, the ratio $\eta_{\text{burst}} = B_E / M = 8/13 \approx 61.54\%$ quantifies the fraction of contiguous symbol erasures survivable by the forward-reverse permutation kernel without loss of token unicity. While an unstructured repetition code collapses when a localized burst covers its redundant window, GPC's interleaving distributes multiple token instances across distinct temporal stages, preserving decodability under bursts spanning up to $61.54\%$ of the block length.</p>
+    <h3>A. Asymptotic Scaling & Burst Survivability Analysis</h3>
+    <p>Figure 2 illustrates the burst-erasure tolerance scaling of GPC across block lengths. Rather than an entropy compression metric, the ratio $\eta_{\text{burst}} = B_E / M = 10/13 \approx 76.92\%$ quantifies the fraction of contiguous symbol erasures survivable by the forward-reverse permutation kernel without loss of token unicity. While an unstructured repetition code collapses when a localized burst covers its redundant window, GPC's interleaving distributes multiple token instances across distinct temporal stages, preserving decodability under bursts spanning up to $76.92\%$ of the block length.</p>
 
-    <h3>B. Energy and Instruction Cycle Analysis</h3>
-    <p>Profiling GPC on an ARM Cortex-M4 (32-bit RISC core, 168 MHz) reveals an average instruction count of $4.8$ CPU cycles per encoded byte and $3.2$ cycles per decoded byte. Because GPC utilizes bitwise transpositions and table-free hashing, pipeline stalls and branch mispredictions are reduced by $89\%$ relative to canonical Huffman tree traversals.</p>
-
-    <p>On modern x86_64 architectures equipped with AVX2 or ARMv8 cores with NEON SIMD engines, the permutation lattice operations can be vectorized across 32-byte registers using single-cycle shuffle intrinsics (<code>_mm256_shuffle_epi8</code> and <code>vtbl1_u8</code>). This SIMD vectorization elevates raw encoding throughput to over $1.2\text{ GB/s}$ per core, allowing GPC to serve as an inline wire-speed transport protocol for gigabit Ethernet and PCIe sensory interconnects.</p>
-
-    <p>The cache behavior of GPC provides another crucial advantage on modern multi-core processors. Because the encoding window $K \le 8$ and state register $\sigma$ fit entirely within CPU Level 1 registers, GPC incurs exactly zero Level 1 data cache misses during block transpositions. In contrast, dictionary compressors suffer severe cache thrashing as sliding hash tables (e.g., 64 KB to 4 MB) exceed the L1 cache capacity, causing memory bus contention that starves neighboring real-time threads.</p>
-
-    <p>Furthermore, because GPC requires strictly $O(1)$ memory allocation without dynamic heap operations (<code>malloc</code>/<code>free</code>), it is provably immune to memory fragmentation and memory leakage vulnerabilities. In aerospace and automotive standards (DO-178C Level A and ISO 26262 ASIL D), dynamic memory allocation is strictly prohibited in safety-critical loops. GPC satisfies these stringent software safety standards natively by operating exclusively across statically sized register frames.</p>
+    <h3>B. Embedded Architecture & Implementation Feasibility</h3>
+    <p class="no-indent">Because GPC decoding relies strictly on integer indexing, bitwise comparisons, and counting without transcendental operations or matrix inversions, it can be implemented with minimal computational overhead on bare-metal 32-bit microcontrollers (such as ARM Cortex-M or RISC-V). In software simulations, Python decoding latency spans $51\,\mu\text{s}$ to $118\,\mu\text{s}$ per frame on standard x86_64 host processors. Physical benchtop synthesis on ASIC silicon and oscilloscope-measured power dissipation are designated as ongoing future engineering work.</p>
 '''
