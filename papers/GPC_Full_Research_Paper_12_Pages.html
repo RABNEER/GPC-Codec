@@ -588,10 +588,10 @@ return best_msg
 
     <div class="theorem-box">
       <div class="theorem-title">Theorem 4 (Bounded Auxiliary Working Memory) [DERIVED].</div>
-      The auxiliary working memory $\mathcal{M}_{\text{aux}}$ required by GPC decoding is strictly $\mathcal{O}(1)$ with respect to payload stream length, requiring zero dynamic heap allocation and a static stack frame of $< 128\text{ bytes}$ for $K \le 8$.
+      The auxiliary working memory $\mathcal{M}_{\text{aux}}$ required by GPC decoding is strictly $\mathcal{O}(1)$ with respect to payload stream length, requiring zero dynamic heap allocation and a static stack frame of $< 256\text{ bytes}$ unpruned ($< 64\text{ bytes}$ with top-$Q$ pruning) for $K \le 8$.
     </div>
 
-    <p class="no-indent"><em>Derivation.</em> The decoder requires storage only for: (1) candidate cut offsets $\mathcal{S}^*$ (an array of at most $M \le 110$ integers); (2) vote accumulators for $K$ symbols (two 8-bit counters per symbol, requiring $2K \le 16\text{ bytes}$); and (3) loop index variables. Memory consumption is independent of stream history and requires zero dynamic allocation (no <code>malloc</code>/<code>free</code>), making the codec verifiable under strict embedded safety standards (MISRA-C, DO-178C). $\blacksquare$</p>
+    <p class="no-indent"><em>Derivation.</em> The decoder requires storage only for: (1) candidate cut offsets $\mathcal{S}^*$ (a static stack array of at most $M \le 110$ single-byte indices $\le 110\text{ bytes}$ unpruned, or $\le 4\text{ bytes}$ when top-$Q$ pruning $Q_{\max} = 2$ is enabled); (2) vote accumulators for $K$ symbols (two 8-bit counters per symbol, requiring $2K \le 16\text{ bytes}$); and (3) integer loop index registers ($< 16\text{ bytes}$). Total auxiliary memory is strictly bounded by $110 + 16 + 16 = 142\text{ bytes} < 256\text{ bytes}$ unpruned ($< 36\text{ bytes}$ under top-$Q$ pruning). Memory consumption is independent of stream history and requires zero dynamic allocation (no <code>malloc</code>/<code>free</code>), making the codec verifiable under strict embedded safety standards (MISRA-C, DO-178C). $\blacksquare$</p>
 
     <div class="figure-box">
       <img src="../figures/figure1_asymptotic_scaling.svg" alt="Asymptotic Burst Tolerance Scaling" style="max-height: 110px;">
