@@ -92,12 +92,12 @@ Sample Codeword (Message = [1, 0, 1, 1]): TATTTCGTTTCCTTTCGTGTGTTCCTTTC
     <p>A central criticism raised against low-rate synchronization codes is that an information code rate of $R = K/M = 4/58 \approx 0.069$ implies a $14.5\times$ storage expansion. In bulk file storage, inflating 1 MB to 14.5 MB would be prohibitive. However, in DNA storage, GPC is applied <strong>strictly to the Strand Address Header</strong>, not to the biological payload:</p>
 
     <div class="eq-box">
-      $$\text{Total Strand Length } L_{\text{total}} = L_{\text{header}} + L_{\text{payload}} = 29\text{ nt} + 150\text{ nt} = \mathbf{179\text{ nt}}$$
-      $$\text{True Strand Overhead} = \frac{L_{\text{header}}}{L_{\text{total}}} = \frac{29}{179} = \mathbf{16.20\%}$$
+      $$\text{Prototype (16 strands): } L_{\text{total}} = 29\text{ nt} + 150\text{ nt} = \mathbf{179\text{ nt}} \implies \text{Overhead} = \frac{29}{179} = \mathbf{16.20\%}$$
+      $$\text{Full-Genome (36 strands): } L_{\text{total}} = 30\text{ nt} + 150\text{ nt} = \mathbf{180\text{ nt}} \implies \text{Overhead} = \frac{30}{180} = \mathbf{16.67\%}$$
       <span class="eq-num">(6)</span>
     </div>
 
-    <p class="no-indent">Because 179 nt is within the 200-nt commercial synthesis limit of Twist Bioscience, allocating <strong>16.20% overhead to the address header</strong> to preserve strand indexation under 10-nt nanopore stalls provides a viable engineering trade-off. Bulk payloads remain protected by high-rate Reed-Solomon or fountain outer codes, optimizing overall storage density.</p>
+    <p class="no-indent">For our 16-strand biological prototype, the 29-nt header yields 16.20% overhead. To index all 36 strands of the 5,386-base genome ($\lceil 5,386/150 \rceil = 36$), GPC scales via two-level hierarchical addressing ($K=4$ inner + 1-nt cluster tag = 30-nt header, 180 nt total, 16.67% overhead) or flat $K=6$ ($M = 84\text{ bits} = 42\text{ nt}$, 192 nt total, 21.88% overhead). Both remain comfortably below the 200-nt commercial synthesis limit of Twist Bioscience.</p>
 '''
 
 def get_section_7():
@@ -205,9 +205,7 @@ def get_section_7():
       </tbody>
     </table>
 
-    <p class="no-indent">Table II demonstrates that at identical synchronization overhead, GPC maintains $< 2.5\%$ strand loss up to $b = 24\text{ symbols}$ ($12\text{ nt}$), whereas equal-overhead Schoeny et al. collapses at $b \ge 10$, and equal-overhead interleaved repetition suffers 100% loss whenever $b \not\equiv 0 \pmod 4$ due to cyclic coordinate aliasing.</p>
-
-    <p>The 5,386-base genome was fragmented into 36 distinct oligonucleotides, each carrying 150 nt of authentic biological payload. Each strand was tagged with a 29-nt GPC Address Header encoding its strand index. We subjected the pool to 500 Monte Carlo sequencing runs per burst length across increasing Oxford Nanopore motor stall durations ($b = 0\text{ to }12\text{ nt}$, equivalent to $0\text{ to }24\text{ bits}$). Table III details empirical recovery:</p>
+    <p>To evaluate biological retrieval, we tested GPC on authentic genomic sequence: Frederick Sanger's 5,386-base genome of Bacteriophage &Phi;X174 (NCBI <code>NC_001422.1</code>). In our core benchmarking suite (Table III), a 16-strand pool carrying 2,400 bases of authentic &Phi;X174 sequence was protected using flat $\text{GPC}(K=4)$ with a 29-nt header (179 nt total, 16.20% overhead). For full-genome coverage across all 36 strands ($\lceil 5,386/150 \rceil = 36$), GPC scales via two-level hierarchical addressing ($K=4$ inner + 1-nt cluster tag = 30-nt header, 180 nt total, 16.67% overhead) or flat $K=6$ (42-nt header, 192 nt total, 21.88% overhead), both within Twist Bioscience's 200-nt limit. End-to-end reconstruction across all 36 strands was confirmed in <code>experiments/test_full_genome_36strands.py</code> (bit-exact 100% recovery under 10-nt stalls). We subjected the pool to 500 Monte Carlo sequencing runs per burst length across increasing Oxford Nanopore motor stall durations ($b = 0\text{ to }12\text{ nt}$, equivalent to $0\text{ to }24\text{ bits}$). Table III details empirical recovery:</p>
 
     <table>
       <caption>Table III: Empirical Performance on Sanger Bacteriophage &Phi;X174 Genome (500 Trials/Point, 2,500 Total)</caption>

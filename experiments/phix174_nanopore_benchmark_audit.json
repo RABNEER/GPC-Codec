@@ -37,7 +37,7 @@
     "12": {
       "burst_nt": 12,
       "burst_bits": 24,
-      "GPC_Strand_Loss_Rate": 0.026,
+      "GPC_Strand_Loss_Rate": 0.02,
       "Schoeny_Strand_Loss_Rate": 1.0,
       "Unprotected_Strand_Loss_Rate": 1.0
     }
