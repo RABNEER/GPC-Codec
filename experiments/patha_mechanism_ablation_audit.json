@@ -1,0 +1,62 @@
+{
+  "1. Plain Block Repetition": {
+    "Span_BE": 12,
+    "burst_loss_pct": {
+      "b_1": 0.0,
+      "b_5": 0.0,
+      "b_10": 18.9,
+      "b_15": 42.4,
+      "b_20": 44.5
+    }
+  },
+  "2. Interleaved (No Pilots)": {
+    "Span_BE": 52,
+    "burst_loss_pct": {
+      "b_1": 100.0,
+      "b_5": 100.0,
+      "b_10": 100.0,
+      "b_15": 100.0,
+      "b_20": 0.0
+    }
+  },
+  "3. Pilots + Naive Interleave": {
+    "Span_BE": 52,
+    "burst_loss_pct": {
+      "b_1": 1.5,
+      "b_5": 0.0,
+      "b_10": 2.8,
+      "b_15": 0.0,
+      "b_20": 0.8
+    }
+  },
+  "4. Forward Permutations Only": {
+    "Span_BE": 47,
+    "burst_loss_pct": {
+      "b_1": 0.0,
+      "b_5": 0.0,
+      "b_10": 0.0,
+      "b_15": 0.0,
+      "b_20": 0.0
+    }
+  },
+  "5. Forward + Backward (4 Cycles)": {
+    "Span_BE": 50,
+    "burst_loss_pct": {
+      "b_1": 0.0,
+      "b_5": 0.0,
+      "b_10": 0.0,
+      "b_15": 0.0,
+      "b_20": 0.0
+    }
+  },
+  "6. Full GPC (F2,B2,F3,B3,F3 + Pilots)": {
+    "Span_BE": 47,
+    "burst_loss_pct": {
+      "b_1": 0.0,
+      "b_5": 0.0,
+      "b_10": 0.0,
+      "b_15": 0.0,
+      "b_20": 0.0
+    }
+  }
+}

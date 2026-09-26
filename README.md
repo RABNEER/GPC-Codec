@@ -223,12 +223,16 @@ GPC-Codec/
 │   └── Swarm_Telemetry_Experimental_Report.pdf # Swarm Telemetry Report
 │
 ├── experiments/                     # Empirical benchmark & reproducibility scripts
-│   ├── verify_table1_reproducibility.py     # 60s reproduction of Table I
-│   ├── test_algorithm1_edge_cases.py        # Algorithm 1 stress testing
-│   ├── modern_sota_baselines_benchmark.py   # SOTA comparison against Schoeny et al.
-│   └── table1_exact_reproducibility.json    # Machine-verifiable audit ledger
+│   ├── equal_overhead_dna_benchmark.py   # Fair equal-overhead DNA benchmark (14,000 trials, Table II)
+│   ├── equal_overhead_dna_audit.json     # Machine audit ledger with Clopper-Pearson 95% CIs
+│   ├── patha_mechanism_ablation.py      # Pāṭha coding mechanism ablation study (6,000 trials, Table VIII)
+│   ├── patha_mechanism_ablation_audit.json # Ablation study audit ledger
+│   ├── verify_table1_reproducibility.py  # 60s reproduction of Table I parameter ledger
+│   ├── test_algorithm1_edge_cases.py     # Algorithm 1 stress testing
+│   ├── modern_sota_baselines_benchmark.py # SOTA comparison against Schoeny et al.
+│   └── table1_exact_reproducibility.json # Machine-verifiable audit ledger
 │
-├── docs/                            # HTML/MathJax publication source templates
+├── docs/                            # HTML/MathJax publication source templates & assembly scripts
 ├── pyproject.toml                   # Modern PEP 517/518 build configuration
 ├── setup.py                         # Backwards-compatible setup script
 └── LICENSE                          # MIT Open Source License
@@ -250,11 +254,23 @@ pytest -v
 
 All 13 tests execute deterministically in **under 0.1 seconds**.
 
-### Reproducing Experimental Table I:
+### Reproducing Experimental Table I (Parameter Ledger):
 ```bash
 python experiments/verify_table1_reproducibility.py
 ```
 *Evaluates all 4 placement architectures for $K=4$ and $K=6$ from first principles, matching Table I down to the exact integer.*
+
+### Reproducing Experimental Table II (Equal-Overhead DNA Indexing Benchmark):
+```bash
+python experiments/equal_overhead_dna_benchmark.py
+```
+*Runs 14,000 empirical trials across burst lengths $b \in [1..24]$ comparing GPC against Schoeny et al., Marker Codes, and Uniform Interleaving at equal 29-nt overhead with 95% Clopper-Pearson confidence intervals.*
+
+### Reproducing Experimental Table VIII (Pāṭha Mechanism Ablation Study):
+```bash
+python experiments/patha_mechanism_ablation.py
+```
+*Executes 6,000 trials isolating the exact quantitative contribution of each Pāṭha component across 6 systematic structural variants.*
 
 ---
 
