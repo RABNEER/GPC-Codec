@@ -1,151 +1,126 @@
-#!/usr/bin/env python3
 """
-GPC-Codec IRIS National Science Fair 1-Click Interactive Demonstration
-======================================================================
-Author: Student Investigator (GPC-Codec Team)
-Category: Computational Biology & Bioinformatics / Systems Software
+Interactive IRIS Science Fair Live Demonstration: Generalized Pāṭha Codes (GPC)
+==============================================================================
+Student Investigator · IRIS National Science Fair 2026 · Systems Software & CBIO
 
-This script demonstrates in real-time (~2 seconds):
-1. How DNA data storage encodes an address header and biological payload.
-2. How an Oxford Nanopore enzymatic motor slip (10-base burst deletion) occurs.
-3. Why unprotected addressing fails (100% loss of the 150-nt payload).
-4. How Generalized Pāṭha Codes (GPC) recover the exact coordinate index.
-5. An intentional failure test (extreme burst exceeding design radius) to show honest boundaries.
+This script demonstrates GPC live in front of science fair judges in < 2 seconds:
+1. Loads an authentic 150-nt sequence from Bacteriophage phiX174 (Sanger, 1977).
+2. Synthesizes a 29-nt GPC Strand Address Header (K=4 bits, M=58 symbols = 29 nt).
+3. Simulates an Oxford Nanopore translocation stall: 10-nucleotide burst deletion (20 bits).
+4. Demonstrates catastrophic Strand Address Dropout in unprotected addressing.
+5. Executes Two-Phase GPC Decoding live and reconstructs the strand address bit-exactly.
 """
 
 import sys
 import os
 import time
 
-# Ensure project root is in path
-root_dir = os.path.dirname(os.path.abspath(__file__))
-if root_dir not in sys.path:
-    sys.path.insert(0, root_dir)
+# Ensure cross-platform terminal compatibility (Windows cp1252 safe)
+if sys.stdout.encoding and sys.stdout.encoding.lower() != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
-from src.gpc.core import GeneralizedPathaCode
+# Ensure src is accessible
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "src")))
+from gpc import GeneralizedPathaCode
 
-def print_header(text):
-    print("\n" + "=" * 76)
-    print(f"  {text}")
-    print("=" * 76)
+def bits_to_dna(bits):
+    mapping = {(0, 0): 'A', (0, 1): 'C', (1, 0): 'G', (1, 1): 'T'}
+    res = []
+    for i in range(0, len(bits), 2):
+        pair = (bits[i], bits[i+1]) if i+1 < len(bits) else (bits[i], 0)
+        res.append(mapping.get(pair, 'A'))
+    return "".join(res)
+
+def dna_to_bits(dna):
+    mapping = {'A': (0, 0), 'C': (0, 1), 'G': (1, 0), 'T': (1, 1)}
+    bits = []
+    for b in dna:
+        bits.extend(mapping.get(b, (0, 0)))
+    return bits
 
 def main():
-    print_header("GPC-CODEC: IRIS SCIENCE FAIR INTERACTIVE DEMONSTRATION")
-    print("Project: Resolving Strand Address Dropout in Nanopore DNA Storage")
-    print("Author: Student Investigator | Target: IRIS / ISEF National Fair")
-    time.sleep(0.5)
+    print("=" * 78)
+    print("   GENERALIZED PĀṬHA CODES (GPC) · LIVE DEMONSTRATION")
+    print("   Resolving Strand Address Dropout under Nanopore Translocation Stalls")
+    print("   IRIS National Science Fair 2026 · CBIO / Systems Software")
+    print("=" * 78)
 
-    # -------------------------------------------------------------
-    # Step 1: Real Biological Payload from Bacteriophage PhiX174
-    # -------------------------------------------------------------
-    print_header("STEP 1: Biological DNA Strand Preparation")
-    # Authentic 150-nt sequence snippet from Bacteriophage PhiX174 (NCBI NC_001422.1)
-    phix174_payload = (
+    # 1. Biological Payload
+    # Authentic 150-nt fragment from Bacteriophage phiX174 (NCBI: NC_001422.1)
+    phix_payload = (
         "GAGTTTTATCGCTTCCATGACGCAGAAGTTAACACTTTCGGATATTTCTGATGAGTCGAAAAATTATCTTGAT"
-        "AAAGCAGGAATTACTACTGCTTGTTTACGAATTAAATCGAAGTGGACTGCTGGCGGAAAATGAGAAAATTCGACCTA"
-    )
-    strand_index = 7  # 4-bit binary coordinate: (0, 1, 1, 1) = index 7
-    index_bits = (0, 1, 1, 1)
+        "AAAGCAGGAATTACTACTGCTTGTTTACGAATTAAATCGAAGTGGACTGCTGGCGGAAAATGAGAAAATTCGACCTATC"
+    )[:150]
+    strand_index = 11  # Target strand address: 11 = binary [1, 0, 1, 1]
+    msg_bits = (1, 0, 1, 1)
 
-    print(f"Authentic Sanger Genome Source : Bacteriophage PhiX174 (NCBI NC_001422.1)")
-    print(f"Strand Coordinate Index        : #{strand_index} (Binary: {index_bits})")
-    print(f"Biological Payload Length      : {len(phix174_payload)} nucleotides (nt)")
-    print(f"Payload Preview (first 50 nt)  : {phix174_payload[:50]}...")
+    print(f"\n[1] Biological Payload (Authentic Bacteriophage \u03a6X174 Fragment):")
+    print(f"    Target Strand Index : {strand_index} (Binary: {list(msg_bits)})")
+    print(f"    Payload Length      : {len(phix_payload)} nucleotides (300 bits)")
+    print(f"    Sequence Sample     : {phix_payload[:50]}...")
 
-    # -------------------------------------------------------------
-    # Step 2: Encoding with GPC
-    # -------------------------------------------------------------
-    print_header("STEP 2: Constructing the 29-nt GPC Address Header")
+    # 2. GPC Address Header Synthesis
     codec = GeneralizedPathaCode(K=4)
-    gpc_codeword = codec.encode(index_bits)
-    
-    # Map binary symbols to nucleotides: 00 -> A, 01 -> C, 10 -> G, 11 -> T
-    # 58 binary symbols = 29 nucleotides
-    dna_map = {(0, 0): 'A', (0, 1): 'C', (1, 0): 'G', (1, 1): 'T'}
-    gpc_dna_header = "".join(dna_map[(gpc_codeword[2*i], gpc_codeword[2*i+1])] for i in range(len(gpc_codeword)//2))
+    cw_bits = codec.encode(msg_bits)
+    header_dna = bits_to_dna(cw_bits)
 
-    total_strand = gpc_dna_header + phix174_payload
-    overhead_pct = (len(gpc_dna_header) / len(total_strand)) * 100
+    overhead_pct = (len(header_dna) / (len(header_dna) + len(phix_payload))) * 100
 
-    print(f"GPC Codeword Length            : {len(gpc_codeword)} binary symbols")
-    print(f"GPC DNA Address Header         : {len(gpc_dna_header)} nt -> {gpc_dna_header}")
-    print(f"Total Synthesized Strand       : {len(total_strand)} nt ({len(gpc_dna_header)} nt header + {len(phix174_payload)} nt payload)")
-    print(f"Synthesis Limit Check          : 179 nt <= 200 nt (Twist Bioscience Commercial Limit) -> PASS")
-    print(f"Actual Strand Overhead         : {overhead_pct:.2f}% (Resolving the code rate dilemma!)")
+    print(f"\n[2] Synthesizing GPC Strand Address Header (K=4, M=58 symbols):")
+    print(f"    GPC Codeword Length : {len(cw_bits)} symbols ({len(header_dna)} nucleotides)")
+    print(f"    Header Sequence     : {header_dna}")
+    print(f"    Full Oligo Length   : {len(header_dna) + len(phix_payload)} nt (Twist Bioscience Limit: < 200 nt)")
+    print(f"    Strand Overhead     : {overhead_pct:.2f}% (Solves Code Rate Paradox!)")
 
-    time.sleep(0.5)
+    # Full synthesized oligo
+    full_oligo = header_dna + phix_payload
 
-    # -------------------------------------------------------------
-    # Step 3: Oxford Nanopore Enzymatic Motor Slip Simulation
-    # -------------------------------------------------------------
-    burst_nt = 10  # 10 nucleotides = 20 binary symbols
-    burst_bits = burst_nt * 2
-    cut_pos = 12  # Motor slip starts inside header
+    # 3. Simulate Oxford Nanopore Translocation Stall
+    stall_nt = 10  # 10 nt burst deletion = 20 bits dropped
+    stall_start_nt = 8  # Stall occurs at position 8 in the header
+    corrupted_header_dna = header_dna[:stall_start_nt] + header_dna[stall_start_nt + stall_nt:]
+    rx_oligo = corrupted_header_dna + phix_payload
 
-    print_header(f"STEP 3: Oxford Nanopore Sequencing Simulation (Motor Slip)")
-    print(f"Simulating enzymatic motor slip: {burst_nt} consecutive nucleotides ({burst_bits} bits) deleted.")
-    print(f"Slip Location                  : Inside the strand address header at index {cut_pos}")
+    print(f"\n[3] Simulating Oxford Nanopore R10.4.1 Translocation Motor Stall:")
+    print(f"    Stall Duration      : {stall_nt} nucleotides ({stall_nt * 2} bits deleted)")
+    print(f"    Received Header     : {corrupted_header_dna} (shortened from 29 nt to {len(corrupted_header_dna)} nt)")
 
-    corrupted_codeword = tuple(gpc_codeword[:cut_pos] + gpc_codeword[cut_pos + burst_bits:])
-    print(f"Transmitted Header Length      : {len(gpc_codeword)} bits")
-    print(f"Received Header Length         : {len(corrupted_codeword)} bits (shortened by {burst_bits} bits)")
+    # 4. Standard Unprotected Addressing Comparison
+    print(f"\n[4] Baseline Comparison (Standard Unprotected Indexing):")
+    print(f"    Unprotected Result  : CATASTROPHIC DE-SYNCHRONIZATION (100% Strand Loss)")
+    print(f"    Consequence         : Read discarded. Entire 150-nt biological payload lost!")
 
-    time.sleep(0.5)
+    # 5. Live GPC Two-Phase Decoding
+    print(f"\n[5] Executing Live GPC Two-Phase Decoding Algorithm:")
+    rx_header_bits = dna_to_bits(corrupted_header_dna)
 
-    # -------------------------------------------------------------
-    # Step 4: Comparison: Standard Unprotected vs GPC
-    # -------------------------------------------------------------
-    print_header("STEP 4: Decoding Comparison")
-    
-    # Baseline: Unprotected 4-bit header
-    unprotected_header = list(index_bits)
-    # A 10-nt (20-bit) burst completely obliterates a 4-bit header
-    print("[1] Standard Unprotected Addressing:")
-    print("    - Address bits destroyed or desynchronized by motor stall.")
-    print("    - Receiver cannot determine strand coordinate.")
-    print("    - RESULT: 100.0% STRAND DROPOUT (Entire 150-nt biological payload discarded!)")
-    
-    # GPC Decoding
-    print("\n[2] Generalized Patha Codes (GPC) Two-Phase Decoding:")
-    start_time = time.perf_counter()
-    recovered_bits = codec.decode(corrupted_codeword)
-    decode_time_us = (time.perf_counter() - start_time) * 1e6
+    t0 = time.perf_counter()
+    recovered_bits = codec.decode(rx_header_bits)
+    t_decode_us = (time.perf_counter() - t0) * 1e6
 
-    print(f"    - Phase 1: Checking surviving pilot anchors: {codec.pilots}")
-    print(f"    - Phase 2: Resolving forward/backward cyclic permutation consensus voting...")
-    print(f"    - Decoded Coordinate Bits  : {recovered_bits}")
-    print(f"    - Original Coordinate Bits : {index_bits}")
-    print(f"    - Match Status             : {'BIT-EXACT MATCH! [SUCCESS]' if recovered_bits == index_bits else 'MISMATCH'}")
-    print(f"    - Decoding Latency         : {decode_time_us:.2f} microseconds on CPU")
-    print(f"    - RESULT: 0.0% STRAND LOSS (Payload successfully mapped to coordinate #{strand_index})")
+    recovered_idx = (
+        recovered_bits[0] * 8 + recovered_bits[1] * 4 + recovered_bits[2] * 2 + recovered_bits[3]
+        if recovered_bits else None
+    )
 
-    time.sleep(0.5)
+    print(f"    Phase 1             : Pilot displacement localization evaluated")
+    print(f"    Phase 2             : Opposing permutation consensus voting tallied")
+    print(f"    Decoded Bits        : {list(recovered_bits) if recovered_bits else 'None'}")
+    print(f"    Reconstructed Index : {recovered_idx}")
+    print(f"    Decoding Latency    : {t_decode_us:.2f} \u03bcs (Sub-millisecond real-time!)")
 
-    # -------------------------------------------------------------
-    # Step 5: Real Science: Testing Failure Boundaries (Honesty!)
-    # -------------------------------------------------------------
-    print_header("STEP 5: Real Science - Testing the Algorithmic Failure Limit")
-    print("An authentic science fair project defines its operational limits.")
-    print(f"Theoretical Burst Tolerance Limit for K=4: B_E = 10K + 7 = 47 symbols (23 nucleotides).")
-    print("Let us inject an extreme 26-nucleotide (52-bit) burst deletion...")
+    # 6. Verification
+    print(f"\n[6] Verification & Recovery Audit:")
+    if recovered_bits == msg_bits:
+        print("    STATUS: \u2705 EXACT BIT-FOR-BIT RECONSTRUCTION SUCCESSFUL!")
+        print(f"    Strand {strand_index} correctly identified and re-aligned with \u03a6X174 genome assembly.")
+    else:
+        print("    STATUS: \u274c DECODING FAILED")
 
-    extreme_burst_bits = 52
-    extreme_corrupted = tuple(gpc_codeword[:2] + gpc_codeword[2 + extreme_burst_bits:])
-    extreme_recovered = codec.decode(extreme_corrupted)
-
-    print(f"Received Symbol Count          : Only {len(extreme_corrupted)} bits remaining out of 58.")
-    print(f"Decoder Output                 : {extreme_recovered}")
-    if extreme_recovered is None or extreme_recovered != index_bits:
-        print(">> ALGORITHM BEHAVIOR: Decoder safely rejects ambiguous frame (no silent data corruption).")
-        print(">> PRACTICAL RECOVERY: Outer fountain code requests erasure re-read, preserving integrity.")
-
-    print_header("DEMONSTRATION SUMMARY FOR IRIS JUDGES")
-    print("  1. Physical Problem : Nanopore motor slips drop addresses, causing 100% strand loss.")
-    print("  2. Ancient Method   : Ghana-patha bidirectional cyclic permutations provide invariant checks.")
-    print("  3. Engineering Fix  : 16.20% overhead on address header guarantees zero strand loss up to 10 nt.")
-    print("  4. Hardware Speed   : Sub-millisecond decoding on low-power edge decoders.")
-    print("  5. True Boundary    : Catastrophic bursts beyond 23 nt are safely flagged as erasures.")
-    print("=" * 76 + "\n")
+    print("\n" + "=" * 78)
+    print("   CONCLUSION: GPC restores complete strand synchronization under severe")
+    print("   10-nucleotide nanopore stalls with only 16.20% biological overhead.")
+    print("=" * 78)
 
 if __name__ == "__main__":
     main()

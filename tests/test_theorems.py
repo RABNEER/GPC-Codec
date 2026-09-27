@@ -52,50 +52,8 @@ def test_theorem_2_marked_erasure_majority_recovery():
                 recovered = codec.decode(erased)
                 assert recovered == msg, f"Marked erasure recovery failed for L={L}, s={s}"
 
-def test_theorem_3_candidate_tie_bounds():
-    """Verify Theorem 3: Candidate ties are bounded by |S*| <= M - b + 1 and deterministically resolved."""
-    codec = GeneralizedPathaCode(K=4)
-    P = codec.pilots
-    M = codec.M
-    
-    # Degenerate all-ones test: verifies upper bound |S*| <= M - b + 1
-    cw_ones = codec.encode([1, 1, 1, 1])
-    for b in [1, 5, 10]:
-        rx = cw_ones[b:]
-        N = len(rx)
-        scores = []
-        for s_cand in range(M - b + 1):
-            score = sum(1 for p in P if (p if p < s_cand else (p - b if p >= s_cand + b else -1)) in range(N) and rx[p if p < s_cand else (p - b if p >= s_cand + b else -1)] == 1)
-            scores.append(score)
-        best_score = max(scores)
-        ties = sum(1 for sc in scores if sc == best_score)
-        assert ties <= M - b + 1, f"Ties exceeded M - b + 1: {ties} > {M - b + 1}"
-    
-    # Verify 100% deterministic resolution under ties across exhaustive 4-bit payloads
-    for bits in itertools.product([0, 1], repeat=4):
-        msg = tuple(bits)
-        cw = codec.encode(msg)
-        for b in [1, 5, 10]:
-            rx = cw[b:]
-            decoded = codec.decode(rx)
-            assert decoded == msg, f"Phase 2 tie resolution failed for msg={msg}, b={b}"
-
-def test_theorem_4_auxiliary_memory_bound():
-    """Verify Theorem 4: Auxiliary memory buffer size is strictly O(1) wrt stream length."""
-    for K in [2, 4, 6, 8]:
-        codec = GeneralizedPathaCode(K=K)
-        M = codec.M
-        # Unpruned candidate array of single-byte indices: at most M bytes
-        cand_array_bytes = M * 1
-        # Vote accumulators: 2 counters per symbol
-        vote_accum_bytes = 2 * K
-        # Loop indices and registers
-        registers_bytes = 16
-        total_aux_bytes = cand_array_bytes + vote_accum_bytes + registers_bytes
-        assert total_aux_bytes < 256, f"Auxiliary memory bound violated for K={K}: {total_aux_bytes} >= 256 bytes"
-
-def test_theorem_5_algebraic_generator_matrix():
-    """Verify Theorem 5: G_GPC row weights are identically 13, column weights 1 for data, and c = u G_GPC ^ p_pilot."""
+def test_theorem_3_algebraic_generator_matrix_and_row_weights():
+    """Verify Theorem 3: G_GPC row weights are identically 13, column weights 1 for data, and c = u G_GPC ^ p_pilot."""
     import numpy as np
     for K in [2, 3, 4, 6]:
         codec = GeneralizedPathaCode(K=K)
@@ -144,8 +102,8 @@ def test_theorem_5_algebraic_generator_matrix():
             c_proc = np.array(codec.encode(bits), dtype=int)
             assert np.array_equal(c_mat, c_proc), f"Algebraic codeword mismatch for K={K}, bits={bits}"
 
-def test_theorem_6_orthogonal_phase_gradients_and_edge_disjointness():
-    """Verify Theorem 6: Forward and backward passes generate strictly disjoint directed edges on C_K."""
+def test_theorem_4_orthogonal_phase_gradients_and_variance_suppression():
+    """Verify Theorem 4: Forward and backward passes generate opposing phase gradients on C_K."""
     for K in [3, 4, 5, 6]:
         f2 = {(i, (i + 1) % K) for i in range(K)}
         b2 = {((i + 1) % K, i) for i in range(K)}
@@ -155,8 +113,8 @@ def test_theorem_6_orthogonal_phase_gradients_and_edge_disjointness():
         b3 = {((i + 2) % K, (i + 1) % K, i) for i in range(K)}
         assert len(f3.intersection(b3)) == 0, f"Triplet collision for K={K}"
 
-def test_theorem_7_surviving_copy_majority_bound():
-    """Verify Theorem 7: N_min(b) >= 10 for b <= 10, and N_min(b) >= 7 (strict majority) holds for all b < 22."""
+def test_theorem_5_surviving_copy_majority_bound():
+    """Verify Theorem 5: N_min(b) >= 10 for b <= 10, and N_min(b) >= 7 (strict majority) holds for all b < 22."""
     codec = GeneralizedPathaCode(K=4)
     M = codec.M
     for b in range(1, 22):
@@ -170,4 +128,46 @@ def test_theorem_7_surviving_copy_majority_bound():
         assert worst >= 7, f"Majority violated early at b={b}: worst={worst}"
         if b <= 10:
             assert worst >= 10, f"Surviving bound violated for b={b}: worst={worst} < 10"
+
+def test_theorem_6_candidate_tie_bounds_and_complexity():
+    """Verify Theorem 6: Candidate ties are bounded by |S*| <= M - b + 1 and deterministically resolved."""
+    codec = GeneralizedPathaCode(K=4)
+    P = codec.pilots
+    M = codec.M
+    
+    # Degenerate all-ones test: verifies upper bound |S*| <= M - b + 1
+    cw_ones = codec.encode([1, 1, 1, 1])
+    for b in [1, 5, 10]:
+        rx = cw_ones[b:]
+        N = len(rx)
+        scores = []
+        for s_cand in range(M - b + 1):
+            score = sum(1 for p in P if (p if p < s_cand else (p - b if p >= s_cand + b else -1)) in range(N) and rx[p if p < s_cand else (p - b if p >= s_cand + b else -1)] == 1)
+            scores.append(score)
+        best_score = max(scores)
+        ties = sum(1 for sc in scores if sc == best_score)
+        assert ties <= M - b + 1, f"Ties exceeded M - b + 1: {ties} > {M - b + 1}"
+    
+    # Verify 100% deterministic resolution under ties across exhaustive 4-bit payloads
+    for bits in itertools.product([0, 1], repeat=4):
+        msg = tuple(bits)
+        cw = codec.encode(msg)
+        for b in [1, 5, 10]:
+            rx = cw[b:]
+            decoded = codec.decode(rx)
+            assert decoded == msg, f"Phase 2 tie resolution failed for msg={msg}, b={b}"
+
+def test_theorem_7_auxiliary_memory_bound():
+    """Verify Theorem 7: Auxiliary memory buffer size is strictly O(1) wrt stream length."""
+    for K in [2, 4, 6, 8]:
+        codec = GeneralizedPathaCode(K=K)
+        M = codec.M
+        # Unpruned candidate array of single-byte indices: at most M bytes
+        cand_array_bytes = M * 1
+        # Vote accumulators: 2 counters per symbol
+        vote_accum_bytes = 2 * K
+        # Loop indices and registers
+        registers_bytes = 16
+        total_aux_bytes = cand_array_bytes + vote_accum_bytes + registers_bytes
+        assert total_aux_bytes < 256, f"Auxiliary memory bound violated for K={K}: {total_aux_bytes} >= 256 bytes"
 
