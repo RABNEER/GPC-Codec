@@ -975,6 +975,11 @@ def get_references():
       <li>E. Sharon and N. Litsyn, "Constructing low-density parity-check codes for insertion and deletion channels," <em>IEEE Trans. Commun.</em>, vol. 54, no. 4, pp. 614–623, 2006.</li>
       <li>R. Heckel et al., "Fundamental limits of DNA storage systems," in <em>Proc. IEEE Int. Symp. Inf. Theory (ISIT)</em>, 2017, pp. 3140–3144.</li>
       <li>C. Schoeny, A. Wachter-Zeh, R. Gabrys, and E. Yaakobi, "Codes for Correcting a Burst of Deletions or Insertions," <em>IEEE Trans. Inf. Theory</em>, vol. 63, no. 4, pp. 1971–1985, 2017.</li>
+      <li>J. Sima, R. Gabrys, and J. Bruck, "Optimal Systematic $t$-Deletion Correcting Codes," <em>IEEE Trans. Inf. Theory</em>, vol. 67, no. 6, pp. 3360–3375, 2021.</li>
+      <li>W. H. Press et al., "HEDGES error-correcting code for DNA storage corrects indels and allows sequence constraints," <em>Proc. Natl. Acad. Sci. USA (PNAS)</em>, vol. 117, no. 31, pp. 18489–18496, 2020.</li>
+      <li>A. Lenz, P. H. Siegel, A. Wachter-Zeh, and E. Yaakobi, "Coding over sets for DNA storage," <em>IEEE Trans. Inf. Theory</em>, vol. 66, no. 4, pp. 2331–2351, 2020.</li>
+      <li>P.-S. Filliozat, <em>The Sanskrit Language: An Overview</em>, Indica Books, Varanasi, pp. 135–142, 2004.</li>
+      <li>B. V. Kayathry, "Coding Theory in Sanskrit Literature with Special Reference to Subhāṣita Nīvī," Doctoral Dissertation, SASTRA Deemed Univ., 2021.</li>
     </ol>
 '''
 
