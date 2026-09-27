@@ -23,7 +23,7 @@ figures_dir = os.path.join(root_dir, "figures")
 html_path = os.path.join(papers_dir, "GPC_Full_Research_Paper_12_Pages.html")
 pdf_path = os.path.join(papers_dir, "GPC_Full_Research_Paper_12_Pages.pdf")
 
-def assemble_master_html(font_size="9.4pt", line_height="1.24", margin_mm="11.8", col_gap="5.0mm", p_margin="2.88px"):
+def assemble_master_html(font_size="10.4pt", line_height="1.28", margin_mm="11.8", col_gap="5.0mm", p_margin="2.88px"):
     with open(html_path, "w", encoding="utf-8") as f:
         # Styles and CSS setup
         f.write(r'''<!DOCTYPE html>

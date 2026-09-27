@@ -61,6 +61,50 @@ class GeneralizedPathaCode:
                 pos[sym].append(idx)
         return {j: (max(pos[j]) - min(pos[j])) if len(pos[j]) >= 2 else 0 for j in range(1, self.K + 1)}
 
+    def lambda_analytic(self, n: int) -> Optional[int]:
+        """
+        Exact closed-form coordinate index mapping function lambda(n) -> {0, ..., K-1}.
+        Returns None for pilot coordinates.
+        """
+        K = self.K
+        if 1 <= n <= 2 * K:
+            m = n - 1
+            return (m // 2 + (m % 2)) % K
+        elif (2 * K + 2) <= n <= (4 * K + 1):
+            m = n - (2 * K + 2)
+            return (m // 2 + 1 - (m % 2)) % K
+        elif (4 * K + 3) <= n <= (7 * K + 2):
+            m = n - (4 * K + 3)
+            return (m // 3 + (m % 3)) % K
+        elif (7 * K + 4) <= n <= (10 * K + 3):
+            m = n - (7 * K + 4)
+            return (m // 3 + 2 - (m % 3)) % K
+        elif (10 * K + 5) <= n <= (13 * K + 4):
+            m = n - (10 * K + 5)
+            return (m // 3 + (m % 3)) % K
+        return None
+
+    def generator_matrix(self) -> List[List[int]]:
+        """
+        Returns the algebraic GPC generator matrix G_GPC in {0, 1}^{K x M}.
+        Row weight is strictly 13 for all rows, column weight is 1 for data, 0 for pilots.
+        """
+        G = [[0] * self.M for _ in range(self.K)]
+        for n in range(self.M):
+            sym = self.lambda_analytic(n)
+            if sym is not None:
+                G[sym][n] = 1
+        return G
+
+    def pilot_vector(self) -> List[int]:
+        """
+        Returns the affine pilot support vector p_pilot in {0, 1}^M.
+        """
+        p = [0] * self.M
+        for idx in self.pilots:
+            p[idx] = 1
+        return p
+
     def encode(self, message: Union[List[int], Tuple[int, ...]]) -> List[int]:
         if len(message) != self.K:
             raise ValueError(f"Message length must be {self.K}, got {len(message)}")

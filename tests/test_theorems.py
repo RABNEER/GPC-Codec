@@ -93,3 +93,81 @@ def test_theorem_4_auxiliary_memory_bound():
         registers_bytes = 16
         total_aux_bytes = cand_array_bytes + vote_accum_bytes + registers_bytes
         assert total_aux_bytes < 256, f"Auxiliary memory bound violated for K={K}: {total_aux_bytes} >= 256 bytes"
+
+def test_theorem_5_algebraic_generator_matrix():
+    """Verify Theorem 5: G_GPC row weights are identically 13, column weights 1 for data, and c = u G_GPC ^ p_pilot."""
+    import numpy as np
+    for K in [2, 3, 4, 6]:
+        codec = GeneralizedPathaCode(K=K)
+        M = 13 * K + 6
+        G = np.zeros((K, M), dtype=int)
+        p_pilot = np.zeros(M, dtype=int)
+        pilots = [0, 2*K + 1, 4*K + 2, 7*K + 3, 10*K + 4, 13*K + 5]
+        for p in pilots:
+            p_pilot[p] = 1
+
+        for n in range(M):
+            if 1 <= n <= 2*K:
+                m = n - 1
+                sym = (m // 2 + (m % 2)) % K
+                G[sym, n] = 1
+            elif (2*K + 2) <= n <= (4*K + 1):
+                m = n - (2*K + 2)
+                sym = (m // 2 + 1 - (m % 2)) % K
+                G[sym, n] = 1
+            elif (4*K + 3) <= n <= (7*K + 2):
+                m = n - (4*K + 3)
+                sym = (m // 3 + (m % 3)) % K
+                G[sym, n] = 1
+            elif (7*K + 4) <= n <= (10*K + 3):
+                m = n - (7*K + 4)
+                sym = (m // 3 + 2 - (m % 3)) % K
+                G[sym, n] = 1
+            elif (10*K + 5) <= n <= (13*K + 4):
+                m = n - (10*K + 5)
+                sym = (m // 3 + (m % 3)) % K
+                G[sym, n] = 1
+
+        # Check row weights identically 13
+        assert np.all(G.sum(axis=1) == 13), f"Row weight invariant violated for K={K}"
+        # Check column weights
+        for n in range(M):
+            if n in pilots:
+                assert np.sum(G[:, n]) == 0
+            else:
+                assert np.sum(G[:, n]) == 1
+
+        # Check bit-exact match across all messages
+        for bits in itertools.product([0, 1], repeat=K):
+            u = np.array(bits, dtype=int)
+            c_mat = (u @ G + p_pilot) % 2
+            c_proc = np.array(codec.encode(bits), dtype=int)
+            assert np.array_equal(c_mat, c_proc), f"Algebraic codeword mismatch for K={K}, bits={bits}"
+
+def test_theorem_6_orthogonal_phase_gradients_and_edge_disjointness():
+    """Verify Theorem 6: Forward and backward passes generate strictly disjoint directed edges on C_K."""
+    for K in [3, 4, 5, 6]:
+        f2 = {(i, (i + 1) % K) for i in range(K)}
+        b2 = {((i + 1) % K, i) for i in range(K)}
+        assert len(f2.intersection(b2)) == 0, f"Edge collision for K={K}"
+
+        f3 = {(i, (i + 1) % K, (i + 2) % K) for i in range(K)}
+        b3 = {((i + 2) % K, (i + 1) % K, i) for i in range(K)}
+        assert len(f3.intersection(b3)) == 0, f"Triplet collision for K={K}"
+
+def test_theorem_7_surviving_copy_majority_bound():
+    """Verify Theorem 7: N_min(b) >= 10 for b <= 10, and N_min(b) >= 7 (strict majority) holds for all b < 22."""
+    codec = GeneralizedPathaCode(K=4)
+    M = codec.M
+    for b in range(1, 22):
+        worst = 13
+        for s in range(M - b + 1):
+            surv = [sym for idx, sym in enumerate(codec.placement) if not (s <= idx < s + b)]
+            for j in range(1, 5):
+                cnt = surv.count(j)
+                if cnt < worst:
+                    worst = cnt
+        assert worst >= 7, f"Majority violated early at b={b}: worst={worst}"
+        if b <= 10:
+            assert worst >= 10, f"Surviving bound violated for b={b}: worst={worst} < 10"
+
